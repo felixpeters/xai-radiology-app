@@ -1,4 +1,4 @@
-# AI-supported app for CT analysis
+# CT analysis with explainable AI features
 
 This Gatsby app is used for user experiments in a current study that examines whether and how explainable AI features should be integrated into medical applications.
 
