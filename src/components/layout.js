@@ -4,7 +4,7 @@ import Footer from "./footer"
 
 export default function Layout({ children }) {
   return (
-    <div class="relative bg-gray-50">
+    <div class="relative bg-gray-100">
       <Header />
       <main class="lg:relative">{children}</main>
       <Footer />
