@@ -1,165 +1,38 @@
 import React from "react"
-
-const scans = [
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  {
-    id: 1,
-    priority: {
-      code: "Urgent",
-      explanation: "High prob. of malignant lung nodule",
-    },
-    patient: {
-      name: "Jane Doe",
-      sex: "Female",
-      age: 64,
-    },
-    procedure: {
-      name: "CT chest w/o contrast",
-      datetime: "2021-Apr-16 10:53",
-      reason: "Referral by primary physician",
-    },
-  },
-  // More scans...
-]
+import classnames from "classnames"
+import { useStaticQuery, graphql } from "gatsby"
 
 export default function WorkList() {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        allScansJson {
+          edges {
+            node {
+              id
+              priority {
+                code
+                explanation
+              }
+              patient {
+                name
+                sex
+                age
+              }
+              procedure {
+                name
+                datetime
+                reason
+              }
+            }
+          }
+        }
+      }
+    `
+  )
   return (
     <>
+      {console.log(data)}
       <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold leading-tight text-gray-900">
           Worklist
@@ -203,37 +76,51 @@ export default function WorkList() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {scans.map(scan => (
-                      <tr key={scan.id}>
+                    {data.allScansJson.edges.map(scan => (
+                      <tr key={scan.node.id}>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                            {scan.priority.code}: {scan.priority.explanation}
+                          <span
+                            className={classnames(
+                              "px-2 inline-flex text-xs leading-5 font-semibold rounded-full",
+                              {
+                                "bg-red-100 text-red-800":
+                                  scan.node.priority.code == "High",
+                                "bg-yellow-100 text-yellow-800":
+                                  scan.node.priority.code == "Medium",
+                                "bg-green-100 text-green-800":
+                                  scan.node.priority.code == "Low",
+                              }
+                            )}
+                          >
+                            {scan.node.priority.code}:{" "}
+                            {scan.node.priority.explanation}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div>
                               <div className="text-sm font-medium text-gray-900">
-                                {scan.patient.name}
+                                {scan.node.patient.name}
                               </div>
                               <div className="text-sm text-gray-500">
-                                {scan.patient.sex}, {scan.patient.age} years
+                                {scan.node.patient.sex}, {scan.node.patient.age}{" "}
+                                years
                               </div>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-900">
-                            {scan.procedure.name}
+                            {scan.node.procedure.name}
                           </div>
                           <div className="text-sm text-gray-500">
-                            {scan.procedure.datetime}
+                            {scan.node.procedure.datetime}
                           </div>
                         </td>
 
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           <div className="text-sm text-gray-900">
-                            {scan.procedure.reason}
+                            {scan.node.procedure.reason}
                           </div>
                           <div className="text-sm text-gray-500">
                             No prior scans available

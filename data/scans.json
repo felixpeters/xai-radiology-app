@@ -19,6 +19,23 @@
   {
     "id": 2,
     "priority": {
+      "code": "Medium",
+      "explanation": "Multiple small lung nodules found"
+    },
+    "patient": {
+      "name": "James Dean",
+      "sex": "Male",
+      "age": 71
+    },
+    "procedure": {
+      "name": "CT chest w/o contrast",
+      "datetime": "2021-Apr-15 18:33",
+      "reason": "Referral by primary physician"
+    }
+  },
+  {
+    "id": 3,
+    "priority": {
       "code": "Low",
       "explanation": "No anomalies found"
     },
