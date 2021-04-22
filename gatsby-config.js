@@ -11,5 +11,15 @@ module.exports = {
     author: `@_fpeters`,
   },
   /* Your site config here */
-  plugins: ["gatsby-plugin-react-helmet", "gatsby-plugin-postcss"],
+  plugins: [
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-postcss",
+    "gatsby-transformer-json",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: "./data/",
+      },
+    },
+  ],
 }
