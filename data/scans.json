@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "priority": {
+      "code": "High",
+      "explanation": "High prob. of malignant lung nodule"
+    },
+    "patient": {
+      "name": "Jane Doe",
+      "sex": "Female",
+      "age": 64
+    },
+    "procedure": {
+      "name": "CT chest w/o contrast",
+      "datetime": "2021-Apr-16 10:53",
+      "reason": "Referral by primary physician"
+    }
+  },
+  {
+    "id": 2,
+    "priority": {
+      "code": "Low",
+      "explanation": "No anomalies found"
+    },
+    "patient": {
+      "name": "John Smith",
+      "sex": "Male",
+      "age": 35
+    },
+    "procedure": {
+      "name": "CT head w/o contrast",
+      "datetime": "2021-Apr-16 14:14",
+      "reason": "Order by emergency department"
+    }
+  }
+]
