@@ -1,9 +1,8 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { HomeIcon } from "@heroicons/react/solid"
 
-const pages = [{ name: "Worklist", href: "#", current: true }]
-
-export default function Breadcrumbs() {
+function Breadcrumbs({ pages }) {
   return (
     <nav
       className="bg-white border-b border-t border-gray-200 flex"
@@ -45,3 +44,13 @@ export default function Breadcrumbs() {
     </nav>
   )
 }
+
+Breadcrumbs.defaultProps = {
+  pages: [{ name: "Worklist", href: "#", current: true }],
+}
+
+Breadcrumbs.propTypes = {
+  pages: PropTypes.arrayOf(PropTypes.object),
+}
+
+export default Breadcrumbs
