@@ -42,12 +42,12 @@ export default function Header() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="./logo.svg"
+                    src={"/logo.svg"}
                     alt={site.siteMetadata.title}
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="./logo_name.svg"
+                    src={"/logo_name.svg"}
                     alt={site.siteMetadata.title}
                   />
                 </div>
