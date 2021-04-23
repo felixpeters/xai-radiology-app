@@ -1,6 +1,6 @@
 import React from "react"
 import classnames from "classnames"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 export default function WorkList() {
   const data = useStaticQuery(
@@ -122,12 +122,12 @@ export default function WorkList() {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <a
-                            href="#"
+                          <Link
+                            to={"/scans/" + scan.id}
                             className="text-indigo-600 hover:text-indigo-900"
                           >
                             Open
-                          </a>
+                          </Link>
                         </td>
                       </tr>
                     ))}
