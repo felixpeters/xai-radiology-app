@@ -7,23 +7,21 @@ export default function WorkList() {
     graphql`
       query {
         allScansJson {
-          edges {
-            node {
-              id
-              priority {
-                code
-                explanation
-              }
-              patient {
-                name
-                sex
-                age
-              }
-              procedure {
-                name
-                datetime
-                reason
-              }
+          nodes {
+            id
+            priority {
+              code
+              explanation
+            }
+            patient {
+              name
+              sex
+              age
+            }
+            procedure {
+              name
+              datetime
+              reason
             }
           }
         }
@@ -32,7 +30,6 @@ export default function WorkList() {
   )
   return (
     <>
-      {console.log(data)}
       <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold leading-tight text-gray-900">
           Worklist
@@ -76,51 +73,49 @@ export default function WorkList() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {data.allScansJson.edges.map(scan => (
-                      <tr key={scan.node.id}>
+                    {data.allScansJson.nodes.map(scan => (
+                      <tr key={scan.id}>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span
                             className={classnames(
                               "px-2 inline-flex text-xs leading-5 font-semibold rounded-full",
                               {
                                 "bg-red-100 text-red-800":
-                                  scan.node.priority.code == "High",
+                                  scan.priority.code == "High",
                                 "bg-yellow-100 text-yellow-800":
-                                  scan.node.priority.code == "Medium",
+                                  scan.priority.code == "Medium",
                                 "bg-green-100 text-green-800":
-                                  scan.node.priority.code == "Low",
+                                  scan.priority.code == "Low",
                               }
                             )}
                           >
-                            {scan.node.priority.code}:{" "}
-                            {scan.node.priority.explanation}
+                            {scan.priority.code}: {scan.priority.explanation}
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div>
                               <div className="text-sm font-medium text-gray-900">
-                                {scan.node.patient.name}
+                                {scan.patient.name}
                               </div>
                               <div className="text-sm text-gray-500">
-                                {scan.node.patient.sex}, {scan.node.patient.age}{" "}
-                                years
+                                {scan.patient.sex}, {scan.patient.age} years
                               </div>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-900">
-                            {scan.node.procedure.name}
+                            {scan.procedure.name}
                           </div>
                           <div className="text-sm text-gray-500">
-                            {scan.node.procedure.datetime}
+                            {scan.procedure.datetime}
                           </div>
                         </td>
 
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           <div className="text-sm text-gray-900">
-                            {scan.node.procedure.reason}
+                            {scan.procedure.reason}
                           </div>
                           <div className="text-sm text-gray-500">
                             No prior scans available
