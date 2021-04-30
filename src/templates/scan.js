@@ -7,8 +7,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid"
 import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import ScanImage from "../components/scan"
-import NoduleList from "../components/nodules.js"
+import ScanImage from "../components/scanImage"
+import NoduleList from "../components/noduleList.js"
 
 function Scan({ data }) {
   const scan = data.scansJson
