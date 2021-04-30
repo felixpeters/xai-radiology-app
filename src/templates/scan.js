@@ -77,7 +77,7 @@ function Scan({ data }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
+        <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-8">
           <div className="flex-1">
             <ScanImage images={scan.images} />
           </div>
