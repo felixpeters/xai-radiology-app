@@ -14,6 +14,10 @@
       "name": "CT chest w/o contrast",
       "datetime": "2021-Apr-16 10:53",
       "reason": "Referral by primary physician"
+    },
+    "images": {
+      "raw": "scan01/raw.png",
+      "overlay": "scan01/overlay.png"
     }
   },
   {

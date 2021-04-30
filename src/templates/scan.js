@@ -62,9 +62,9 @@ function Scan({ data }) {
           </div>
           <div className="mt-2 md:flex md:items-center md:justify-between">
             <div className="flex-1 min-w-0">
-              <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+              <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
                 Scan #{scan.id} - Patient {scan.patient.name}
-              </h2>
+              </h1>
             </div>
             <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
               <button
@@ -77,9 +77,9 @@ function Scan({ data }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col mt-4 space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
+        <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
           <div className="flex-1">
-            <ScanImage />
+            <ScanImage images={scan.images} />
           </div>
           <div className="flex-1">
             <NoduleList />
@@ -155,6 +155,10 @@ export const query = graphql`
       procedure {
         datetime
       }
+      images {
+        raw
+        overlay
+      }
     }
   }
 `
@@ -167,6 +171,10 @@ Scan.propTypes = {
       }),
       procecure: PropTypes.shape({
         datetime: PropTypes.string,
+      }),
+      images: PropTypes.shape({
+        raw: PropTypes.string,
+        overlay: PropTypes.string,
       }),
     }),
   }),
