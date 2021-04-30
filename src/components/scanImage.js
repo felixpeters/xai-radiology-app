@@ -26,23 +26,27 @@ function ScanImage({ images }) {
         })}
         src={"/" + images.overlay}
       />
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between items-center mt-4">
         <div className="flex-1">
-          <Slider
-            min={1}
-            max={137}
-            value={119}
-            marks={{ 1: 1, 137: 137 }}
-            step={1}
-            railStyle={{ backgroundColor: "#5a67d8" }}
-            trackStyle={{ backgroundColor: "#5a67d8" }}
-            handleStyle={{
-              borderColor: "#5a67d8",
-            }}
-            dotStyle={{
-              borderColor: "#5a67d8",
-            }}
-          />
+          <div className="flex items-center justify-start">
+            <Slider
+              min={1}
+              max={137}
+              value={119}
+              step={1}
+              railStyle={{ backgroundColor: "#5a67d8" }}
+              trackStyle={{ backgroundColor: "#5a67d8" }}
+              handleStyle={{
+                borderColor: "#5a67d8",
+              }}
+              dotStyle={{
+                borderColor: "#5a67d8",
+              }}
+            />
+            <span className="min-w-max ml-3 text-sm font-medium text-gray-900">
+              Image 119/137
+            </span>
+          </div>
         </div>
         <div className="flex-1">
           <Switch.Group as="div" className="flex items-center justify-end">
