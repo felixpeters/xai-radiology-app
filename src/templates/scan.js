@@ -82,7 +82,7 @@ function Scan({ data }) {
             <ScanImage images={scan.images} />
           </div>
           <div className="flex-1">
-            <NoduleList />
+            <NoduleList data={scan.nodules}/>
           </div>
         </div>
         <Transition.Root show={scanInfoOpen} as={Fragment}>
@@ -159,6 +159,19 @@ export const query = graphql`
         raw
         overlay
       }
+      nodules {
+        id
+        measurements {
+          diameter
+          area
+          volume
+        }
+        classifications {
+          ai
+          physician
+        }
+        image
+      }
     }
   }
 `
@@ -175,6 +188,19 @@ Scan.propTypes = {
       images: PropTypes.shape({
         raw: PropTypes.string,
         overlay: PropTypes.string,
+      }),
+      nodules: PropTypes.arrayOf({
+        id: PropTypes.string.isRequired,
+        image: PropTypes.string,
+        measurements: PropTypes.shape({
+          diameter: PropTypes.number,
+          area: PropTypes.number,
+          volume: PropTypes.number,
+        }),
+        classifications: PropTypes.shape({
+          ai: PropTypes.number,
+          physician: PropTypes.string,
+        }),
       }),
     }),
   }),
