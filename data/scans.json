@@ -18,6 +18,73 @@
     "images": {
       "raw": "scan01/raw.png",
       "overlay": "scan01/overlay.png"
-    }
+    },
+    "nodules": [
+      {
+        "id": 1,
+        "measurements": {
+          "diameter": 31.4,
+          "area": 3097.3,
+          "volume": 7943.1
+        },
+        "classifications": {
+          "ai": 0.52,
+          "physician": "benign"
+        },
+        "image": "scan01/nodule_1.png"
+      },
+      {
+        "id": 2,
+        "measurements": {
+          "diameter": 17.5,
+          "area": 881.3,
+          "volume": 1382.7
+        },
+        "classifications": {
+          "ai": 0.87,
+          "physician": "open"
+        },
+        "image": "scan01/nodule_2.png"
+      },
+      {
+        "id": 3,
+        "measurements": {
+          "diameter": 12.7,
+          "area": 412.7,
+          "volume": 550.4
+        },
+        "classifications": {
+          "ai": 0.35,
+          "physician": "open"
+        },
+        "image": "scan01/nodule_3.png"
+      },
+      {
+        "id": 4,
+        "measurements": {
+          "diameter": 6.5,
+          "area": 100.7,
+          "volume": 90.4
+        },
+        "classifications": {
+          "ai": 0.41,
+          "physician": "open"
+        },
+        "image": "scan01/nodule_4.png"
+      },
+      {
+        "id": 5,
+        "measurements": {
+          "diameter": 5.7,
+          "area": 88.6,
+          "volume": 87.2
+        },
+        "classifications": {
+          "ai": 0.13,
+          "physician": "open"
+        },
+        "image": "scan01/nodule_5.png"
+      }
+    ]
   }
 ]
