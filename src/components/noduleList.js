@@ -1,4 +1,5 @@
 import React from "react"
+import classnames from "classnames"
 import { Link } from "gatsby"
 
 export default function NoduleList(data) {
@@ -58,10 +59,45 @@ export default function NoduleList(data) {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
-                        AI: {nodule.classifications.ai * 100} %
+                        <span
+                          className={classnames(
+                            "px-2 inline-flex text-sm leading-5 font-medium rounded-full",
+                            {
+                              "bg-green-100 text-green-800":
+                                nodule.classifications.ai >= 0.0 &&
+                                nodule.classifications.ai < 0.34,
+                              "bg-yellow-100 text-yellow-800":
+                                nodule.classifications.ai >= 0.34 &&
+                                nodule.classifications.ai < 0.67,
+                              "bg-red-100 text-red-800":
+                                nodule.classifications.ai >= 0.67,
+                            }
+                          )}
+                        >
+                          AI Malignancy Score: {nodule.classifications.ai * 100}
+                          %
+                        </span>
                       </div>
-                      <div className="text-sm font-medium text-gray-900">
-                        Physician: {nodule.classifications.physician}
+                      <div className="mt-4 text-sm font-medium text-gray-900">
+                        <span
+                          className={classnames(
+                            "px-2 inline-flex text-sm leading-5 font-medium rounded-full",
+                            {
+                              "bg-green-100 text-green-800":
+                                nodule.classifications.physician == "benign",
+                              "bg-blue-100 text-blue-800":
+                                nodule.classifications.physician == "open",
+                              "bg-red-100 text-red-800":
+                                nodule.classifications.physician == "malignant",
+                            }
+                          )}
+                        >
+                          Physician:{" "}
+                          {nodule.classifications.physician
+                            .charAt(0)
+                            .toUpperCase() +
+                            nodule.classifications.physician.slice(1)}
+                        </span>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
