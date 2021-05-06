@@ -3,7 +3,11 @@ import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { XIcon } from "@heroicons/react/outline"
 import { Link, graphql } from "gatsby"
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid"
+import {
+  ClipboardListIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/solid"
 import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -70,8 +74,9 @@ function Scan({ data }) {
               <button
                 onClick={() => setScanInfoOpen(true)}
                 type="button"
-                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
+                <ClipboardListIcon className="h-5 w-5 text-white mr-2" />
                 Scan details
               </button>
             </div>
@@ -82,7 +87,7 @@ function Scan({ data }) {
             <ScanImage images={scan.images} />
           </div>
           <div className="flex-1">
-            <NoduleList data={scan.nodules}/>
+            <NoduleList data={scan.nodules} />
           </div>
         </div>
         <Transition.Root show={scanInfoOpen} as={Fragment}>
