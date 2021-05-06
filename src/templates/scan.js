@@ -72,7 +72,10 @@ function Scan({ data }) {
               </h1>
             </div>
             <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
-              <span className="mr-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 cursor-pointer">
+              <button
+                type="button"
+                className="mr-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
                 <svg
                   className="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400"
                   fill="currentColor"
@@ -81,7 +84,7 @@ function Scan({ data }) {
                   <circle cx={4} cy={4} r={3} />
                 </svg>
                 Active AI: Nodule detection & classification
-              </span>
+              </button>
               <button
                 onClick={() => setScanInfoOpen(true)}
                 type="button"
