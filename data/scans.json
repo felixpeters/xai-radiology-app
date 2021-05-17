@@ -1,6 +1,6 @@
 [
   {
-    "id": "scan_01",
+    "id": "1234",
     "priority": {
       "code": "High",
       "explanation": "High prob. of malignant lung nodule"
@@ -20,11 +20,11 @@
       "overlay": "scan01/overlay.png"
     },
     "nodules___NODE": [
-      "nod_01",
-      "nod_02",
-      "nod_03",
-      "nod_04",
-      "nod_05"
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
     ]
   }
 ]

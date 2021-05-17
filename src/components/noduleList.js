@@ -102,7 +102,7 @@ export default function NoduleList(data) {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <Link
-                        to="#"
+                        to={"./nodules/" + nodule.id}
                         className="text-indigo-600 hover:text-indigo-900"
                       >
                         Details

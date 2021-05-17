@@ -1,7 +1,7 @@
 [
   {
-    "id": "nod_01",
-    "scan___NODE": "scan_01",
+    "id": "1",
+    "scan___NODE": "1234",
     "measurements": {
       "diameter": 31.4,
       "area": 3097.3,
@@ -14,8 +14,8 @@
     "image": "scan01/nodule_1.png"
   },
   {
-    "id": "nod_02",
-    "scan___NODE": "scan_01",
+    "id": "2",
+    "scan___NODE": "1234",
     "measurements": {
       "diameter": 17.5,
       "area": 881.3,
@@ -28,8 +28,8 @@
     "image": "scan01/nodule_2.png"
   },
   {
-    "id": "nod_03",
-    "scan___NODE": "scan_01",
+    "id": "3",
+    "scan___NODE": "1234",
     "measurements": {
       "diameter": 12.7,
       "area": 412.7,
@@ -42,8 +42,8 @@
     "image": "scan01/nodule_3.png"
   },
   {
-    "id": "nod_04",
-    "scan___NODE": "scan_01",
+    "id": "4",
+    "scan___NODE": "1234",
     "measurements": {
       "diameter": 6.5,
       "area": 100.7,
@@ -56,8 +56,8 @@
     "image": "scan01/nodule_4.png"
   },
   {
-    "id": "nod_05",
-    "scan___NODE": "scan_01",
+    "id": "5",
+    "scan___NODE": "1234",
     "measurements": {
       "diameter": 5.7,
       "area": 88.6,

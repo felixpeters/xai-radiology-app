@@ -18,6 +18,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
   const scanTemplate = path.resolve("src/templates/scan.js")
+  const noduleTemplate = path.resolve("src/templates/nodule.js")
 
   const result = await graphql(`
     query {
@@ -25,6 +26,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         edges {
           node {
             id
+          }
+        }
+      }
+      allNodulesJson {
+        edges {
+          node {
+            id
+            scan {
+              id
+            }
           }
         }
       }
@@ -42,6 +53,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: scanTemplate,
       context: {
         scanId: id,
+      },
+    })
+  })
+  result.data.allNodulesJson.edges.forEach(({ node }) => {
+    const id = node.id
+    const scanId = node.scan.id
+    createPage({
+      path: `/scans/${scanId}/nodules/${id}`,
+      component: noduleTemplate,
+      context: {
+        noduleId: id,
       },
     })
   })
