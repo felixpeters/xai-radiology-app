@@ -3,7 +3,9 @@ import classnames from "classnames"
 import { Link } from "gatsby"
 
 export default function NoduleList(data) {
-  const nodules = data.data
+  const nodules = data.data.sort((a, b) => {
+    return b.measurements.volume - a.measurements.volume
+  })
   return (
     <>
       <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
