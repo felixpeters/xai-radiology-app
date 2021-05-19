@@ -6,7 +6,6 @@ export default function NoduleList(data) {
   const nodules = data.data
   return (
     <>
-      {console.log(nodules)}
       <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
         Detected nodules
       </h2>
@@ -64,18 +63,18 @@ export default function NoduleList(data) {
                             "px-2 inline-flex text-sm leading-5 font-medium rounded-full",
                             {
                               "bg-green-100 text-green-800":
-                                nodule.classifications.ai >= 0.0 &&
-                                nodule.classifications.ai < 0.34,
+                                nodule.classifications.main.ai >= 0.0 &&
+                                nodule.classifications.main.ai < 0.34,
                               "bg-yellow-100 text-yellow-800":
-                                nodule.classifications.ai >= 0.34 &&
-                                nodule.classifications.ai < 0.67,
+                                nodule.classifications.main.ai >= 0.34 &&
+                                nodule.classifications.main.ai < 0.67,
                               "bg-red-100 text-red-800":
-                                nodule.classifications.ai >= 0.67,
+                                nodule.classifications.main.ai >= 0.67,
                             }
                           )}
                         >
-                          AI Malignancy Score: {nodule.classifications.ai * 100}
-                          %
+                          AI Malignancy Score:{" "}
+                          {nodule.classifications.main.ai * 100}%
                         </span>
                       </div>
                       <div className="mt-4 text-sm font-medium text-gray-900">
@@ -84,19 +83,21 @@ export default function NoduleList(data) {
                             "px-2 inline-flex text-sm leading-5 font-medium rounded-full",
                             {
                               "bg-green-100 text-green-800":
-                                nodule.classifications.physician == "benign",
+                                nodule.classifications.main.physician ==
+                                "benign",
                               "bg-blue-100 text-blue-800":
-                                nodule.classifications.physician == "open",
+                                nodule.classifications.main.physician == "open",
                               "bg-red-100 text-red-800":
-                                nodule.classifications.physician == "malignant",
+                                nodule.classifications.main.physician ==
+                                "malignant",
                             }
                           )}
                         >
                           Physician:{" "}
-                          {nodule.classifications.physician
+                          {nodule.classifications.main.physician
                             .charAt(0)
                             .toUpperCase() +
-                            nodule.classifications.physician.slice(1)}
+                            nodule.classifications.main.physician.slice(1)}
                         </span>
                       </div>
                     </td>

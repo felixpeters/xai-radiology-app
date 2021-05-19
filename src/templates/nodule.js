@@ -270,8 +270,10 @@ export const query = graphql`
         volume
       }
       classifications {
-        ai
-        physician
+        main {
+          ai
+          physician
+        }
       }
       image
     }
@@ -305,8 +307,10 @@ Nodule.propTypes = {
         volume: PropTypes.number,
       }),
       classifications: PropTypes.shape({
-        ai: PropTypes.number,
-        physician: PropTypes.string,
+        main: PropTypes.shape({
+          ai: PropTypes.number,
+          physician: PropTypes.string,
+        }),
       }),
     }),
   }),

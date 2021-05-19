@@ -8,8 +8,10 @@
       "volume": 7943.1
     },
     "classifications": {
-      "ai": 0.52,
-      "physician": "benign"
+      "main": {
+        "ai": 0.52,
+        "physician": "benign"
+      }
     },
     "image": "scan01/nodule_1.png"
   },
@@ -22,8 +24,10 @@
       "volume": 1382.7
     },
     "classifications": {
-      "ai": 0.87,
-      "physician": "open"
+      "main": {
+        "ai": 0.87,
+        "physician": "open"
+      }
     },
     "image": "scan01/nodule_2.png"
   },
@@ -36,8 +40,10 @@
       "volume": 550.4
     },
     "classifications": {
-      "ai": 0.35,
-      "physician": "open"
+      "main": {
+        "ai": 0.35,
+        "physician": "open"
+      }
     },
     "image": "scan01/nodule_3.png"
   },
@@ -50,8 +56,10 @@
       "volume": 90.4
     },
     "classifications": {
-      "ai": 0.41,
-      "physician": "open"
+      "main": {
+        "ai": 0.41,
+        "physician": "open"
+      }
     },
     "image": "scan01/nodule_4.png"
   },
@@ -64,8 +72,10 @@
       "volume": 87.2
     },
     "classifications": {
-      "ai": 0.13,
-      "physician": "open"
+      "main": {
+        "ai": 0.13,
+        "physician": "open"
+      }
     },
     "image": "scan01/nodule_5.png"
   }
