@@ -1,55 +1,33 @@
 [
   {
-    "id": "4",
+    "id": "1",
     "scan___NODE": "1234",
     "measurements": {
-      "diameter": 31.4,
-      "area": 3097.3,
-      "volume": 7943.1
+      "diameter": 5.7,
+      "area": 88.6,
+      "volume": 87.2
     },
     "classifications": {
       "main": {
-        "ai": 0.52,
-        "physician": "benign"
-      },
-      "additional": {
-        "texture": 5,
-        "spiculation": 4,
-        "lobulation": 3,
-        "margin": 3,
-        "sphericity": 4,
-        "calcification": 6,
-        "internalStructure": 4,
-        "subtlety": 5
-      }
-    },
-    "image": "scan01/nodule_1.png"
-  },
-  {
-    "id": "5",
-    "scan___NODE": "1234",
-    "measurements": {
-      "diameter": 17.5,
-      "area": 881.3,
-      "volume": 1382.7
-    },
-    "classifications": {
-      "main": {
-        "ai": 0.87,
+        "ai": 0.13,
         "physician": "open"
       },
       "additional": {
         "texture": 5,
-        "spiculation": 4,
+        "spiculation": 1,
         "lobulation": 3,
-        "margin": 4,
-        "sphericity": 4,
-        "calcification": 6,
+        "margin": 5,
+        "sphericity": 5,
+        "calcification": 3,
         "internalStructure": 1,
         "subtlety": 5
       }
     },
-    "image": "scan01/nodule_2.png"
+    "images": {
+      "thumbnail": "scan01/nodule_5.png",
+      "num_slices": 60,
+      "slices": "scan01/nodules/nodule_1"
+    }
   },
   {
     "id": "2",
@@ -75,7 +53,11 @@
         "subtlety": 1
       }
     },
-    "image": "scan01/nodule_3.png"
+    "images": {
+      "thumbnail": "scan01/nodule_3.png",
+      "num_slices": 60,
+      "slices": "scan01/nodules/nodule_2"
+    }
   },
   {
     "id": "3",
@@ -101,32 +83,70 @@
         "subtlety": 4
       }
     },
-    "image": "scan01/nodule_4.png"
+    "images": {
+      "thumbnail": "scan01/nodule_4.png",
+      "num_slices": 59,
+      "slices": "scan01/nodules/nodule_3"
+    }
   },
   {
-    "id": "1",
+    "id": "4",
     "scan___NODE": "1234",
     "measurements": {
-      "diameter": 5.7,
-      "area": 88.6,
-      "volume": 87.2
+      "diameter": 31.4,
+      "area": 3097.3,
+      "volume": 7943.1
     },
     "classifications": {
       "main": {
-        "ai": 0.13,
+        "ai": 0.52,
+        "physician": "benign"
+      },
+      "additional": {
+        "texture": 5,
+        "spiculation": 4,
+        "lobulation": 3,
+        "margin": 3,
+        "sphericity": 4,
+        "calcification": 6,
+        "internalStructure": 4,
+        "subtlety": 5
+      }
+    },
+    "images": {
+      "thumbnail": "scan01/nodule_1.png",
+      "num_slices": 52,
+      "slices": "scan01/nodules/nodule_4"
+    }
+  },
+  {
+    "id": "5",
+    "scan___NODE": "1234",
+    "measurements": {
+      "diameter": 17.5,
+      "area": 881.3,
+      "volume": 1382.7
+    },
+    "classifications": {
+      "main": {
+        "ai": 0.87,
         "physician": "open"
       },
       "additional": {
         "texture": 5,
-        "spiculation": 1,
+        "spiculation": 4,
         "lobulation": 3,
-        "margin": 5,
-        "sphericity": 5,
-        "calcification": 3,
+        "margin": 4,
+        "sphericity": 4,
+        "calcification": 6,
         "internalStructure": 1,
         "subtlety": 5
       }
     },
-    "image": "scan01/nodule_5.png"
+    "images": {
+      "thumbnail": "scan01/nodule_2.png",
+      "num_slices": 47,
+      "slices": "scan01/nodules/nodule_5"
+    }
   }
 ]

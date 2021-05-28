@@ -43,7 +43,7 @@ export default function NoduleList(data) {
                     <td className="px-2 py-2 whitespace-nowrap">
                       <img
                         className="h-16 w-16"
-                        src={"/" + nodule.image}
+                        src={"/" + nodule.images.thumbnail}
                         alt=""
                       />
                     </td>

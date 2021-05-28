@@ -268,7 +268,9 @@ export const query = graphql`
             physician
           }
         }
-        image
+        images {
+          thumbnail
+        }
       }
     }
   }
@@ -300,7 +302,9 @@ Scan.propTypes = {
       }),
       nodules: PropTypes.arrayOf({
         id: PropTypes.string.isRequired,
-        image: PropTypes.string,
+        images: PropTypes.shape({
+          thumbnail: PropTypes.string,
+        }),
         measurements: PropTypes.shape({
           diameter: PropTypes.number,
           area: PropTypes.number,

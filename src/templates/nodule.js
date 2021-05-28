@@ -12,6 +12,7 @@ import {
 import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import NoduleImage from "../components/noduleImage"
 
 function Nodule({ data }) {
   const nodule = data.nodulesJson
@@ -111,7 +112,7 @@ function Nodule({ data }) {
         </div>
         <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-8">
           <div className="flex-1">
-            <p>Image goes here</p>
+            <NoduleImage images={nodule.images} />
           </div>
           <div className="flex-1">
             <p>Other content goes here</p>
@@ -275,7 +276,11 @@ export const query = graphql`
           physician
         }
       }
-      image
+      images {
+        thumbnail
+        num_slices
+        slices
+      }
     }
   }
 `
@@ -300,7 +305,11 @@ Nodule.propTypes = {
         }),
       }),
       id: PropTypes.string.isRequired,
-      image: PropTypes.string,
+      images: PropTypes.shape({
+        thumbnail: PropTypes.string,
+        num_slices: PropTypes.number,
+        slices: PropTypes.string,
+      }),
       measurements: PropTypes.shape({
         diameter: PropTypes.number,
         area: PropTypes.number,
