@@ -258,9 +258,9 @@ export const query = graphql`
       nodules {
         id
         measurements {
-          diameter
-          area
-          volume
+          name
+          stat
+          unit
         }
         classifications {
           main {
@@ -305,10 +305,10 @@ Scan.propTypes = {
         images: PropTypes.shape({
           thumbnail: PropTypes.string,
         }),
-        measurements: PropTypes.shape({
-          diameter: PropTypes.number,
-          area: PropTypes.number,
-          volume: PropTypes.number,
+        measurements: PropTypes.arrayOf({
+          name: PropTypes.string,
+          stat: PropTypes.number,
+          unit: PropTypes.string,
         }),
         classifications: PropTypes.shape({
           main: PropTypes.shape({

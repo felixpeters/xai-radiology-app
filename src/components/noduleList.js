@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 
 export default function NoduleList(data) {
   const nodules = data.data.sort((a, b) => {
-    return b.measurements.volume - a.measurements.volume
+    return b.measurements[2].stat - a.measurements[2].stat
   })
   return (
     <>
@@ -48,15 +48,12 @@ export default function NoduleList(data) {
                       />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
-                        Diameter: {nodule.measurements.diameter} mm
-                      </div>
-                      <div className="text-sm font-medium text-gray-900">
-                        Area: {nodule.measurements.area} mm²
-                      </div>
-                      <div className="text-sm font-medium text-gray-900">
-                        Volume: {nodule.measurements.volume} mm³
-                      </div>
+                      {nodule.measurements.map(measurement => (
+                        <div className="text-sm font-medium text-gray-900">
+                          {measurement.name}: {measurement.stat}{" "}
+                          {measurement.unit}
+                        </div>
+                      ))}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">

@@ -13,6 +13,7 @@ import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import NoduleImage from "../components/noduleImage"
+import NoduleClassification from "../components/noduleClassification"
 
 function Nodule({ data }) {
   const nodule = data.nodulesJson
@@ -115,7 +116,7 @@ function Nodule({ data }) {
             <NoduleImage images={nodule.images} />
           </div>
           <div className="flex-1">
-            <p>Other content goes here</p>
+            <NoduleClassification data={nodule} />
           </div>
         </div>
         <Transition.Root show={scanInfoOpen} as={Fragment}>
@@ -266,9 +267,9 @@ export const query = graphql`
         }
       }
       measurements {
-        diameter
-        area
-        volume
+        name
+        stat
+        unit
       }
       classifications {
         main {
@@ -310,10 +311,10 @@ Nodule.propTypes = {
         num_slices: PropTypes.number,
         slices: PropTypes.string,
       }),
-      measurements: PropTypes.shape({
-        diameter: PropTypes.number,
-        area: PropTypes.number,
-        volume: PropTypes.number,
+      measurements: PropTypes.arrayOf({
+        name: PropTypes.string,
+        stat: PropTypes.number,
+        unit: PropTypes.string,
       }),
       classifications: PropTypes.shape({
         main: PropTypes.shape({

@@ -2,11 +2,23 @@
   {
     "id": "1",
     "scan___NODE": "1234",
-    "measurements": {
-      "diameter": 5.7,
-      "area": 88.6,
-      "volume": 87.2
-    },
+    "measurements": [
+      {
+        "name": "Diameter",
+        "stat": 5.7,
+        "unit": "mm"
+      },
+      {
+        "name": "Area",
+        "stat": 88.6,
+        "unit": "mm²"
+      },
+      {
+        "name": "Volume",
+        "stat": 87.2,
+        "unit": "mm³"
+      }
+    ],
     "classifications": {
       "main": {
         "ai": 0.13,
@@ -32,11 +44,23 @@
   {
     "id": "2",
     "scan___NODE": "1234",
-    "measurements": {
-      "diameter": 12.7,
-      "area": 412.7,
-      "volume": 550.4
-    },
+    "measurements": [
+      {
+        "name": "Diameter",
+        "stat": 12.7,
+        "unit": "mm"
+      },
+      {
+        "name": "Area",
+        "stat": 412.7,
+        "unit": "mm²"
+      },
+      {
+        "name": "Volume",
+        "stat": 550.4,
+        "unit": "mm³"
+      }
+    ],
     "classifications": {
       "main": {
         "ai": 0.35,
@@ -62,11 +86,23 @@
   {
     "id": "3",
     "scan___NODE": "1234",
-    "measurements": {
-      "diameter": 6.5,
-      "area": 100.7,
-      "volume": 90.4
-    },
+    "measurements": [
+      {
+        "name": "Diameter",
+        "stat": 6.5,
+        "unit": "mm"
+      },
+      {
+        "name": "Area",
+        "stat": 100.7,
+        "unit": "mm²"
+      },
+      {
+        "name": "Volume",
+        "stat": 90.4,
+        "unit": "mm³"
+      }
+    ],
     "classifications": {
       "main": {
         "ai": 0.41,
@@ -92,11 +128,23 @@
   {
     "id": "4",
     "scan___NODE": "1234",
-    "measurements": {
-      "diameter": 31.4,
-      "area": 3097.3,
-      "volume": 7943.1
-    },
+    "measurements": [
+      {
+        "name": "Diameter",
+        "stat": 31.4,
+        "unit": "mm"
+      },
+      {
+        "name": "Area",
+        "stat": 3097.3,
+        "unit": "mm²"
+      },
+      {
+        "name": "Volume",
+        "stat": 7943.1,
+        "unit": "mm³"
+      }
+    ],
     "classifications": {
       "main": {
         "ai": 0.52,
@@ -122,11 +170,23 @@
   {
     "id": "5",
     "scan___NODE": "1234",
-    "measurements": {
-      "diameter": 17.5,
-      "area": 881.3,
-      "volume": 1382.7
-    },
+    "measurements": [
+      {
+        "name": "Diameter",
+        "stat": 17.5,
+        "unit": "mm"
+      },
+      {
+        "name": "Area",
+        "stat": 881.3,
+        "unit": "mm²"
+      },
+      {
+        "name": "Volume",
+        "stat": 1382.7,
+        "unit": "mm³"
+      }
+    ],
     "classifications": {
       "main": {
         "ai": 0.87,
