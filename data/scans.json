@@ -16,8 +16,11 @@
       "reason": "Referral by primary physician"
     },
     "images": {
+      "num_slices": 137,
       "raw": "scan01/raw.png",
-      "overlay": "scan01/overlay.png"
+      "raw_slices": "scan01/slices",
+      "overlay": "scan01/overlay.png",
+      "overlay_slices": "scan01/overlays"
     },
     "nodules___NODE": [
       "1",

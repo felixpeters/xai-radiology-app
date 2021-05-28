@@ -6,7 +6,11 @@ import Slider from "rc-slider"
 import { Switch } from "@headlessui/react"
 
 function ScanImage({ images }) {
+  const [currentSlice, setCurrentSlice] = useState(
+    Math.round(images.num_slices / 2)
+  )
   const [showOverlay, setShowOverlay] = useState(true)
+  const zeroPad = (num, places) => String(num).padStart(places, "0")
   return (
     <>
       <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
@@ -17,22 +21,25 @@ function ScanImage({ images }) {
           hidden: showOverlay == true,
           block: showOverlay == false,
         })}
-        src={"/" + images.raw}
+        src={`/${images.raw_slices}/slice_${zeroPad(currentSlice - 1, 3)}.png`}
       />
       <img
         className={classnames("h-auto w-full", {
           hidden: showOverlay == false,
           block: showOverlay == true,
         })}
-        src={"/" + images.overlay}
+        src={`/${images.overlay_slices}/slice_${zeroPad(
+          currentSlice - 1,
+          3
+        )}.png`}
       />
       <div className="flex justify-between items-center mt-4">
         <div className="flex-1">
           <div className="flex items-center justify-start">
             <Slider
               min={1}
-              max={137}
-              value={119}
+              max={images.num_slices}
+              value={currentSlice}
               step={1}
               railStyle={{ backgroundColor: "#5a67d8" }}
               trackStyle={{ backgroundColor: "#5a67d8" }}
@@ -42,9 +49,11 @@ function ScanImage({ images }) {
               dotStyle={{
                 borderColor: "#5a67d8",
               }}
+              onChange={setCurrentSlice}
+              className="w-4"
             />
             <span className="min-w-max ml-3 text-sm font-medium text-gray-900">
-              Image 119/137
+              Image {zeroPad(currentSlice, 3)}/{images.num_slices}
             </span>
           </div>
         </div>
@@ -83,6 +92,9 @@ ScanImage.propTypes = {
   images: PropTypes.shape({
     raw: PropTypes.string,
     overlay: PropTypes.string,
+    num_slices: PropTypes.number,
+    raw_slices: PropTypes.string,
+    overlay_slices: PropTypes.string,
   }),
 }
 

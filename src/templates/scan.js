@@ -251,6 +251,9 @@ export const query = graphql`
       images {
         raw
         overlay
+        num_slices
+        raw_slices
+        overlay_slices
       }
       nodules {
         id
@@ -291,6 +294,9 @@ Scan.propTypes = {
       images: PropTypes.shape({
         raw: PropTypes.string,
         overlay: PropTypes.string,
+        num_slices: PropTypes.number,
+        raw_slices: PropTypes.string,
+        overlay_slices: PropTypes.string,
       }),
       nodules: PropTypes.arrayOf({
         id: PropTypes.string.isRequired,
