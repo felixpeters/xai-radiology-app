@@ -16,6 +16,35 @@ import ScanImage from "../components/scanImage"
 import NoduleList from "../components/noduleList.js"
 
 function Scan({ data }) {
+  //MouseTracking
+  onmousemove = function(e){
+    //Set Date
+		var d = new Date();
+		d = new Date(d.getTime() - 3000000);
+		var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/1)*1).toString().length==2?(parseInt(d.getMinutes()/1)*1).toString():"0"+(parseInt(d.getMinutes()/1)*1).toString())+":00";
+		//Logging purposes
+    //console.log(date_format_str);
+    //console.log("mouse location:", e.clientX, e.clientY);
+
+    //DataTable of mouseTrack
+	  var mouseTrack = {
+		"mouseX": e.clientX,
+		"mouseY": e.clientY,
+		"acceleration": "10",
+		"createdAt": date_format_str,
+		"recordid": "1"
+    } 
+
+
+   // Sending and receiving data in JSON format using POST method
+   var xhr = new XMLHttpRequest();
+   var url = "http://localhost:22709/api/mousetracks";
+   xhr.open("POST", url, true);
+   xhr.setRequestHeader("Content-Type", "application/json");
+   var data = JSON.stringify(mouseTrack);
+   xhr.send(data);
+	}
+
   const scan = data.scansJson
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
   return (
