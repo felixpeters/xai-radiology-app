@@ -14,11 +14,34 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ScanImage from "../components/scanImage"
 import NoduleList from "../components/noduleList.js"
+import $ from 'jquery' // important: case sensitive.
 
 function Scan({ data }) {
   //MouseTracking
+  var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
+  var startTime;
+  var doOnce = false;
+  var wasOnPage = false; 
+
   onmousemove = function(e){
+    elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
+    if(elementExists.length == 1){
+     wasOnPage = true; 
+      if(!doOnce){
+        startTime = (new Date()).getTime();
+      }
+      doOnce = true;
+    //Zeit
+    //Distanz
+    //duration of mouse hover before click
+    //clicks
+    //hover that turned into clicks
+    //mouse movements
+    //pausenzeit
+    //mouse hovers
+    
     //Set Date
+    /*
 		var d = new Date();
 		d = new Date(d.getTime() - 3000000);
 		var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/1)*1).toString().length==2?(parseInt(d.getMinutes()/1)*1).toString():"0"+(parseInt(d.getMinutes()/1)*1).toString())+":00";
@@ -42,8 +65,27 @@ function Scan({ data }) {
    xhr.open("POST", url, true);
    xhr.setRequestHeader("Content-Type", "application/json");
    var data = JSON.stringify(mouseTrack);
-   xhr.send(data);
-	}
+   xhr.send(data);*/
+  }else{
+    if(wasOnPage && doOnce){
+      
+      var timeSpent = (new Date()).getTime() - startTime;
+      console.log(timeSpent);
+     /* var pageTime = {
+        "mouseX": 12,
+        "mouseY": 12,
+        "acceleration": timeSpent,
+        "createdAt": "2021-05-21 10:00:00.000",
+        "recordid": "1"
+        }; 
+        var xmlhttp= new XMLHttpRequest();
+        xmlhttp.open("POST", "http://localhost:22709/api/mousetracks");
+        xmlhttp.setRequestHeader("Content-type", "application/json");
+        xmlhttp.send(pageTime);*/
+        doOnce = false;
+    }
+  }
+}
 
   const scan = data.scansJson
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
