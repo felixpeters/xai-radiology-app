@@ -26,36 +26,36 @@
       },
       "additional": [
         {
-          "name": "Texture",
-          "value": "Solid"
+          "classification___NODE": "c_08",
+          "value": 5
         },
         {
-          "name": "Spiculation",
-          "value": "None"
+          "classification___NODE": "c_07",
+          "value": 1
         },
         {
-          "name": "Lobulation",
-          "value": "Medium"
+          "classification___NODE": "c_06",
+          "value": 3
         },
         {
-          "name": "Margin",
-          "value": "Sharp"
+          "classification___NODE": "c_05",
+          "value": 5
         },
         {
-          "name": "Sphericity",
-          "value": "Round"
+          "classification___NODE": "c_04",
+          "value": 5
         },
         {
-          "name": "Calcification",
-          "value": "Solid"
+          "classification___NODE": "c_03",
+          "value": 3
         },
         {
-          "name": "Internal structure",
-          "value": "Soft tissue"
+          "classification___NODE": "c_02",
+          "value": 1
         },
         {
-          "name": "Subtlety",
-          "value": "Obvious"
+          "classification___NODE": "c_01",
+          "value": 5
         }
       ]
     },
@@ -92,36 +92,36 @@
       },
       "additional": [
         {
-          "name": "Texture",
-          "value": "Non-solid/GGO"
+          "classification___NODE": "c_08",
+          "value": 1
         },
         {
-          "name": "Spiculation",
-          "value": "None"
+          "classification___NODE": "c_07",
+          "value": 1
         },
         {
-          "name": "Lobulation",
-          "value": "None"
+          "classification___NODE": "c_06",
+          "value": 1
         },
         {
-          "name": "Margin",
-          "value": "Near poorly defined"
+          "classification___NODE": "c_05",
+          "value": 2
         },
         {
-          "name": "Sphericity",
-          "value": "Round"
+          "classification___NODE": "c_04",
+          "value": 5
         },
         {
-          "name": "Calcification",
-          "value": "Absent"
+          "classification___NODE": "c_03",
+          "value": 6
         },
         {
-          "name": "Internal structure",
-          "value": "Soft tissue"
+          "classification___NODE": "c_02",
+          "value": 1
         },
         {
-          "name": "Subtlety",
-          "value": "Extremely subtle"
+          "classification___NODE": "c_01",
+          "value": 1
         }
       ]
     },
@@ -158,36 +158,36 @@
       },
       "additional": [
         {
-          "name": "Texture",
-          "value": "Solid"
+          "classification___NODE": "c_08",
+          "value": 5
         },
         {
-          "name": "Spiculation",
-          "value": "Nearly none"
+          "classification___NODE": "c_07",
+          "value": 2
         },
         {
-          "name": "Lobulation",
-          "value": "Medium"
+          "classification___NODE": "c_06",
+          "value": 3
         },
         {
-          "name": "Margin",
-          "value": "Medium"
+          "classification___NODE": "c_05",
+          "value": 3
         },
         {
-          "name": "Sphericity",
-          "value": "Ovoid/round"
+          "classification___NODE": "c_04",
+          "value": 4
         },
         {
-          "name": "Calcification",
-          "value": "Absent"
+          "classification___NODE": "c_03",
+          "value": 6
         },
         {
-          "name": "Internal structure",
-          "value": "Soft tissue"
+          "classification___NODE": "c_02",
+          "value": 1
         },
         {
-          "name": "Subtlety",
-          "value": "Moderately obvious"
+          "classification___NODE": "c_01",
+          "value": 4
         }
       ]
     },
@@ -224,36 +224,36 @@
       },
       "additional": [
         {
-          "name": "Texture",
-          "value": "Solid"
+          "classification___NODE": "c_08",
+          "value": 5
         },
         {
-          "name": "Spiculation",
-          "value": "Near marked"
+          "classification___NODE": "c_07",
+          "value": 4
         },
         {
-          "name": "Lobulation",
-          "value": "Medium"
+          "classification___NODE": "c_06",
+          "value": 3
         },
         {
-          "name": "Margin",
-          "value": "Medium"
+          "classification___NODE": "c_05",
+          "value": 3
         },
         {
-          "name": "Sphericity",
-          "value": "Ovoid/round"
+          "classification___NODE": "c_04",
+          "value": 4
         },
         {
-          "name": "Calcification",
-          "value": "Absent"
+          "classification___NODE": "c_03",
+          "value": 6
         },
         {
-          "name": "Internal structure",
-          "value": "Fat"
+          "classification___NODE": "c_02",
+          "value": 4
         },
         {
-          "name": "Subtlety",
-          "value": "Obvious"
+          "classification___NODE": "c_01",
+          "value": 5
         }
       ]
     },
@@ -290,36 +290,36 @@
       },
       "additional": [
         {
-          "name": "Texture",
-          "value": "Solid"
+          "classification___NODE": "c_08",
+          "value": 5
         },
         {
-          "name": "Spiculation",
-          "value": "Near marked"
+          "classification___NODE": "c_07",
+          "value": 4
         },
         {
-          "name": "Lobulation",
-          "value": "Medium"
+          "classification___NODE": "c_06",
+          "value": 3
         },
         {
-          "name": "Margin",
-          "value": "Near sharp"
+          "classification___NODE": "c_05",
+          "value": 4
         },
         {
-          "name": "Sphericity",
-          "value": "Ovoid/round"
+          "classification___NODE": "c_04",
+          "value": 4
         },
         {
-          "name": "Calcification",
-          "value": "Absent"
+          "classification___NODE": "c_03",
+          "value": 6
         },
         {
-          "name": "Internal structure",
-          "value": "Soft tissue"
+          "classification___NODE": "c_02",
+          "value": 1
         },
         {
-          "name": "Subtlety",
-          "value": "Obvious"
+          "classification___NODE": "c_01",
+          "value": 5
         }
       ]
     },

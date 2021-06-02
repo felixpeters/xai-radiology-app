@@ -277,7 +277,10 @@ export const query = graphql`
           physician
         }
         additional {
-          name
+          classification {
+            name
+            marks
+          }
           value
         }
       }
@@ -326,7 +329,10 @@ Nodule.propTypes = {
           physician: PropTypes.string,
         }),
         additional: PropTypes.arrayOf({
-          name: PropTypes.string,
+          classification: PropTypes.shape({
+            name: PropTypes.string,
+            marks: PropTypes.arrayOf({}),
+          }),
           value: PropTypes.string,
         }),
       }),
