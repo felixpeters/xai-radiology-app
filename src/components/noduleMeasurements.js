@@ -10,7 +10,7 @@ function NoduleMeasurements({ data }) {
       </h3>
       <dl className="mt-4 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x">
         {measurements.map(item => (
-          <div key={item.name} className="px-4 py-4 sm:p-6">
+          <div key={item.name} className="px-4 py-4">
             <dt className="text-base font-normal text-gray-900">{item.name}</dt>
             <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
               <div className="flex items-baseline text-lg font-semibold text-indigo-600">
