@@ -32,6 +32,19 @@ function Scan({ data }) {
   var countMouseHoverThatTurnedIntoClicks = 0;
   //MouseClick
   var mouseClickCounter = 0;
+  //MouseMovementCounter
+  var mouseMovementCounter = 1;
+  //XY from pause to click
+  var pauseX;
+  var pauseY;
+  var distanceSincePause = 0;
+  var minDistanceSincePause = 0;
+  //Duration of Pause
+  var sPauseDuration = 0;
+  var ePauseDuration = 0;
+  var pauseDuration  = 0;
+  var pause = false;
+
   onclick = function addOne() {
     elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
     if (elementExists.length == 1) {
@@ -72,6 +85,10 @@ function Scan({ data }) {
 
           //Distanz
           console.log("Distanz: " + totalDistance);
+          console.log("Distanz seit Pause: " + distanceSincePause);
+          minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
+          console.log("Minimale Distanz seit Pause: " + minDistanceSincePause);
+          console.log("# of MouseMovements: " + mouseMovementCounter);
           doOnce = false;
           //MouseClickCounter
           console.log("MouseClicks " + mouseClickCounter);
@@ -99,6 +116,7 @@ function Scan({ data }) {
       //Distanz
       if (lastSeenAt.x) {
         totalDistance += Math.sqrt(Math.pow(lastSeenAt.y - e.clientY, 2) + Math.pow(lastSeenAt.x - e.clientX, 2));
+        distanceSincePause += Math.sqrt(Math.pow(lastSeenAt.y - e.clientY, 2) + Math.pow(lastSeenAt.x - e.clientX, 2));
         //console.log(Math.round(totalDistance));
       }
 
@@ -119,13 +137,9 @@ function Scan({ data }) {
       }
       lastSeenAt.x = e.clientX;
       lastSeenAt.y = e.clientY;
-      /*
-      setTimeout(function(){ 
-        if(e.clientX === , e.clientY){
 
-        }
-      }, 3000);
-      */
+      isPause(e.clientX, e.clientY);
+
       //duration of mouse hover before click
       //clicks
       //hover that turned into clicks
@@ -160,6 +174,25 @@ function Scan({ data }) {
      var data = JSON.stringify(mouseTrack);
      xhr.send(data);*/
     }
+  }
+
+  function isPause(x,y){
+    setTimeout(function(){ 
+      if(x == lastSeenAt.x && y == lastSeenAt.y){
+        sPauseDuration =  (new Date()).getTime() - 500;
+        pauseX = x;
+        pauseY = y;
+        distanceSincePause = 0;
+        mouseMovementCounter = mouseMovementCounter + 1;
+        console.log("Pause");
+        pause = true;
+      }else if(pause){
+        pauseDuration = (new Date()).getTime() - sPauseDuration - 500;
+        console.log("Pausenzeit :" + pauseDuration);
+        pause = false;
+      }
+        
+    }, 500);
   }
 
   const scan = data.scansJson
