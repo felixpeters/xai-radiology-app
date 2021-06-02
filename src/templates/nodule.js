@@ -276,6 +276,10 @@ export const query = graphql`
           ai
           physician
         }
+        additional {
+          name
+          value
+        }
       }
       images {
         thumbnail
@@ -320,6 +324,10 @@ Nodule.propTypes = {
         main: PropTypes.shape({
           ai: PropTypes.number,
           physician: PropTypes.string,
+        }),
+        additional: PropTypes.arrayOf({
+          name: PropTypes.string,
+          value: PropTypes.string,
         }),
       }),
     }),

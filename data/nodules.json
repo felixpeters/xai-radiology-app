@@ -24,16 +24,40 @@
         "ai": 0.13,
         "physician": "open"
       },
-      "additional": {
-        "texture": 5,
-        "spiculation": 1,
-        "lobulation": 3,
-        "margin": 5,
-        "sphericity": 5,
-        "calcification": 3,
-        "internalStructure": 1,
-        "subtlety": 5
-      }
+      "additional": [
+        {
+          "name": "Texture",
+          "value": "Solid"
+        },
+        {
+          "name": "Spiculation",
+          "value": "None"
+        },
+        {
+          "name": "Lobulation",
+          "value": "Medium"
+        },
+        {
+          "name": "Margin",
+          "value": "Sharp"
+        },
+        {
+          "name": "Sphericity",
+          "value": "Round"
+        },
+        {
+          "name": "Calcification",
+          "value": "Solid"
+        },
+        {
+          "name": "Internal structure",
+          "value": "Soft tissue"
+        },
+        {
+          "name": "Subtlety",
+          "value": "Obvious"
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_5.png",
@@ -66,16 +90,40 @@
         "ai": 0.35,
         "physician": "open"
       },
-      "additional": {
-        "texture": 1,
-        "spiculation": 1,
-        "lobulation": 1,
-        "margin": 2,
-        "sphericity": 5,
-        "calcification": 6,
-        "internalStructure": 1,
-        "subtlety": 1
-      }
+      "additional": [
+        {
+          "name": "Texture",
+          "value": "Non-solid/GGO"
+        },
+        {
+          "name": "Spiculation",
+          "value": "None"
+        },
+        {
+          "name": "Lobulation",
+          "value": "None"
+        },
+        {
+          "name": "Margin",
+          "value": "Near poorly defined"
+        },
+        {
+          "name": "Sphericity",
+          "value": "Round"
+        },
+        {
+          "name": "Calcification",
+          "value": "Absent"
+        },
+        {
+          "name": "Internal structure",
+          "value": "Soft tissue"
+        },
+        {
+          "name": "Subtlety",
+          "value": "Extremely subtle"
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_3.png",
@@ -108,16 +156,40 @@
         "ai": 0.41,
         "physician": "open"
       },
-      "additional": {
-        "texture": 5,
-        "spiculation": 2,
-        "lobulation": 3,
-        "margin": 3,
-        "sphericity": 4,
-        "calcification": 6,
-        "internalStructure": 1,
-        "subtlety": 4
-      }
+      "additional": [
+        {
+          "name": "Texture",
+          "value": "Solid"
+        },
+        {
+          "name": "Spiculation",
+          "value": "Nearly none"
+        },
+        {
+          "name": "Lobulation",
+          "value": "Medium"
+        },
+        {
+          "name": "Margin",
+          "value": "Medium"
+        },
+        {
+          "name": "Sphericity",
+          "value": "Ovoid/round"
+        },
+        {
+          "name": "Calcification",
+          "value": "Absent"
+        },
+        {
+          "name": "Internal structure",
+          "value": "Soft tissue"
+        },
+        {
+          "name": "Subtlety",
+          "value": "Moderately obvious"
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_4.png",
@@ -150,16 +222,40 @@
         "ai": 0.52,
         "physician": "benign"
       },
-      "additional": {
-        "texture": 5,
-        "spiculation": 4,
-        "lobulation": 3,
-        "margin": 3,
-        "sphericity": 4,
-        "calcification": 6,
-        "internalStructure": 4,
-        "subtlety": 5
-      }
+      "additional": [
+        {
+          "name": "Texture",
+          "value": "Solid"
+        },
+        {
+          "name": "Spiculation",
+          "value": "Near marked"
+        },
+        {
+          "name": "Lobulation",
+          "value": "Medium"
+        },
+        {
+          "name": "Margin",
+          "value": "Medium"
+        },
+        {
+          "name": "Sphericity",
+          "value": "Ovoid/round"
+        },
+        {
+          "name": "Calcification",
+          "value": "Absent"
+        },
+        {
+          "name": "Internal structure",
+          "value": "Fat"
+        },
+        {
+          "name": "Subtlety",
+          "value": "Obvious"
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_1.png",
@@ -192,16 +288,40 @@
         "ai": 0.87,
         "physician": "open"
       },
-      "additional": {
-        "texture": 5,
-        "spiculation": 4,
-        "lobulation": 3,
-        "margin": 4,
-        "sphericity": 4,
-        "calcification": 6,
-        "internalStructure": 1,
-        "subtlety": 5
-      }
+      "additional": [
+        {
+          "name": "Texture",
+          "value": "Solid"
+        },
+        {
+          "name": "Spiculation",
+          "value": "Near marked"
+        },
+        {
+          "name": "Lobulation",
+          "value": "Medium"
+        },
+        {
+          "name": "Margin",
+          "value": "Near sharp"
+        },
+        {
+          "name": "Sphericity",
+          "value": "Ovoid/round"
+        },
+        {
+          "name": "Calcification",
+          "value": "Absent"
+        },
+        {
+          "name": "Internal structure",
+          "value": "Soft tissue"
+        },
+        {
+          "name": "Subtlety",
+          "value": "Obvious"
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_2.png",
