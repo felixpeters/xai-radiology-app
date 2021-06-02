@@ -15,6 +15,7 @@ import SEO from "../components/seo"
 import ScanImage from "../components/scanImage"
 import NoduleList from "../components/noduleList.js"
 
+
 function Scan({ data }) {
   //MouseTracking
   var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
@@ -23,128 +24,143 @@ function Scan({ data }) {
   var wasOnPage = false;
   //Distanz
   var totalDistance = 0;
-  var lastSeenAt = {x: null, y: null}; 
+  var lastSeenAt = { x: null, y: null };
   //MouseHover
   var sHoverTime = 0;
   var mouseHoverCount = 0;
   var mouseHover = false;
+  var countMouseHoverThatTurnedIntoClicks = 0;
   //MouseClick
   var mouseClickCounter = 0;
-    onclick = function addOne()
-    {
-      elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
-      if(elementExists.length == 1){
-      
-        mouseClickCounter += 1;
-        //MouseHover
-        if(mouseHover) {
+  onclick = function addOne() {
+    elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
+    if (elementExists.length == 1) {
 
-          var mouseHoverThatTurnedIntoClicks = (new Date()).getTime() - sHoverTime;
-          console.log("MouseHoverThatTurnedIntoCLicks: "+ mouseHoverThatTurnedIntoClicks);
-          mouseHover = false;
+      mouseClickCounter += 1;
+      console.log("Location:", window.location);
+      //MouseHover
+      if (mouseHover) {
+
+        var mouseHoverThatTurnedIntoClicks = (new Date()).getTime() - sHoverTime;
+        console.log("Time of MouseHoverThatTurnedIntoCLicks: " + mouseHoverThatTurnedIntoClicks);
+        countMouseHoverThatTurnedIntoClicks = countMouseHoverThatTurnedIntoClicks + 1;
+        console.log("MouseHoverThatTurnedIntoCLicks: " + countMouseHoverThatTurnedIntoClicks);
+        mouseHover = false;
+      }
+
+
+      var isOnScansPage = window.location.pathname === "/scans/1234";
+
+      console.log("Is on ScansPage:", isOnScansPage);
+      if (!isOnScansPage) {
+
+        if (wasOnPage) {
+          console.log("Fire Request");
+          var timeSpent = (new Date()).getTime() - startTime - 1000;
+          console.log("Zeit: " + timeSpent);
+          /*var pageTime = {
+            "mouseX": 12,
+            "mouseY": 12,
+            "acceleration": timeSpent,
+            "createdAt": "2021-05-21 10:00:00.000",
+            "recordid": "1"
+            }; 
+            var xmlhttp= new XMLHttpRequest();
+            xmlhttp.open("POST", "http://localhost:22709/api/mousetracks");
+            xmlhttp.setRequestHeader("Content-type", "application/json");
+            xmlhttp.send(pageTime);*/
+
+          //Distanz
+          console.log("Distanz: " + totalDistance);
+          doOnce = false;
+          //MouseClickCounter
+          console.log("MouseClicks " + mouseClickCounter);
+          mouseHoverCount = mouseHoverCount + 1;
+          console.log("HoverCount :" + mouseHoverCount);
+          var endHoverTime = (new Date()).getTime() - sHoverTime;
+          console.log("HoverZeit :" + endHoverTime);
         }
-
-        setTimeout(function(){ 
-          elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
-          if(!elementExists.length == 1){
-            if(wasOnPage && doOnce){
-      
-              var timeSpent = (new Date()).getTime() - startTime - 1000;
-              console.log("Zeit: "+timeSpent);
-             /* var pageTime = {
-                "mouseX": 12,
-                "mouseY": 12,
-                "acceleration": timeSpent,
-                "createdAt": "2021-05-21 10:00:00.000",
-                "recordid": "1"
-                }; 
-                var xmlhttp= new XMLHttpRequest();
-                xmlhttp.open("POST", "http://localhost:22709/api/mousetracks");
-                xmlhttp.setRequestHeader("Content-type", "application/json");
-                xmlhttp.send(pageTime);*/
-
-                //Distanz
-                console.log("Distanz: "+totalDistance);
-                doOnce = false;
-                //MouseClickCounter
-                console.log("MouseClicks "+mouseClickCounter);
-                
-            }
-          }
-        }, 1000);
-
-
-
+      } else {
+        wasOnPage = false;
+        console.log("Clear State");
       }
     }
+  }
 
-  onmousemove = function(e){
+  onmousemove = function (e) {
     elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
-    if(elementExists.length == 1){
-     wasOnPage = true; 
-      if(!doOnce){
+    if (elementExists.length == 1) {
+      wasOnPage = true;
+      if (!doOnce) {
         startTime = (new Date()).getTime();
       }
       doOnce = true;
-    //Zeit
-    //Distanz
-    if(lastSeenAt.x) {
-      totalDistance += Math.sqrt(Math.pow(lastSeenAt.y - e.clientY, 2) + Math.pow(lastSeenAt.x - e.clientX, 2));
-      //console.log(Math.round(totalDistance));
+      //Zeit
+      //Distanz
+      if (lastSeenAt.x) {
+        totalDistance += Math.sqrt(Math.pow(lastSeenAt.y - e.clientY, 2) + Math.pow(lastSeenAt.x - e.clientX, 2));
+        //console.log(Math.round(totalDistance));
+      }
+
+      //MouseHover
+      if ((document.elementFromPoint(e.clientX, e.clientY).tagName == "BUTTON" || document.elementFromPoint(e.clientX, e.clientY).tagName == "A") &&
+        !(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A")
+      ) {
+        sHoverTime = (new Date()).getTime();
+        mouseHover = true;
+        console.log(sHoverTime);
+      } else if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A") &&
+        !(document.elementFromPoint(e.clientX, e.clientY).tagName == "BUTTON" || document.elementFromPoint(e.clientX, e.clientY).tagName == "A")) {
+        var endHoverTime = (new Date()).getTime() - sHoverTime;
+        console.log("HoverZeit :" + endHoverTime);
+        mouseHoverCount = mouseHoverCount + 1;
+        console.log("HoverCount :" + mouseHoverCount);
+        mouseHover = false;
+      }
+      lastSeenAt.x = e.clientX;
+      lastSeenAt.y = e.clientY;
+      /*
+      setTimeout(function(){ 
+        if(e.clientX === , e.clientY){
+
+        }
+      }, 3000);
+      */
+      //duration of mouse hover before click
+      //clicks
+      //hover that turned into clicks
+      //mouse movements
+      //pausenzeit
+      //mouse hovers
+
+      //Set Date
+      /*
+      var d = new Date();
+      d = new Date(d.getTime() - 3000000);
+      var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/1)*1).toString().length==2?(parseInt(d.getMinutes()/1)*1).toString():"0"+(parseInt(d.getMinutes()/1)*1).toString())+":00";
+      //Logging purposes
+      //console.log(date_format_str);
+      //console.log("mouse location:", e.clientX, e.clientY);
+  
+      //DataTable of mouseTrack
+      var mouseTrack = {
+      "mouseX": e.clientX,
+      "mouseY": e.clientY,
+      "acceleration": "10",
+      "createdAt": date_format_str,
+      "recordid": "1"
+      } 
+  
+  
+     // Sending and receiving data in JSON format using POST method
+     var xhr = new XMLHttpRequest();
+     var url = "http://localhost:22709/api/mousetracks";
+     xhr.open("POST", url, true);
+     xhr.setRequestHeader("Content-Type", "application/json");
+     var data = JSON.stringify(mouseTrack);
+     xhr.send(data);*/
     }
-
-    //MouseHover
-    if((document.elementFromPoint(e.clientX,e.clientY).tagName == "BUTTON" || document.elementFromPoint(e.clientX,e.clientY).tagName == "A") && 
-    !(document.elementFromPoint(lastSeenAt.x,lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x,lastSeenAt.y).tagName == "A")
-    ){
-      sHoverTime = (new Date()).getTime();
-      mouseHover = true;
-      console.log(sHoverTime);
-    }else if((document.elementFromPoint(lastSeenAt.x,lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x,lastSeenAt.y).tagName == "A") &&
-    !(document.elementFromPoint(e.clientX,e.clientY).tagName == "BUTTON" || document.elementFromPoint(e.clientX,e.clientY).tagName == "A")){
-      var endHoverTime = (new Date()).getTime() - sHoverTime;
-      console.log("HoverZeit :" +endHoverTime);
-      mouseHoverCount = mouseHoverCount+1;
-      console.log("HoverCount :" +mouseHoverCount);
-      mouseHover = false;
-    }
-    lastSeenAt.x = e.clientX;
-    lastSeenAt.y = e.clientY;
-    //duration of mouse hover before click
-    //clicks
-    //hover that turned into clicks
-    //mouse movements
-    //pausenzeit
-    //mouse hovers
-    
-    //Set Date
-    /*
-		var d = new Date();
-		d = new Date(d.getTime() - 3000000);
-		var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/1)*1).toString().length==2?(parseInt(d.getMinutes()/1)*1).toString():"0"+(parseInt(d.getMinutes()/1)*1).toString())+":00";
-		//Logging purposes
-    //console.log(date_format_str);
-    //console.log("mouse location:", e.clientX, e.clientY);
-
-    //DataTable of mouseTrack
-	  var mouseTrack = {
-		"mouseX": e.clientX,
-		"mouseY": e.clientY,
-		"acceleration": "10",
-		"createdAt": date_format_str,
-		"recordid": "1"
-    } 
-
-
-   // Sending and receiving data in JSON format using POST method
-   var xhr = new XMLHttpRequest();
-   var url = "http://localhost:22709/api/mousetracks";
-   xhr.open("POST", url, true);
-   xhr.setRequestHeader("Content-Type", "application/json");
-   var data = JSON.stringify(mouseTrack);
-   xhr.send(data);*/
   }
-}
 
   const scan = data.scansJson
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
