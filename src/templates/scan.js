@@ -156,7 +156,6 @@ function Scan({ data }) {
           doOnce = false;
           mouseHoverCount = mouseHoverCount + 1;
           endHoverTime = (new Date()).getTime() - sHoverTime;
-          console.log("END HOVER");
           allHoverTime = allHoverTime + endHoverTime;
           averageHoverTime = allHoverTime/mouseHoverCount;
           //DataTable of record
@@ -217,7 +216,6 @@ function Scan({ data }) {
       } else if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A") &&
         !(document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A")) {
         endHoverTime = (new Date()).getTime() - sHoverTime;
-        console.log("RICHTIG");
         mouseHoverCount = mouseHoverCount + 1;
         mouseHover = false;
       }
@@ -259,7 +257,6 @@ function Scan({ data }) {
       straightLinesCounter = straightLinesCounter + 1;
       if(distanceSincePause > 120){
         longStraightLinesCounter = longStraightLinesCounter + 1;
-        console.log(longStraightLinesCounter);
       }
     }else{
       nonDirectMovementsCounter = nonDirectMovementsCounter + 1;
