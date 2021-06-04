@@ -38,21 +38,29 @@ function Scan({ data }) {
 
     //const csvData = objectToCsv(data);
   }*/
+
   //Public Settings
   var userId = "123456";
   var backEndURL = "http://localhost:22709/api/record";
+  var pauseAfter = 200;
+  var trackingPathName = "/scans/1234";
 
+  //logic variable
+  var doOnce = false;
+  var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
+  var pause = false;
 
   //time
+  var startTime = 0;
   var timeSpent = 0;
+  //Duration of Movements
+  var mouseMovementTime = 0;
+  var smouseMovementTime = 0;
+  var allMouseMovementTime = 0;
   //MouseTracking
-  var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
-  var startTime;
-  var doOnce = false;
-  var wasOnPage = false;
+  var lastSeenAt = { x: null, y: null };
   //Distanz
   var totalDistance = 0;
-  var lastSeenAt = { x: null, y: null };
   var additionalDistance = 0;
   var normalizedAdditionalDistance = 0;
   //MouseHover
@@ -63,11 +71,12 @@ function Scan({ data }) {
   var mouseHoverThatTurnedIntoClicks = 0;
   var allMouseHoverThatTurnedIntoClicks = 0;
   var averageMouseHoverThatTurnedIntoClicks = 0
+  var endHoverTime = 0;
   //MouseClick
   var mouseClickCounter = 0;
   var mouseClickCounterOutsideOfDirectMovements = 0;
   //MouseMovementCounter
-  var mouseMovementCounter = 1;
+  var mouseMovementCounter = 0;
   //Counter
   var straightLinesCounter = 0;
   var longStraightLinesCounter = 0;
@@ -78,9 +87,7 @@ function Scan({ data }) {
   var pauseY;
   var distanceSincePause = 0;
   var minDistanceSincePause = 0;
-  //Duration of Movements
-  var mouseMovementTime = 0;
-  var smouseMovementTime = 0;
+
   //Duration of Pause
   var pauseCounter = 0;
   var sPauseDuration = 0;
@@ -89,48 +96,42 @@ function Scan({ data }) {
   var averagePauseDuration = 0;
   var pauseDurationBeforeClick = 0;
   var allPauseDurationBeforeClick = 0; 
-  var pause = false;
   var timeMouseMovementsDIVIDEDBYTaskDuration = 0;
   var averagePauseDurationDIVIDEDBYTaskDuration = 0;
   var averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration = 0;
   var pauseDurationBeforeClickCounter = 0;
-  var averagePauseDurationBefore = 0;
+  var averagePauseDurationBeforeClicks = 0;
   var allHoverTime = 0;
   var averageHoverTime = 0;
-
+  //TODO: SCAN DETAILS
+  //leftPage()
+  //if(scanInfoOpen){
+    //leftPage()
+  //}UMGEKEHRT // NUR EINMAL
 
   onclick = function addOne() {
+    //Find Element on Page
     elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
     if (elementExists.length == 1) {
+      //MouseClickCounter
       mouseClickCounter += 1;
       //mouseClickCounterOutsideOfDirectMovements
       if(pause){
         mouseClickCounterOutsideOfDirectMovements = mouseClickCounterOutsideOfDirectMovements + 1;
         pauseDurationBeforeClick = (new Date()).getTime() - sPauseDuration;
-        console.log("pauseDurationBeforeClick:" + pauseDurationBeforeClick);
         allPauseDurationBeforeClick = allPauseDurationBeforeClick + pauseDurationBeforeClick;
-        pauseDurationBeforeClickCounter = pauseDurationBeforeClick + 1;
+        pauseDurationBeforeClickCounter = pauseDurationBeforeClickCounter + 1;
       }
-
       //MouseHover
       if (mouseHover) {
-
         mouseHoverThatTurnedIntoClicks = (new Date()).getTime() - sHoverTime;
-        console.log("Time of MouseHoverThatTurnedIntoCLicks: " + mouseHoverThatTurnedIntoClicks);
         countMouseHoverThatTurnedIntoClicks = countMouseHoverThatTurnedIntoClicks + 1;
-        console.log("MouseHoverThatTurnedIntoClicks: " + countMouseHoverThatTurnedIntoClicks);
         mouseHover = false;
         allMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks + mouseHoverThatTurnedIntoClicks;
         averageMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks/countMouseHoverThatTurnedIntoClicks;
       }
-
-
-      var isOnScansPage = window.location.pathname === "/scans/1234";
-
-      console.log("Is on ScansPage:", isOnScansPage);
+      var isOnScansPage = window.location.pathname === trackingPathName;
       if (!isOnScansPage) {
-
-        if (wasOnPage) {
           timeSpent = (new Date()).getTime() - startTime;
           //endRecord();
           additionalDistance = distanceSincePause - minDistanceSincePause;
@@ -140,36 +141,25 @@ function Scan({ data }) {
             averagePauseDuration = allPauseDuaration/pauseCounter;
           }
           if(pauseDurationBeforeClickCounter != 0){
-            averagePauseDurationBefore = allPauseDurationBeforeClick/pauseDurationBeforeClickCounter;
+            averagePauseDurationBeforeClicks = allPauseDurationBeforeClick/pauseDurationBeforeClickCounter;
           }
           if(timeSpent != 0){
             timeMouseMovementsDIVIDEDBYTaskDuration = (timeSpent - allPauseDuaration)/timeSpent;
             averagePauseDurationDIVIDEDBYTaskDuration = averagePauseDuration/timeSpent;
-            averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration = averagePauseDurationBefore/timeSpent;
+            averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration = averagePauseDurationBeforeClicks/timeSpent;
           }
-          console.log("Zeit: " + timeSpent);
-          console.log("mouseClickCounterOutsideOfDirectMovements: " + mouseClickCounterOutsideOfDirectMovements);
-
+          if(pauseCounter == 0){
+            mouseMovementCounter = 1;
+          }
           //Distanz
-          console.log("Distanz: " + totalDistance);
-          console.log("Distanz seit Pause: " + distanceSincePause);
           minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
-          console.log("Minimale Distanz seit Pause: " + minDistanceSincePause);
-          console.log("# of MouseMovements: " + mouseMovementCounter);
           doOnce = false;
-          //MouseClickCounter
-          console.log("MouseClicks " + mouseClickCounter);
           mouseHoverCount = mouseHoverCount + 1;
-          console.log("HoverCount :" + mouseHoverCount);
-          var endHoverTime = (new Date()).getTime() - sHoverTime;
+          endHoverTime = (new Date()).getTime() - sHoverTime;
+          console.log("END HOVER");
           allHoverTime = allHoverTime + endHoverTime;
           averageHoverTime = allHoverTime/mouseHoverCount;
-          console.log("HoverZeit :" + endHoverTime);
-
-
-
-
-            //DataTable of record
+          //DataTable of record
           var record = {
             "UserId": userId,
             "pageTime": timeSpent,
@@ -188,19 +178,18 @@ function Scan({ data }) {
             "longDirectMovementCount": longStraightLinesCounter,
             "slowMovementCount": slowMovementCounter,
             "timeMouseMovementsDIVIDEDBYTaskDuration": timeMouseMovementsDIVIDEDBYTaskDuration,
-            "averageHoverTime": averageHoverTime
+            "averageHoverTime": averageHoverTime,
+            "mouseMovementTime": allMouseMovementTime,
+            "mouseHoverCount": mouseHoverCount
             } 
-            //HTTP POST REQUEST
+            // Sending data in JSON format using POST method
             var xmlhttp= new XMLHttpRequest();
-            xmlhttp.open("POST", backEndURL);
+            xmlhttp.open("POST", backEndURL, true);
             xmlhttp.setRequestHeader("Content-type", "application/json");
-            xmlhttp.send(record);
+            //TODO: Testen ob notwendig
+            var data = JSON.stringify(record);
+            xmlhttp.send(data);
             console.log(record);
-
-        }
-      } else {
-        wasOnPage = false;
-        console.log("Clear State");
       }
     }
   }
@@ -208,7 +197,6 @@ function Scan({ data }) {
   onmousemove = function (event) {
     elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
     if (elementExists.length == 1) {
-      wasOnPage = true;
       if (!doOnce) {
         startTime = (new Date()).getTime();
       }
@@ -218,7 +206,6 @@ function Scan({ data }) {
       if (lastSeenAt.x) {
         totalDistance += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
         distanceSincePause += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
-        //console.log(Math.round(totalDistance));
       }
 
       //MouseHover
@@ -227,27 +214,17 @@ function Scan({ data }) {
       ) {
         sHoverTime = (new Date()).getTime();
         mouseHover = true;
-        console.log(sHoverTime);
       } else if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A") &&
         !(document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A")) {
-        var endHoverTime = (new Date()).getTime() - sHoverTime;
-        console.log("HoverZeit :" + endHoverTime);
+        endHoverTime = (new Date()).getTime() - sHoverTime;
+        console.log("RICHTIG");
         mouseHoverCount = mouseHoverCount + 1;
-        console.log("HoverCount :" + mouseHoverCount);
         mouseHover = false;
       }
       lastSeenAt.x = event.clientX;
       lastSeenAt.y = event.clientY;
 
       isPause(event.clientX, event.clientY);
-/*
-     // Sending and receiving data in JSON format using POST method
-     var xhr = new XMLHttpRequest();
-     var url = "http://localhost:22709/api/mousetracks";
-     xhr.open("POST", url, true);
-     xhr.setRequestHeader("Content-Type", "application/json");
-     var data = JSON.stringify(mouseTrack);
-     xhr.send(data);*/
     }
   }
 
@@ -255,41 +232,37 @@ function Scan({ data }) {
     setTimeout(function(){ 
       if(x == lastSeenAt.x && y == lastSeenAt.y){
         countMovementTypes();
-        sPauseDuration =  (new Date()).getTime() - 500;
+        sPauseDuration =  (new Date()).getTime() - pauseAfter;
         pauseX = x;
         pauseY = y;
         distanceSincePause = 0;
         mouseMovementCounter = mouseMovementCounter + 1;
         pause = true;
       }else if(pause){
-        pauseDuration = (new Date()).getTime() - sPauseDuration - 500;
+        pauseDuration = (new Date()).getTime() - sPauseDuration - pauseAfter;
         allPauseDuaration = allPauseDuaration + pauseDuration;
-        console.log("Pausenzeit: " + pauseDuration);
-        smouseMovementTime = (new Date()).getTime() - 500;
+        smouseMovementTime = (new Date()).getTime() - pauseAfter;
         pauseCounter += 1;
         pause = false;
       }
-    }, 200);
+    }, pauseAfter);
   }
 
   function countMovementTypes(){
-    mouseMovementTime = (new Date()).getTime() - smouseMovementTime - 500;
+    mouseMovementTime = (new Date()).getTime() - smouseMovementTime - pauseAfter;
+    allMouseMovementTime = allMouseMovementTime + mouseMovementTime;
     if(mouseMovementTime > 2000 ){
       slowMovementCounter = slowMovementCounter + 1;
-      console.log("Slow Movements : " + mouseMovementTime);
     }
-    console.log("mouseMovementTime: " + mouseMovementTime);
     minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
     if((distanceSincePause/minDistanceSincePause) -1 < 0.05){
       straightLinesCounter = straightLinesCounter + 1;
-      console.log("direct Movement");
       if(distanceSincePause > 120){
         longStraightLinesCounter = longStraightLinesCounter + 1;
-        console.log("longdirectMovement");
+        console.log(longStraightLinesCounter);
       }
     }else{
       nonDirectMovementsCounter = nonDirectMovementsCounter + 1;
-      console.log("nonDirectMovementsCounter");
     }
   }
 
