@@ -23,7 +23,7 @@ import NoduleList from "../components/noduleList.js"
 function Scan({ data }) {
   //mus.js
   //TODO: Is broken, because it uses onMouseMoves like in line 139
-  /*
+  var json;
   var mus = new Mus();
   mus.setTimePoint(true);
   mus.setPlaybackSpeed(mus.speed.SLOW);
@@ -33,20 +33,17 @@ function Scan({ data }) {
     getReport();
   };
   const getReport = function(){
-    const json = JSON.stringify(mus.getData());
-    console.log(json);
-
-    //const csvData = objectToCsv(data);
-  }*/
+    json = JSON.stringify(mus.getData());
+  }
 
   //Public Settings
-  var userId = "123456";
-  var backEndURL = "http://localhost:22709/api/record";
+  var userId = "314ee8f1-62aa-4eb4-a782-086a3a531124";
+  var backEndURL = "http://localhost:22709/api/records";
   var pauseAfter = 200;
   var trackingPathName = "/scans/1234";
 
   //logic variable
-  var doOnce = false;
+  var doOnce = true;
   var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
   var pause = false;
 
@@ -63,6 +60,7 @@ function Scan({ data }) {
   var totalDistance = 0;
   var additionalDistance = 0;
   var normalizedAdditionalDistance = 0;
+  var allNormalizedAdditionalDistance = 0;
   //MouseHover
   var sHoverTime = 0;
   var mouseHoverCount = 0;
@@ -87,6 +85,7 @@ function Scan({ data }) {
   var pauseY;
   var distanceSincePause = 0;
   var minDistanceSincePause = 0;
+  var allMinDistanceSincePause = 0;
 
   //Duration of Pause
   var pauseCounter = 0;
@@ -133,8 +132,11 @@ function Scan({ data }) {
       var isOnScansPage = window.location.pathname === trackingPathName;
       if (!isOnScansPage) {
           timeSpent = (new Date()).getTime() - startTime;
-          //endRecord();
+          endRecord();
+          //distance since Pause ist falsch
+          minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
           additionalDistance = distanceSincePause - minDistanceSincePause;
+          allMinDistanceSincePause = allMinDistanceSincePause + minDistanceSincePause;
           if(minDistanceSincePause != 0){
             normalizedAdditionalDistance = additionalDistance/minDistanceSincePause;
           }if(pauseCounter != 0){
@@ -152,34 +154,37 @@ function Scan({ data }) {
             mouseMovementCounter = 1;
           }
           //Distanz
-          minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
-          doOnce = false;
+
+          doOnce = true;
           mouseHoverCount = mouseHoverCount + 1;
           endHoverTime = (new Date()).getTime() - sHoverTime;
           allHoverTime = allHoverTime + endHoverTime;
           averageHoverTime = allHoverTime/mouseHoverCount;
+          allNormalizedAdditionalDistance = (totalDistance - allMinDistanceSincePause)/allMinDistanceSincePause;
           //DataTable of record
           var record = {
             "UserId": userId,
-            "pageTime": timeSpent,
-            "distance": totalDistance,
+            "PageTime": timeSpent,
+            "Distance": totalDistance,
             "NAD": normalizedAdditionalDistance,
-            "averageTimeOfMouseHoverThatTurnedIntoClicks": averageMouseHoverThatTurnedIntoClicks,
-            "straightLinesCount": straightLinesCounter,
-            "mouseClickCount": mouseClickCounter,
-            "mouseHoverThatTurnedIntoClicksCount": countMouseHoverThatTurnedIntoClicks,
-            "mouseMovementCount": mouseMovementCounter,
-            "nonDirectMovementsCount": nonDirectMovementsCounter,
-            "mouseClickCounterOutsideOfDirectMovements": mouseClickCounterOutsideOfDirectMovements,
-            "mouseHoverCount": mouseHoverCount,
-            "averagePauseDurationDIVIDEDBYTaskDuration": averagePauseDurationDIVIDEDBYTaskDuration,
-            "averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration": averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration,
-            "longDirectMovementCount": longStraightLinesCounter,
-            "slowMovementCount": slowMovementCounter,
-            "timeMouseMovementsDIVIDEDBYTaskDuration": timeMouseMovementsDIVIDEDBYTaskDuration,
-            "averageHoverTime": averageHoverTime,
-            "mouseMovementTime": allMouseMovementTime,
-            "mouseHoverCount": mouseHoverCount
+            "AverageTimeOfMouseHoverThatTurnedIntoClicks": averageMouseHoverThatTurnedIntoClicks,
+            "StraightLinesCount": straightLinesCounter,
+            "MouseClickCount": mouseClickCounter,
+            "MouseHoverThatTurnedIntoClicksCount": countMouseHoverThatTurnedIntoClicks,
+            "MouseMovementCount": mouseMovementCounter,
+            "NonDirectMovementsCount": nonDirectMovementsCounter,
+            "MouseClickCounterOutsideOfDirectMovements": mouseClickCounterOutsideOfDirectMovements,
+            "MouseHoverCount": mouseHoverCount,
+            "AveragePauseDurationDIVIDEDBYTaskDuration": averagePauseDurationDIVIDEDBYTaskDuration,
+            "AveragePauseDurationBeforeClicksDIVIDEDBYTaskDuration": averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration,
+            "LongDirectMovementCount": longStraightLinesCounter,
+            "SlowMovementCount": slowMovementCounter,
+            "TimeMouseMovementsDIVIDEDBYTaskDuration": timeMouseMovementsDIVIDEDBYTaskDuration,
+            "AverageHoverTime": averageHoverTime,
+            "MouseMovementTime": allMouseMovementTime,
+            "PauseCount": pauseCounter,
+            "AllNormalizedAdditionalDistance": allNormalizedAdditionalDistance,
+            "Json": json
             } 
             // Sending data in JSON format using POST method
             var xmlhttp= new XMLHttpRequest();
@@ -188,7 +193,7 @@ function Scan({ data }) {
             //TODO: Testen ob notwendig
             var data = JSON.stringify(record);
             xmlhttp.send(data);
-            console.log(record);
+            console.log(data);
       }
     }
   }
@@ -196,11 +201,13 @@ function Scan({ data }) {
   onmousemove = function (event) {
     elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
     if (elementExists.length == 1) {
-      if (!doOnce) {
+      //Set startPosition + startTime
+      if (doOnce) {
         startTime = (new Date()).getTime();
+        pauseX = event.x;
+        pauseY = event.y;
       }
-      doOnce = true;
-      //Zeit
+      doOnce = false;
       //Distanz
       if (lastSeenAt.x) {
         totalDistance += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
@@ -219,22 +226,27 @@ function Scan({ data }) {
         mouseHoverCount = mouseHoverCount + 1;
         mouseHover = false;
       }
+      isPause(event.clientX, event.clientY);
       lastSeenAt.x = event.clientX;
       lastSeenAt.y = event.clientY;
 
-      isPause(event.clientX, event.clientY);
+
     }
   }
 
   function isPause(x,y){
     setTimeout(function(){ 
       if(x == lastSeenAt.x && y == lastSeenAt.y){
-        countMovementTypes();
-        sPauseDuration =  (new Date()).getTime() - pauseAfter;
-        pauseX = x;
-        pauseY = y;
-        distanceSincePause = 0;
-        mouseMovementCounter = mouseMovementCounter + 1;
+        if(!pause){
+          minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
+          allMinDistanceSincePause = allMinDistanceSincePause + minDistanceSincePause;
+          sPauseDuration =  (new Date()).getTime() - pauseAfter;
+          pauseX = x;
+          pauseY = y;
+          countMovementTypes();
+          distanceSincePause = 0;
+          mouseMovementCounter = mouseMovementCounter + 1;
+        }
         pause = true;
       }else if(pause){
         pauseDuration = (new Date()).getTime() - sPauseDuration - pauseAfter;
@@ -252,7 +264,6 @@ function Scan({ data }) {
     if(mouseMovementTime > 2000 ){
       slowMovementCounter = slowMovementCounter + 1;
     }
-    minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
     if((distanceSincePause/minDistanceSincePause) -1 < 0.05){
       straightLinesCounter = straightLinesCounter + 1;
       if(distanceSincePause > 120){
