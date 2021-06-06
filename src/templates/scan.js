@@ -16,157 +16,157 @@ import ScanImage from "../components/scanImage"
 import NoduleList from "../components/noduleList.js"
 
 var wasOnPage = true;
-onmouseover = function doOne(){
-if(wasOnPage){
-  wasOnPage = false;
+onmouseover = function doOne() {
+  if (wasOnPage) {
+    wasOnPage = false;
     //mus.js
-  //TODO: Is broken, because it uses onMouseMoves like in line 139
-  var json;
-  var mus = new Mus();
-  mus.setTimePoint(true);
-  mus.setPlaybackSpeed(mus.speed.SLOW);
-  mus.record();
-  var endRecord = function() {
-    mus.stop();
-    getReport();
-  };
-  const getReport = function(){
-    json = JSON.stringify(mus.getData());
-  }
-
-  //Public Settings
-  var userId = "314ee8f1-62aa-4eb4-a782-086a3a531124";
-  var backEndURL = "http://localhost:22709/api/records";
-  var pauseAfter = 200;
-  var trackingPathName = "/scans/1234";
-
-  //logic variable
-  var doOnce = true;
-  var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
-  var pause = true;
-
-
-  //time
-  var startTime = (new Date()).getTime();
-  var timeSpent = 0;
-  //Duration of Movements
-  var mouseMovementTime = 0;
-  var smouseMovementTime = 0;
-  var allMouseMovementTime = 0;
-  //MouseTracking
-  var lastSeenAt = { x: null, y: null };
-  //Distanz
-  var totalDistance = 0;
-  var additionalDistance = 0;
-  var normalizedAdditionalDistance = 0;
-  var allNormalizedAdditionalDistance = 0;
-  //MouseHover
-  var sHoverTime = 0;
-  var mouseHoverCount = 0;
-  var mouseHover = false;
-  var countMouseHoverThatTurnedIntoClicks = 0;
-  var mouseHoverThatTurnedIntoClicks = 0;
-  var allMouseHoverThatTurnedIntoClicks = 0;
-  var averageMouseHoverThatTurnedIntoClicks = 0
-  var endHoverTime = 0;
-  //MouseClick
-  var mouseClickCounter = 0;
-  var mouseClickCounterOutsideOfDirectMovements = 0;
-  //MouseMovementCounter
-  var mouseMovementCounter = 0;
-  //Counter
-  var straightLinesCounter = 0;
-  var longStraightLinesCounter = 0;
-  var slowMovementCounter = 0;
-  var nonDirectMovementsCounter = 0;
-  //XY from pause to click
-  var pauseX;
-  var pauseY;
-  var distanceSincePause = 0;
-  var minDistanceSincePause = 0;
-  var allMinDistanceSincePause = 0;
-
-  //Duration of Pause
-  var pauseCounter = 0;
-  var sPauseDuration = (new Date()).getTime();
-  var pauseDuration  = 0;
-  var allPauseDuaration = 0;
-  var averagePauseDuration = 0;
-  var pauseDurationBeforeClick = 0;
-  var allPauseDurationBeforeClick = 0; 
-  var timeMouseMovementsDIVIDEDBYTaskDuration = 0;
-  var averagePauseDurationDIVIDEDBYTaskDuration = 0;
-  var averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration = 0;
-  var pauseDurationBeforeClickCounter = 0;
-  var averagePauseDurationBeforeClicks = 0;
-  var allHoverTime = 0;
-  var averageHoverTime = 0;
-  var uTurnCounter = 0;
-  var distanceSincePauseBuffer = 0;
-  var minDistanceSincePauseBuffer = 0;
-
-  onclick = function addOne() {
-    //Set StartTime
-    if ((document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse").length != 1) && (window.location.pathname === trackingPathName)) {
-      startTime = (new Date()).getTime();
-      sPauseDuration =  (new Date()).getTime();
+    //TODO: Is broken, because it uses onMouseMoves like in line 139
+    var json;
+    var mus = new Mus();
+    mus.setTimePoint(true);
+    mus.setPlaybackSpeed(mus.speed.SLOW);
+    mus.record();
+    var endRecord = function () {
+      mus.stop();
+      getReport();
+    };
+    const getReport = function () {
+      json = JSON.stringify(mus.getData());
     }
-    //Find Element on Page
-    elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
-    if (elementExists.length == 1) {
-      //MouseClickCounter
-      mouseClickCounter += 1;
-      //mouseClickCounterOutsideOfDirectMovements
-      if(pause){
-        mouseClickCounterOutsideOfDirectMovements = mouseClickCounterOutsideOfDirectMovements + 1;
-        pauseDurationBeforeClick = (new Date()).getTime() - sPauseDuration;
-        allPauseDurationBeforeClick = allPauseDurationBeforeClick + pauseDurationBeforeClick;
-        pauseDurationBeforeClickCounter = pauseDurationBeforeClickCounter + 1;   
+
+    //Public Settings
+    var userId = "314ee8f1-62aa-4eb4-a782-086a3a531124";
+    var backEndURL = "http://localhost:22709/api/records";
+    var pauseAfter = 200;
+    var trackingPathName = "/scans/1234";
+
+    //logic variable
+    var doOnce = true;
+    var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
+    var pause = true;
+
+
+    //time
+    var startTime = (new Date()).getTime();
+    var timeSpent = 0;
+    //Duration of Movements
+    var mouseMovementTime = 0;
+    var smouseMovementTime = 0;
+    var allMouseMovementTime = 0;
+    //MouseTracking
+    var lastSeenAt = { x: null, y: null };
+    //Distanz
+    var totalDistance = 0;
+    var additionalDistance = 0;
+    var normalizedAdditionalDistance = 0;
+    var allNormalizedAdditionalDistance = 0;
+    //MouseHover
+    var sHoverTime = 0;
+    var mouseHoverCount = 0;
+    var mouseHover = false;
+    var countMouseHoverThatTurnedIntoClicks = 0;
+    var mouseHoverThatTurnedIntoClicks = 0;
+    var allMouseHoverThatTurnedIntoClicks = 0;
+    var averageMouseHoverThatTurnedIntoClicks = 0
+    var endHoverTime = 0;
+    //MouseClick
+    var mouseClickCounter = 0;
+    var mouseClickCounterOutsideOfDirectMovements = 0;
+    //MouseMovementCounter
+    var mouseMovementCounter = 0;
+    //Counter
+    var straightLinesCounter = 0;
+    var longStraightLinesCounter = 0;
+    var slowMovementCounter = 0;
+    var nonDirectMovementsCounter = 0;
+    //XY from pause to click
+    var pauseX;
+    var pauseY;
+    var distanceSincePause = 0;
+    var minDistanceSincePause = 0;
+    var allMinDistanceSincePause = 0;
+
+    //Duration of Pause
+    var pauseCounter = 0;
+    var sPauseDuration = (new Date()).getTime();
+    var pauseDuration = 0;
+    var allPauseDuaration = 0;
+    var averagePauseDuration = 0;
+    var pauseDurationBeforeClick = 0;
+    var allPauseDurationBeforeClick = 0;
+    var timeMouseMovementsDIVIDEDBYTaskDuration = 0;
+    var averagePauseDurationDIVIDEDBYTaskDuration = 0;
+    var averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration = 0;
+    var pauseDurationBeforeClickCounter = 0;
+    var averagePauseDurationBeforeClicks = 0;
+    var allHoverTime = 0;
+    var averageHoverTime = 0;
+    var uTurnCounter = 0;
+    var distanceSincePauseBuffer = 0;
+    var minDistanceSincePauseBuffer = 0;
+
+    onclick = function addOne() {
+      //Set StartTime
+      if ((document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse").length != 1) && (window.location.pathname === trackingPathName)) {
+        startTime = (new Date()).getTime();
+        sPauseDuration = (new Date()).getTime();
       }
-      //MouseHover
-      if (mouseHover) {
-        if(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Scan details"){
-          endHoverTime = (new Date()).getTime() - sHoverTime;
-          allHoverTime = allHoverTime + endHoverTime;
+      //Find Element on Page
+      elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
+      if (elementExists.length == 1) {
+        //MouseClickCounter
+        mouseClickCounter += 1;
+        //mouseClickCounterOutsideOfDirectMovements
+        if (pause) {
+          mouseClickCounterOutsideOfDirectMovements = mouseClickCounterOutsideOfDirectMovements + 1;
+          pauseDurationBeforeClick = (new Date()).getTime() - sPauseDuration;
+          allPauseDurationBeforeClick = allPauseDurationBeforeClick + pauseDurationBeforeClick;
+          pauseDurationBeforeClickCounter = pauseDurationBeforeClickCounter + 1;
         }
-        mouseHoverThatTurnedIntoClicks = (new Date()).getTime() - sHoverTime;
-        countMouseHoverThatTurnedIntoClicks = countMouseHoverThatTurnedIntoClicks + 1;
-        mouseHover = false;
-        allMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks + mouseHoverThatTurnedIntoClicks;
-        averageMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks/countMouseHoverThatTurnedIntoClicks;
-      }
-      var isOnScansPage = window.location.pathname === trackingPathName;
-      if (!isOnScansPage) {
+        //MouseHover
+        if (mouseHover) {
+          if (document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Scan details") {
+            endHoverTime = (new Date()).getTime() - sHoverTime;
+            allHoverTime = allHoverTime + endHoverTime;
+          }
+          mouseHoverThatTurnedIntoClicks = (new Date()).getTime() - sHoverTime;
+          countMouseHoverThatTurnedIntoClicks = countMouseHoverThatTurnedIntoClicks + 1;
+          mouseHover = false;
+          allMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks + mouseHoverThatTurnedIntoClicks;
+          averageMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks / countMouseHoverThatTurnedIntoClicks;
+        }
+        var isOnScansPage = window.location.pathname === trackingPathName;
+        if (!isOnScansPage) {
           timeSpent = (new Date()).getTime() - startTime;
           endRecord();
-          if(pause){
+          if (pause) {
             pauseDuration = (new Date()).getTime() - sPauseDuration;
             allPauseDuaration = allPauseDuaration + pauseDuration;
           }
-          if(!pause){
-            mouseMovementTime = (new Date()).getTime() - smouseMovementTime;  
+          if (!pause) {
+            mouseMovementTime = (new Date()).getTime() - smouseMovementTime;
             allMouseMovementTime = allMouseMovementTime + mouseMovementTime;
           }
           minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
           additionalDistance = distanceSincePause - minDistanceSincePause;
           allMinDistanceSincePause = allMinDistanceSincePause + minDistanceSincePause;
-          if((additionalDistance != 0) && (minDistanceSincePause != 0)){
-            normalizedAdditionalDistance = additionalDistance/minDistanceSincePause;
-          }else{
-            normalizedAdditionalDistance = ((distanceSincePauseBuffer - minDistanceSincePauseBuffer)/minDistanceSincePauseBuffer)
+          if ((additionalDistance != 0) && (minDistanceSincePause != 0)) {
+            normalizedAdditionalDistance = additionalDistance / minDistanceSincePause;
+          } else {
+            normalizedAdditionalDistance = ((distanceSincePauseBuffer - minDistanceSincePauseBuffer) / minDistanceSincePauseBuffer)
           }
-          if(pauseCounter != 0){
-            averagePauseDuration = allPauseDuaration/pauseCounter;
+          if (pauseCounter != 0) {
+            averagePauseDuration = allPauseDuaration / pauseCounter;
           }
-          if(pauseDurationBeforeClickCounter != 0){
-            averagePauseDurationBeforeClicks = allPauseDurationBeforeClick/pauseDurationBeforeClickCounter;
+          if (pauseDurationBeforeClickCounter != 0) {
+            averagePauseDurationBeforeClicks = allPauseDurationBeforeClick / pauseDurationBeforeClickCounter;
           }
-          if(timeSpent != 0){
-            timeMouseMovementsDIVIDEDBYTaskDuration = (allMouseMovementTime/timeSpent);
-            averagePauseDurationDIVIDEDBYTaskDuration = averagePauseDuration/timeSpent;
-            averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration = averagePauseDurationBeforeClicks/timeSpent;
+          if (timeSpent != 0) {
+            timeMouseMovementsDIVIDEDBYTaskDuration = (allMouseMovementTime / timeSpent);
+            averagePauseDurationDIVIDEDBYTaskDuration = averagePauseDuration / timeSpent;
+            averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration = averagePauseDurationBeforeClicks / timeSpent;
           }
-          if(!pause){
+          if (!pause) {
             mouseMovementCounter += 1;
             countMovementTypes();
           }
@@ -175,8 +175,8 @@ if(wasOnPage){
           doOnce = true;
           endHoverTime = (new Date()).getTime() - sHoverTime;
           allHoverTime = allHoverTime + endHoverTime;
-          averageHoverTime = allHoverTime/mouseHoverCount;
-          allNormalizedAdditionalDistance = (totalDistance - allMinDistanceSincePause)/allMinDistanceSincePause;
+          averageHoverTime = allHoverTime / mouseHoverCount;
+          allNormalizedAdditionalDistance = (totalDistance - allMinDistanceSincePause) / allMinDistanceSincePause;
           //DataTable of record
           var record = {
             "UserId": userId, //Test bestanden  
@@ -202,102 +202,103 @@ if(wasOnPage){
             "AllNormalizedAdditionalDistance": allNormalizedAdditionalDistance,  //Test bestanden
             "UTurnCount": uTurnCounter, //Test bestanden 
             "Json": json //Test bestanden 
-            } 
-            // Sending data in JSON format using POST method
-            var xmlhttp= new XMLHttpRequest();
-            xmlhttp.open("POST", backEndURL, true);
-            xmlhttp.setRequestHeader("Content-type", "application/json");
-            var data = JSON.stringify(record);
-            xmlhttp.send(data);
-            console.log(record);
-            wasOnPage = true;
+          }
+          // Sending data in JSON format using POST method
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.open("POST", backEndURL, true);
+          xmlhttp.setRequestHeader("Content-type", "application/json");
+          var data = JSON.stringify(record);
+          xmlhttp.send(data);
+          console.log(record);
+          wasOnPage = true;
+        }
       }
     }
-  }
 
-  onmousemove = function (event) {
-    elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
-    if (elementExists.length == 1) {
-      //Set startPosition
-      if (doOnce) {
-        pauseX = event.x;
-        pauseY = event.y;
-        if(((new Date()).getTime() - startTime) > pauseAfter){
+    onmousemove = function (event) {
+      elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
+      if (elementExists.length == 1) {
+        //Set startPosition
+        if (doOnce) {
+          pauseX = event.x;
+          pauseY = event.y;
+          if (((new Date()).getTime() - startTime) > pauseAfter) {
+            pauseCounter += 1;
+          }
+        }
+        doOnce = false;
+        //Distanz
+        if (lastSeenAt.x) {
+          totalDistance += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
+          distanceSincePause += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
+        }
+        //MouseHover
+        if ((document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A") &&
+          !(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A")
+        ) {
+          sHoverTime = (new Date()).getTime();
+          mouseHoverCount = mouseHoverCount + 1;
+          mouseHover = true;
+        } else if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A") &&
+          !(document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A")) {
+          endHoverTime = (new Date()).getTime() - sHoverTime;
+          allHoverTime = allHoverTime + endHoverTime;
+          mouseHover = false;
+        }
+        isPause(event.clientX, event.clientY);
+        lastSeenAt.x = event.clientX;
+        lastSeenAt.y = event.clientY;
+
+
+      }
+    }
+
+    function isPause(x, y) {
+      setTimeout(function () {
+        if (x == lastSeenAt.x && y == lastSeenAt.y) {
+          if (!pause) {
+            minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
+            minDistanceSincePauseBuffer = minDistanceSincePause;
+            allMinDistanceSincePause = allMinDistanceSincePause + minDistanceSincePause;
+            sPauseDuration = (new Date()).getTime() - pauseAfter;
+            pauseX = x;
+            pauseY = y;
+            mouseMovementTime = (new Date()).getTime() - smouseMovementTime - pauseAfter;
+            allMouseMovementTime = allMouseMovementTime + mouseMovementTime;
+            countMovementTypes();
+            distanceSincePauseBuffer = distanceSincePause;
+            distanceSincePause = 0;
+            mouseMovementCounter = mouseMovementCounter + 1;
+          }
+          pause = true;
+        } else if (pause) {
+          pauseDuration = (new Date()).getTime() - sPauseDuration - pauseAfter;
+          allPauseDuaration = allPauseDuaration + pauseDuration;
+          smouseMovementTime = (new Date()).getTime() - pauseAfter;
           pauseCounter += 1;
+          pause = false;
         }
-      }
-      doOnce = false;
-      //Distanz
-      if (lastSeenAt.x) {
-        totalDistance += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
-        distanceSincePause += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
-      }
-      //MouseHover
-      if ((document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A") &&
-        !(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A")
-      ) {
-        sHoverTime = (new Date()).getTime();
-        mouseHoverCount = mouseHoverCount + 1;
-        mouseHover = true;
-      } else if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A") &&
-        !(document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A")) {
-        endHoverTime = (new Date()).getTime() - sHoverTime;
-        allHoverTime = allHoverTime + endHoverTime;
-        mouseHover = false;
-      }
-      isPause(event.clientX, event.clientY);
-      lastSeenAt.x = event.clientX;
-      lastSeenAt.y = event.clientY;
-
-
+      }, pauseAfter);
     }
-  }
-
-  function isPause(x,y){
-    setTimeout(function(){ 
-      if(x == lastSeenAt.x && y == lastSeenAt.y){
-        if(!pause){
-          minDistanceSincePause = Math.round(Math.sqrt(Math.pow(pauseY - lastSeenAt.y, 2) + Math.pow(pauseX - lastSeenAt.x, 2)));
-          minDistanceSincePauseBuffer = minDistanceSincePause;
-          allMinDistanceSincePause = allMinDistanceSincePause + minDistanceSincePause;
-          sPauseDuration =  (new Date()).getTime() - pauseAfter;
-          pauseX = x;
-          pauseY = y;
-          mouseMovementTime = (new Date()).getTime() - smouseMovementTime - pauseAfter;
-          allMouseMovementTime = allMouseMovementTime + mouseMovementTime;
-          countMovementTypes();
-          distanceSincePauseBuffer = distanceSincePause;
-          distanceSincePause = 0;
-          mouseMovementCounter = mouseMovementCounter + 1;
+    //TODO: Da die Funktion 2 mal aufgerufen wird => Zeiten überprüfen (-pauseAfter)
+    function countMovementTypes() {
+      if (mouseMovementTime > 2000) {
+        slowMovementCounter = slowMovementCounter + 1;
+      }
+      if ((distanceSincePause / minDistanceSincePause) - 1 < 0.05) {
+        straightLinesCounter = straightLinesCounter + 1;
+        if (distanceSincePause > 120) {
+          longStraightLinesCounter = longStraightLinesCounter + 1;
         }
-        pause = true;
-      }else if(pause){
-        pauseDuration = (new Date()).getTime() - sPauseDuration - pauseAfter;
-        allPauseDuaration = allPauseDuaration + pauseDuration;
-        smouseMovementTime = (new Date()).getTime() - pauseAfter;
-        pauseCounter += 1;
-        pause = false;
+      } else {
+        nonDirectMovementsCounter = nonDirectMovementsCounter + 1;
       }
-    }, pauseAfter);
-  }
-//TODO: Da die Funktion 2 mal aufgerufen wird => Zeiten überprüfen (-pauseAfter)
-  function countMovementTypes(){
-    if(mouseMovementTime > 2000 ){
-      slowMovementCounter = slowMovementCounter + 1;
-    }
-    if((distanceSincePause/minDistanceSincePause) -1 < 0.05){
-      straightLinesCounter = straightLinesCounter + 1;
-      if(distanceSincePause > 120){
-        longStraightLinesCounter = longStraightLinesCounter + 1;
+      if ((distanceSincePause / minDistanceSincePause) > 1.3) {
+        uTurnCounter += 1;
       }
-    }else{
-      nonDirectMovementsCounter = nonDirectMovementsCounter + 1;
-    }
-    if((distanceSincePause/minDistanceSincePause) > 1.3){
-      uTurnCounter += 1;
     }
   }
-}}
+}
 
 
 
@@ -307,7 +308,7 @@ function Scan({ data }) {
   const scan = data.scansJson
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
   return (
-    
+
     <Layout>
       <SEO title={"Scan #" + scan.id} />
       <div className="max-w-7xl py-8 mx-auto sm:px-6 lg:px-8">
