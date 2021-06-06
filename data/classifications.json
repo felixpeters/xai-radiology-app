@@ -1,0 +1,90 @@
+[
+  {
+    "id": "c_01",
+    "name": "Subtlety",
+    "marks": [
+      "Extremely subtle",
+      "Moderately subtle",
+      "Fairly subtle",
+      "Moderately obvious",
+      "Obvious"
+    ]
+  },
+  {
+    "id": "c_02",
+    "name": "Internal Structure",
+    "marks": [
+      "Soft tissue",
+      "Fluid",
+      "Fat",
+      "Air"
+    ]
+  },
+  {
+    "id": "c_03",
+    "name": "Calcification",
+    "marks": [
+      "Popcorn",
+      "Laminated",
+      "Solid",
+      "Non-central",
+      "Central",
+      "Absent"
+    ]
+  },
+  {
+    "id": "c_04",
+    "name": "Sphericity",
+    "marks": [
+      "Linear",
+      "Ovoid/linear",
+      "Ovoid",
+      "Ovoid/round",
+      "Round"
+    ]
+  },
+  {
+    "id": "c_05",
+    "name": "Margin",
+    "marks": [
+      "Poorly defined",
+      "Near poorly defined",
+      "Medium",
+      "Near sharp",
+      "Sharp"
+    ]
+  },
+  {
+    "id": "c_06",
+    "name": "Lobulation",
+    "marks": [
+      "None",
+      "Nearly none",
+      "Medium",
+      "Near marked",
+      "Marked"
+    ]
+  },
+  {
+    "id": "c_07",
+    "name": "Spiculation",
+    "marks": [
+      "None",
+      "Nearly none",
+      "Medium",
+      "Near marked",
+      "Marked"
+    ]
+  },
+  {
+    "id": "c_08",
+    "name": "Texture",
+    "marks": [
+      "Non-solid/GGO",
+      "Non-solid/mixed",
+      "Part solid/mixed",
+      "Solid/mixed",
+      "Solid"
+    ]
+  }
+]

@@ -24,16 +24,40 @@
         "ai": 0.13,
         "physician": "open"
       },
-      "additional": {
-        "texture": 5,
-        "spiculation": 1,
-        "lobulation": 3,
-        "margin": 5,
-        "sphericity": 5,
-        "calcification": 3,
-        "internalStructure": 1,
-        "subtlety": 5
-      }
+      "additional": [
+        {
+          "classification___NODE": "c_08",
+          "value": 5
+        },
+        {
+          "classification___NODE": "c_07",
+          "value": 1
+        },
+        {
+          "classification___NODE": "c_06",
+          "value": 3
+        },
+        {
+          "classification___NODE": "c_05",
+          "value": 5
+        },
+        {
+          "classification___NODE": "c_04",
+          "value": 5
+        },
+        {
+          "classification___NODE": "c_03",
+          "value": 3
+        },
+        {
+          "classification___NODE": "c_02",
+          "value": 1
+        },
+        {
+          "classification___NODE": "c_01",
+          "value": 5
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_5.png",
@@ -66,16 +90,40 @@
         "ai": 0.35,
         "physician": "open"
       },
-      "additional": {
-        "texture": 1,
-        "spiculation": 1,
-        "lobulation": 1,
-        "margin": 2,
-        "sphericity": 5,
-        "calcification": 6,
-        "internalStructure": 1,
-        "subtlety": 1
-      }
+      "additional": [
+        {
+          "classification___NODE": "c_08",
+          "value": 1
+        },
+        {
+          "classification___NODE": "c_07",
+          "value": 1
+        },
+        {
+          "classification___NODE": "c_06",
+          "value": 1
+        },
+        {
+          "classification___NODE": "c_05",
+          "value": 2
+        },
+        {
+          "classification___NODE": "c_04",
+          "value": 5
+        },
+        {
+          "classification___NODE": "c_03",
+          "value": 6
+        },
+        {
+          "classification___NODE": "c_02",
+          "value": 1
+        },
+        {
+          "classification___NODE": "c_01",
+          "value": 1
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_3.png",
@@ -108,16 +156,40 @@
         "ai": 0.41,
         "physician": "open"
       },
-      "additional": {
-        "texture": 5,
-        "spiculation": 2,
-        "lobulation": 3,
-        "margin": 3,
-        "sphericity": 4,
-        "calcification": 6,
-        "internalStructure": 1,
-        "subtlety": 4
-      }
+      "additional": [
+        {
+          "classification___NODE": "c_08",
+          "value": 5
+        },
+        {
+          "classification___NODE": "c_07",
+          "value": 2
+        },
+        {
+          "classification___NODE": "c_06",
+          "value": 3
+        },
+        {
+          "classification___NODE": "c_05",
+          "value": 3
+        },
+        {
+          "classification___NODE": "c_04",
+          "value": 4
+        },
+        {
+          "classification___NODE": "c_03",
+          "value": 6
+        },
+        {
+          "classification___NODE": "c_02",
+          "value": 1
+        },
+        {
+          "classification___NODE": "c_01",
+          "value": 4
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_4.png",
@@ -150,16 +222,40 @@
         "ai": 0.52,
         "physician": "benign"
       },
-      "additional": {
-        "texture": 5,
-        "spiculation": 4,
-        "lobulation": 3,
-        "margin": 3,
-        "sphericity": 4,
-        "calcification": 6,
-        "internalStructure": 4,
-        "subtlety": 5
-      }
+      "additional": [
+        {
+          "classification___NODE": "c_08",
+          "value": 5
+        },
+        {
+          "classification___NODE": "c_07",
+          "value": 4
+        },
+        {
+          "classification___NODE": "c_06",
+          "value": 3
+        },
+        {
+          "classification___NODE": "c_05",
+          "value": 3
+        },
+        {
+          "classification___NODE": "c_04",
+          "value": 4
+        },
+        {
+          "classification___NODE": "c_03",
+          "value": 6
+        },
+        {
+          "classification___NODE": "c_02",
+          "value": 4
+        },
+        {
+          "classification___NODE": "c_01",
+          "value": 5
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_1.png",
@@ -192,16 +288,40 @@
         "ai": 0.87,
         "physician": "open"
       },
-      "additional": {
-        "texture": 5,
-        "spiculation": 4,
-        "lobulation": 3,
-        "margin": 4,
-        "sphericity": 4,
-        "calcification": 6,
-        "internalStructure": 1,
-        "subtlety": 5
-      }
+      "additional": [
+        {
+          "classification___NODE": "c_08",
+          "value": 5
+        },
+        {
+          "classification___NODE": "c_07",
+          "value": 4
+        },
+        {
+          "classification___NODE": "c_06",
+          "value": 3
+        },
+        {
+          "classification___NODE": "c_05",
+          "value": 4
+        },
+        {
+          "classification___NODE": "c_04",
+          "value": 4
+        },
+        {
+          "classification___NODE": "c_03",
+          "value": 6
+        },
+        {
+          "classification___NODE": "c_02",
+          "value": 1
+        },
+        {
+          "classification___NODE": "c_01",
+          "value": 5
+        }
+      ]
     },
     "images": {
       "thumbnail": "scan01/nodule_2.png",
