@@ -15,6 +15,7 @@ import SEO from "../components/seo"
 import ScanImage from "../components/scanImage"
 import NoduleList from "../components/noduleList.js"
 
+
 //Initialize Page
 var wasOnPage = true;
 onmouseover = function doOne() {
@@ -145,7 +146,7 @@ onmouseover = function doOne() {
         var isOnScansPage = window.location.pathname === trackingPathName;
         if (!isOnScansPage) {
           timeSpent = (new Date()).getTime() - startTime;
-          endRecord(); // mus.js stops recording
+          //endRecord(); // mus.js stops recording
           if (pause) {
             pauseDuration = (new Date()).getTime() - sPauseDuration;
             allPauseDuaration = allPauseDuaration + pauseDuration;
@@ -206,7 +207,6 @@ onmouseover = function doOne() {
             "PauseCount": pauseCounter,  //Test bestanden 
             "AllNormalizedAdditionalDistance": allNormalizedAdditionalDistance,  //Test bestanden
             "UTurnCount": uTurnCounter, //Test bestanden 
-            "Json": json //Test bestanden 
           }
           // Sending data in JSON format using POST method
           var xmlhttp = new XMLHttpRequest();
