@@ -15,12 +15,16 @@ import SEO from "../components/seo"
 import ScanImage from "../components/scanImage"
 import NoduleList from "../components/noduleList.js"
 
+//Initialize Page
 var wasOnPage = true;
 onmouseover = function doOne() {
+
   if (wasOnPage) {
     wasOnPage = false;
+    console.log("Einmal");
+
     //mus.js
-    //TODO: Is broken, because it uses onMouseMoves like in line 139
+    //TODO: Is broken, because mus.js also uses onmousemove in line 218
     var json;
     var mus = new Mus();
     mus.setTimePoint(true);
@@ -39,7 +43,6 @@ onmouseover = function doOne() {
     var backEndURL = "http://localhost:22709/api/records";
     var pauseAfter = 200;
     var trackingPathName = "/scans/1234";
-
     //logic variable
     var doOnce = true;
     var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
@@ -105,6 +108,10 @@ onmouseover = function doOne() {
     var distanceSincePauseBuffer = 0;
     var minDistanceSincePauseBuffer = 0;
 
+    /**
+     * This functions sets the values if a user is clicking
+     * and posts the data to the backend
+     */
     onclick = function addOne() {
       //Set StartTime
       if ((document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse").length != 1) && (window.location.pathname === trackingPathName)) {
@@ -135,10 +142,11 @@ onmouseover = function doOne() {
           allMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks + mouseHoverThatTurnedIntoClicks;
           averageMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks / countMouseHoverThatTurnedIntoClicks;
         }
+        //Check if leaving page and posting Data
         var isOnScansPage = window.location.pathname === trackingPathName;
         if (!isOnScansPage) {
           timeSpent = (new Date()).getTime() - startTime;
-          endRecord();
+          endRecord(); // mus.js stops recording
           if (pause) {
             pauseDuration = (new Date()).getTime() - sPauseDuration;
             allPauseDuaration = allPauseDuaration + pauseDuration;
@@ -170,8 +178,6 @@ onmouseover = function doOne() {
             mouseMovementCounter += 1;
             countMovementTypes();
           }
-          //Distanz
-
           doOnce = true;
           endHoverTime = (new Date()).getTime() - sHoverTime;
           allHoverTime = allHoverTime + endHoverTime;
@@ -186,7 +192,7 @@ onmouseover = function doOne() {
             "AverageTimeOfMouseHoverThatTurnedIntoClicks": averageMouseHoverThatTurnedIntoClicks, //Test bestanden 
             "StraightLinesCount": straightLinesCounter,  //Test bestanden 
             "MouseClickCount": mouseClickCounter, //Test bestanden 
-            "MouseHoverThatTurnedIntoClicksCount": countMouseHoverThatTurnedIntoClicks, //Test bestanden  |  svg x nicht gezählt + Man muss neu hovern, um counter zu erhöhen
+            "MouseHoverThatTurnedIntoClicksCount": countMouseHoverThatTurnedIntoClicks, //Test bestanden  |  svg x wird nicht gezählt + Man muss neu hovern, um counter zu erhöhen
             "MouseMovementCount": mouseMovementCounter, //Test bestanden 
             "NonDirectMovementsCount": nonDirectMovementsCounter, //Test bestanden 
             "MouseClickCounterOutsideOfDirectMovements": mouseClickCounterOutsideOfDirectMovements,  //Test bestanden
@@ -215,6 +221,10 @@ onmouseover = function doOne() {
       }
     }
 
+    /**
+     * This function is triggert, if the mouse moves. Because of that, mus.js is not working.
+     * Calculates the distance, mouseHover and checks for a pause.
+     */
     onmousemove = function (event) {
       elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
       if (elementExists.length == 1) {
@@ -253,6 +263,11 @@ onmouseover = function doOne() {
       }
     }
 
+    /**
+     * Set var and check if there is an mouse idle
+     * @param {position X} x 
+     * @param {position Y} y 
+     */
     function isPause(x, y) {
       setTimeout(function () {
         if (x == lastSeenAt.x && y == lastSeenAt.y) {
@@ -280,7 +295,9 @@ onmouseover = function doOne() {
         }
       }, pauseAfter);
     }
-    //TODO: Da die Funktion 2 mal aufgerufen wird => Zeiten überprüfen (-pauseAfter)
+    /**
+     * Counts the different MovementTime after a Pause and onPageLeave
+     */
     function countMovementTypes() {
       if (mouseMovementTime > 2000) {
         slowMovementCounter = slowMovementCounter + 1;
