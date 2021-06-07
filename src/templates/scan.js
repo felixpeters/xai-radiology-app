@@ -21,8 +21,7 @@ onmouseover = function doOne() {
 
   if (wasOnPage) {
     wasOnPage = false;
-    console.log("Einmal");
-
+    
     //mus.js
     //TODO: Is broken, because mus.js also uses onmousemove in line 218
     var json;
