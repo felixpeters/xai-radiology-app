@@ -21,7 +21,7 @@ onmouseover = function doOne() {
 
   if (wasOnPage) {
     wasOnPage = false;
-    
+    /*   
     //mus.js
     //TODO: Is broken, because mus.js also uses onmousemove in line 218
     var json;
@@ -36,7 +36,7 @@ onmouseover = function doOne() {
     const getReport = function () {
       json = JSON.stringify(mus.getData());
     }
-
+    */
     //Public Settings
     var userId = "314ee8f1-62aa-4eb4-a782-086a3a531124";
     var backEndURL = "http://localhost:22709/api/records";
