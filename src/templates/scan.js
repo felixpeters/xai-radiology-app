@@ -17,10 +17,11 @@ import NoduleList from "../components/noduleList.js"
 
 
 //Initialize Page
+const isBrowser = typeof window !== "undefined"
 var wasOnPage = true;
-onmouseover = function doOne() {
+function trigger(){
 
-  if (wasOnPage) {
+  if (wasOnPage && isBrowser) {
     wasOnPage = false;
     /*   
     //mus.js
@@ -112,7 +113,7 @@ onmouseover = function doOne() {
      * This functions sets the values if a user is clicking
      * and posts the data to the backend
      */
-    onclick = function addOne() {
+    onclick = function () {
       //Set StartTime
       if ((document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse").length != 1) && (window.location.pathname === trackingPathName)) {
         startTime = (new Date()).getTime();
@@ -319,7 +320,9 @@ onmouseover = function doOne() {
 
 
 
+
 function Scan({ data }) {
+  trigger();
 
   const scan = data.scansJson
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
