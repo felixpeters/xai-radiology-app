@@ -2,11 +2,7 @@ import React from "react"
 import classnames from "classnames"
 import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import {
-  CheckIcon,
-  XIcon,
-  ArrowCircleRightIcon,
-} from "@heroicons/react/outline"
+import { XIcon, ArrowCircleRightIcon } from "@heroicons/react/outline"
 import { Link, graphql } from "gatsby"
 import {
   ClipboardListIcon,
@@ -18,6 +14,10 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import NoduleImage from "../components/noduleImage"
 import NoduleClassification from "../components/noduleClassification"
+import ModelOverview from "../components/modelOverview"
+import ModelValidation from "../components/modelValidation"
+import ModelDatasets from "../components/modelDataset"
+import ModelPerformance from "../components/modelPerformance"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -349,10 +349,14 @@ function Nodule({ data }) {
                         </div>
                       </div>
                       <div>
-                        <div
-                          className="mt-4 h-32 border-2 border-dashed border-gray-200"
-                          aria-hidden="true"
-                        ></div>
+                        {
+                          {
+                            Overview: <ModelOverview />,
+                            "Clinical validation": <ModelValidation />,
+                            Datasets: <ModelDatasets />,
+                            Performance: <ModelPerformance />,
+                          }[currentTab]
+                        }
                       </div>
                     </div>
                   </div>
