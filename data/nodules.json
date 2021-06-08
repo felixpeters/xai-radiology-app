@@ -22,7 +22,7 @@
     "classifications": {
       "main": {
         "ai": 0.13,
-        "physician": "open"
+        "physician": "Open"
       },
       "additional": [
         {
@@ -88,7 +88,7 @@
     "classifications": {
       "main": {
         "ai": 0.35,
-        "physician": "open"
+        "physician": "Open"
       },
       "additional": [
         {
@@ -154,7 +154,7 @@
     "classifications": {
       "main": {
         "ai": 0.41,
-        "physician": "open"
+        "physician": "Open"
       },
       "additional": [
         {
@@ -220,7 +220,7 @@
     "classifications": {
       "main": {
         "ai": 0.52,
-        "physician": "benign"
+        "physician": "Benign"
       },
       "additional": [
         {
@@ -286,7 +286,7 @@
     "classifications": {
       "main": {
         "ai": 0.87,
-        "physician": "open"
+        "physician": "Open"
       },
       "additional": [
         {

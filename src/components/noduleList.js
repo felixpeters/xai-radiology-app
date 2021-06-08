@@ -83,20 +83,16 @@ export default function NoduleList(data) {
                             {
                               "bg-green-100 text-green-800":
                                 nodule.classifications.main.physician ==
-                                "benign",
+                                "Benign",
                               "bg-blue-100 text-blue-800":
-                                nodule.classifications.main.physician == "open",
+                                nodule.classifications.main.physician == "Open",
                               "bg-red-100 text-red-800":
                                 nodule.classifications.main.physician ==
-                                "malignant",
+                                "Malignant",
                             }
                           )}
                         >
-                          Physician:{" "}
-                          {nodule.classifications.main.physician
-                            .charAt(0)
-                            .toUpperCase() +
-                            nodule.classifications.main.physician.slice(1)}
+                          Physician: {nodule.classifications.main.physician}
                         </span>
                       </div>
                     </td>

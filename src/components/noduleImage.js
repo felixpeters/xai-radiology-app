@@ -14,7 +14,7 @@ function NoduleImage({ images }) {
   return (
     <>
       <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
-        Image section
+        Image
       </h2>
       <img
         className={classnames("h-auto w-full", {

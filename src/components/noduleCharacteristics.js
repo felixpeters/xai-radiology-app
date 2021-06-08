@@ -24,12 +24,12 @@ export default function NoduleCharacteristics({ data }) {
                   value={classification.value - 1}
                   step={null}
                   marks={{ ...classification.classification.marks }}
-                  trackStyle={{ backgroundColor: "#5a67d8" }}
+                  trackStyle={{ backgroundColor: "#6366F1" }}
                   handleStyle={{
-                    borderColor: "#5a67d8",
+                    borderColor: "#6366F1",
                   }}
                   activeDotStyle={{
-                    borderColor: "#5a67d8",
+                    borderColor: "#6366F1",
                   }}
                   className="my-4"
                 />

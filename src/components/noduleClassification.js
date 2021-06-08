@@ -1,6 +1,7 @@
 import React from "react"
 import NoduleMeasurements from "./noduleMeasurements"
 import NoduleCharacteristics from "./noduleCharacteristics"
+import NoduleMalignancy from "./noduleMalignancy"
 
 export default function NoduleClassification({ data }) {
   const nodule = data
@@ -11,6 +12,7 @@ export default function NoduleClassification({ data }) {
       </h2>
       <NoduleMeasurements data={nodule.measurements} />
       <NoduleCharacteristics data={nodule.classifications.additional} />
+      <NoduleMalignancy data={nodule.classifications.main} />
     </>
   )
 }
