@@ -2,7 +2,11 @@ import React from "react"
 import classnames from "classnames"
 import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { XIcon, ArrowCircleRightIcon } from "@heroicons/react/outline"
+import {
+  CheckIcon,
+  XIcon,
+  ArrowCircleRightIcon,
+} from "@heroicons/react/outline"
 import { Link, graphql } from "gatsby"
 import {
   ClipboardListIcon,
@@ -15,10 +19,22 @@ import SEO from "../components/seo"
 import NoduleImage from "../components/noduleImage"
 import NoduleClassification from "../components/noduleClassification"
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ")
+}
+
 function Nodule({ data }) {
   const nodule = data.nodulesJson
   const scan = data.nodulesJson.scan
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
+  const [moduleInfoOpen, setModuleInfoOpen] = useState(false)
+  const [currentTab, setCurrentTab] = useState("Overview")
+  const tabs = [
+    { name: "Overview", href: "#", current: true },
+    { name: "Clinical validation", href: "#", current: false },
+    { name: "Datasets", href: "#", current: false },
+    { name: "Performance", href: "#", current: false },
+  ]
   return (
     <Layout>
       <SEO title={"Nodule #" + nodule.id + " | Scan #" + scan.id} />
@@ -89,6 +105,7 @@ function Nodule({ data }) {
             <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
               <button
                 type="button"
+                onClick={() => setModuleInfoOpen(true)}
                 className="mr-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <svg
@@ -238,6 +255,109 @@ function Nodule({ data }) {
                   </div>
                 </Transition.Child>
               </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+        <Transition.Root show={moduleInfoOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            static
+            className="fixed z-10 inset-0 overflow-y-auto"
+            open={moduleInfoOpen}
+            onClose={setModuleInfoOpen}
+          >
+            <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+              </Transition.Child>
+
+              {/* This element is to trick the browser into centering the modal contents. */}
+              <span
+                className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                aria-hidden="true"
+              >
+                &#8203;
+              </span>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full sm:p-6">
+                  <div>
+                    <div className="flex flex-row justify-between items-center">
+                      <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
+                        AI Module: Nodule Detection & Classification
+                      </h2>
+                      <button
+                        onClick={() => setModuleInfoOpen(false)}
+                        className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >
+                        <XIcon
+                          className="h-6 w-6 text-gray-600"
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </div>
+                    <div>
+                      <div className="sm:hidden">
+                        <label htmlFor="tabs" className="sr-only">
+                          Select a tab
+                        </label>
+                        <select
+                          id="tabs"
+                          name="tabs"
+                          className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                          defaultValue={tabs.find(tab => tab.current).name}
+                        >
+                          {tabs.map(tab => (
+                            <option key={tab.name}>{tab.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="hidden sm:block">
+                        <div className="border-b border-gray-200">
+                          <nav className="-mb-px flex" aria-label="Tabs">
+                            {tabs.map(tab => (
+                              <div
+                                key={tab.name}
+                                onClick={() => setCurrentTab(tab.name)}
+                                className={classNames(
+                                  tab.name === currentTab
+                                    ? "border-indigo-500 text-indigo-600"
+                                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+                                  "w-1/4 cursor-pointer py-4 px-1 text-center border-b-2 font-medium text-sm"
+                                )}
+                                aria-current={tab.current ? "page" : undefined}
+                              >
+                                {tab.name}
+                              </div>
+                            ))}
+                          </nav>
+                        </div>
+                      </div>
+                      <div>
+                        <div
+                          className="mt-4 h-32 border-2 border-dashed border-gray-200"
+                          aria-hidden="true"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Transition.Child>
             </div>
           </Dialog>
         </Transition.Root>
