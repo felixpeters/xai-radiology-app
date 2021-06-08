@@ -11,7 +11,6 @@ class MouseTracking extends Component {
             onmouseover = function () {
 
                 if (wasOnPage && isBrowser) {
-                    console.log("Did");
                     wasOnPage = false;
                     /*   
                     //mus.js
