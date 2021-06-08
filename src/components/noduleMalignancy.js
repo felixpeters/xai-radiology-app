@@ -1,7 +1,8 @@
 import React from "react"
+import PropTypes from "prop-types"
 import Slider from "rc-slider"
 
-export default function NoduleMalignancy({ data }) {
+function NoduleMalignancy({ data }) {
   const classification = data
   const createSliderWithTooltip = Slider.createSliderWithTooltip
   const MalignancySlider = createSliderWithTooltip(Slider)
@@ -72,3 +73,12 @@ export default function NoduleMalignancy({ data }) {
     </>
   )
 }
+
+NoduleMalignancy.propTypes = {
+  data: PropTypes.shape({
+    ai: PropTypes.number,
+    physician: PropTypes.string,
+  }),
+}
+
+export default NoduleMalignancy
