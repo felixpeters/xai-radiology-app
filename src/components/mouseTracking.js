@@ -12,7 +12,7 @@ class MouseTracking extends Component {
 
                 if (wasOnPage && isBrowser) {
                     wasOnPage = false;
-                    /*   
+                      
                     //mus.js
                     //TODO: Is broken, because mus.js also uses onmousemove in line 218
                     var json;
@@ -27,7 +27,7 @@ class MouseTracking extends Component {
                     const getReport = function () {
                       json = JSON.stringify(mus.getData());
                     }
-                    */
+                    
                     //Public Settings
                     var userId = "314ee8f1-62aa-4eb4-a782-086a3a531124";
                     var backEndURL = "http://localhost:22709/api/records";
@@ -136,7 +136,7 @@ class MouseTracking extends Component {
                             var isOnScansPage = window.location.pathname === trackingPathName;
                             if (!isOnScansPage) {
                                 timeSpent = (new Date()).getTime() - startTime;
-                                //endRecord(); // mus.js stops recording
+                                endRecord(); // mus.js stops recording
                                 if (pause) {
                                     pauseDuration = (new Date()).getTime() - sPauseDuration;
                                     allPauseDuaration = allPauseDuaration + pauseDuration;
@@ -197,6 +197,7 @@ class MouseTracking extends Component {
                                     "PauseCount": pauseCounter,  //Test bestanden 
                                     "AllNormalizedAdditionalDistance": allNormalizedAdditionalDistance,  //Test bestanden
                                     "UTurnCount": uTurnCounter, //Test bestanden 
+                                    "Json": json
                                 }
                                 // Sending data in JSON format using POST method
                                 var xmlhttp = new XMLHttpRequest();

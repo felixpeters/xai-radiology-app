@@ -21,5 +21,11 @@ module.exports = {
         path: "./data/",
       },
     },
+    {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
+        src: '/mus.js',
+      },
+    },
   ],
 }
