@@ -122,7 +122,7 @@ class MouseTracking extends Component {
                             }
                             //MouseHover
                             if (mouseHover) {
-                                if (document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Scan details") {
+                                if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Scan details")||(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Active AI: Nodule detection & classification")) {
                                     endHoverTime = (new Date()).getTime() - sHoverTime;
                                     allHoverTime = allHoverTime + endHoverTime;
                                 }
