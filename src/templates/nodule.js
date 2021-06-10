@@ -301,7 +301,7 @@ function Nodule({ data }) {
                   <div>
                     <div className="flex flex-row justify-between items-center">
                       <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
-                        AI Module: Nodule Detection & Classification
+                        RadiologyAI Module: Nodule Detection & Classification
                       </h2>
                       <button
                         onClick={() => setModuleInfoOpen(false)}
