@@ -18,6 +18,7 @@ import ModelOverview from "../components/modelOverview"
 import ModelValidation from "../components/modelValidation"
 import ModelDatasets from "../components/modelDataset"
 import ModelPerformance from "../components/modelPerformance"
+import HeatmapExplanation from "../components/heatmapExplanation"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -131,6 +132,7 @@ function Nodule({ data }) {
         <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-8">
           <div className="flex-1">
             <NoduleImage images={nodule.images} />
+            <HeatmapExplanation />
           </div>
           <div className="flex-1">
             <NoduleClassification data={nodule} />
