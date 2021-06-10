@@ -16,7 +16,8 @@ export default function DetectionExplanation() {
             The <b>nodule detection AI</b> receives the{" "}
             <b>3D chest CT volume as an input</b> and{" "}
             <b>segments lung nodules</b> larger than 3mm. The following table
-            lists all detected nodules, ordered by their estimated volume.
+            lists all detected nodules, ordered by their estimated volume. All
+            detected nodules are also marked in the overlay of the chest CT.
           </p>
         </div>
       </div>
