@@ -33,6 +33,7 @@ class MouseTracking extends Component {
                     var backEndURL = "http://localhost:22709/api/records";
                     var pauseAfter = 200;
                     var trackingPathName = "/scans/1234";
+                    var transparent = true;
                     //logic variable
                     var doOnce = true;
                     var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
@@ -179,6 +180,8 @@ class MouseTracking extends Component {
                                     "PageTime": timeSpent,  //Test bestanden  
                                     "Distance": totalDistance,  //Test bestanden  
                                     "NAD": normalizedAdditionalDistance,  //Test bestanden
+                                    "AllMouseHoverThatTurnedIntoClicks": allMouseHoverThatTurnedIntoClicks,
+                                    "CountMouseHoverThatTurnedIntoClicks": countMouseHoverThatTurnedIntoClicks,
                                     "AverageTimeOfMouseHoverThatTurnedIntoClicks": averageMouseHoverThatTurnedIntoClicks, //Test bestanden 
                                     "StraightLinesCount": straightLinesCounter,  //Test bestanden 
                                     "MouseClickCount": mouseClickCounter, //Test bestanden 
@@ -187,17 +190,24 @@ class MouseTracking extends Component {
                                     "NonDirectMovementsCount": nonDirectMovementsCounter, //Test bestanden 
                                     "MouseClickCounterOutsideOfDirectMovements": mouseClickCounterOutsideOfDirectMovements,  //Test bestanden
                                     "MouseHoverCount": mouseHoverCount, //Test bestanden  | Nur <button> oder <a>
+                                    "AllPauseDuaration": allPauseDuaration,                                    
+                                    "AveragePauseDuration": averagePauseDuration,
                                     "AveragePauseDurationDIVIDEDBYTaskDuration": averagePauseDurationDIVIDEDBYTaskDuration,  //Test bestanden
+                                    "AllPauseDurationBeforeClick": allPauseDurationBeforeClick,
+                                    "PauseDurationBeforeClickCounter": pauseDurationBeforeClickCounter,
                                     "AveragePauseDurationBeforeClicksDIVIDEDBYTaskDuration": averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration,  //Test bestanden
                                     "LongDirectMovementCount": longStraightLinesCounter, //Test bestanden 
                                     "SlowMovementCount": slowMovementCounter, //Test bestanden 
                                     "TimeMouseMovementsDIVIDEDBYTaskDuration": timeMouseMovementsDIVIDEDBYTaskDuration,  //Test bestanden 
+                                    "AllHoverTime": allHoverTime,
                                     "AverageHoverTime": averageHoverTime, //Test bestanden 
                                     "MouseMovementTime": allMouseMovementTime,  //Test bestanden 
                                     "PauseCount": pauseCounter,  //Test bestanden 
+                                    "AllMinDistanceSincePause": allMinDistanceSincePause,
                                     "AllNormalizedAdditionalDistance": allNormalizedAdditionalDistance,  //Test bestanden
                                     "UTurnCount": uTurnCounter, //Test bestanden 
-                                    "Json": json
+                                    "Json": json,
+                                    "Transparent": transparent
                                 }
                                 // Sending data in JSON format using POST method
                                 var xmlhttp = new XMLHttpRequest();
