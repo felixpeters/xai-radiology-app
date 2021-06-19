@@ -29,7 +29,7 @@ class MouseTracking extends Component {
                     }
                     
                     //Public Settings
-                    var userId = "314ee8f1-62aa-4eb4-a782-086a3a531124";
+                    var userId = "3";
                     var backEndURL = "http://localhost:22709/api/records";
                     var pauseAfter = 200;
                     var trackingPathName = "/scans/1234";
@@ -181,7 +181,6 @@ class MouseTracking extends Component {
                                     "Distance": totalDistance,  //Test bestanden  
                                     "NAD": normalizedAdditionalDistance,  //Test bestanden
                                     "AllMouseHoverThatTurnedIntoClicks": allMouseHoverThatTurnedIntoClicks,
-                                    "CountMouseHoverThatTurnedIntoClicks": countMouseHoverThatTurnedIntoClicks,
                                     "AverageTimeOfMouseHoverThatTurnedIntoClicks": averageMouseHoverThatTurnedIntoClicks, //Test bestanden 
                                     "StraightLinesCount": straightLinesCounter,  //Test bestanden 
                                     "MouseClickCount": mouseClickCounter, //Test bestanden 
