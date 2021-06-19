@@ -84,7 +84,7 @@ class MouseTracking extends Component {
                     var pauseCounter = 0;
                     var sPauseDuration = (new Date()).getTime();
                     var pauseDuration = 0;
-                    var allPauseDuaration = 0;
+                    var allPauseDuration = 0;
                     var averagePauseDuration = 0;
                     var pauseDurationBeforeClick = 0;
                     var allPauseDurationBeforeClick = 0;
@@ -140,7 +140,7 @@ class MouseTracking extends Component {
                                 endRecord(); // mus.js stops recording
                                 if (pause) {
                                     pauseDuration = (new Date()).getTime() - sPauseDuration;
-                                    allPauseDuaration = allPauseDuaration + pauseDuration;
+                                    allPauseDuration = allPauseDuration + pauseDuration;
                                 }
                                 if (!pause) {
                                     mouseMovementTime = (new Date()).getTime() - smouseMovementTime;
@@ -155,7 +155,7 @@ class MouseTracking extends Component {
                                     normalizedAdditionalDistance = ((distanceSincePauseBuffer - minDistanceSincePauseBuffer) / minDistanceSincePauseBuffer)
                                 }
                                 if (pauseCounter != 0) {
-                                    averagePauseDuration = allPauseDuaration / pauseCounter;
+                                    averagePauseDuration = allPauseDuration / pauseCounter;
                                 }
                                 if (pauseDurationBeforeClickCounter != 0) {
                                     averagePauseDurationBeforeClicks = allPauseDurationBeforeClick / pauseDurationBeforeClickCounter;
@@ -189,7 +189,7 @@ class MouseTracking extends Component {
                                     "NonDirectMovementsCount": nonDirectMovementsCounter, //Test bestanden 
                                     "MouseClickCounterOutsideOfDirectMovements": mouseClickCounterOutsideOfDirectMovements,  //Test bestanden
                                     "MouseHoverCount": mouseHoverCount, //Test bestanden  | Nur <button> oder <a>
-                                    "AllPauseDuaration": allPauseDuaration,                                    
+                                    "AllPauseDuration": allPauseDuration,                                    
                                     "AveragePauseDuration": averagePauseDuration,
                                     "AveragePauseDurationDIVIDEDBYTaskDuration": averagePauseDurationDIVIDEDBYTaskDuration,  //Test bestanden
                                     "AllPauseDurationBeforeClick": allPauseDurationBeforeClick,
@@ -287,7 +287,7 @@ class MouseTracking extends Component {
                                 pause = true;
                             } else if (pause) {
                                 pauseDuration = (new Date()).getTime() - sPauseDuration - pauseAfter;
-                                allPauseDuaration = allPauseDuaration + pauseDuration;
+                                allPauseDuration = allPauseDuration + pauseDuration;
                                 smouseMovementTime = (new Date()).getTime() - pauseAfter;
                                 pauseCounter += 1;
                                 pause = false;
