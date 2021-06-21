@@ -35,7 +35,7 @@ export default function ModelOverview() {
             <dt className="text-sm font-medium text-gray-500">Intended use</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               The module provides AI-based support to help the user detect,
-              classify and report lungnodules in CT scans. It is intended to be
+              classify and report lung nodules in CT scans. It is intended to be
               used by trained healthcare professionals to assist in the
               diagnosis of lung cancer.
             </dd>
