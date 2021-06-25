@@ -6,7 +6,7 @@ import UserStateContext from "../components/userContext"
 
 export default function Home({ location }) {
   const params = new URLSearchParams(location.search)
-  const pid = params.get("pid")
+  const pid = params.get("pid") || location.state.pid || "unknown"
   const [user, setUser] = useState(pid)
 
   return (
