@@ -277,7 +277,10 @@ function Scan({ data, location }) {
               static
               className="fixed z-10 inset-0 overflow-y-auto"
               open={moduleInfoOpen}
-              onClose={setModuleInfoOpen}
+              onClose={() => {
+                mixpanel.track("close model card", { pid: pid })
+                setModuleInfoOpen(False)
+              }}
             >
               <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <Transition.Child
@@ -315,7 +318,10 @@ function Scan({ data, location }) {
                           RadiologyAI Module: Nodule Detection & Classification
                         </h2>
                         <button
-                          onClick={() => setModuleInfoOpen(false)}
+                          onClick={() => {
+                            mixpanel.track("close model card", { pid: pid })
+                            setModuleInfoOpen(false)
+                          }}
                           className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                           <XIcon
@@ -346,7 +352,13 @@ function Scan({ data, location }) {
                               {tabs.map(tab => (
                                 <div
                                   key={tab.name}
-                                  onClick={() => setCurrentTab(tab.name)}
+                                  onClick={() => {
+                                    mixpanel.track(
+                                      "open model card tab " + tab.name,
+                                      { pid: pid }
+                                    )
+                                    setCurrentTab(tab.name)
+                                  }}
                                   className={classNames(
                                     tab.name === currentTab
                                       ? "border-indigo-500 text-indigo-600"
