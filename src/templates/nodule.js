@@ -20,6 +20,7 @@ import ModelDatasets from "../components/modelDataset"
 import ModelPerformance from "../components/modelPerformance"
 import HeatmapExplanation from "../components/heatmapExplanation"
 import UserStateContext from "../components/userContext"
+import { useMixpanel } from "gatsby-plugin-mixpanel"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -38,6 +39,8 @@ function Nodule({ data, location }) {
     { name: "Datasets", href: "#", current: false },
     { name: "Performance", href: "#", current: false },
   ]
+  const mixpanel = useMixpanel()
+  mixpanel.identify(pid)
   return (
     <UserStateContext.Provider value={pid}>
       <Layout>

@@ -19,12 +19,14 @@ import ModelValidation from "../components/modelValidation"
 import ModelDatasets from "../components/modelDataset"
 import ModelPerformance from "../components/modelPerformance"
 import UserStateContext from "../components/userContext"
+import { useMixpanel } from "gatsby-plugin-mixpanel"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
 function Scan({ data, location }) {
+  const mixpanel = useMixpanel()
   const scan = data.scansJson
   const pid = (location.state ? location.state.pid : null) || "unknown"
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
@@ -36,6 +38,7 @@ function Scan({ data, location }) {
     { name: "Datasets", href: "#", current: false },
     { name: "Performance", href: "#", current: false },
   ]
+  mixpanel.identify(pid)
   return (
     <UserStateContext.Provider value={pid}>
       <Layout>
@@ -95,7 +98,10 @@ function Scan({ data, location }) {
               </div>
               <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
                 <button
-                  onClick={() => setModuleInfoOpen(true)}
+                  onClick={() => {
+                    mixpanel.track("open model card", { pid: pid })
+                    setModuleInfoOpen(true)
+                  }}
                   type="button"
                   className="mr-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
@@ -109,7 +115,10 @@ function Scan({ data, location }) {
                   Active AI: Nodule detection & classification
                 </button>
                 <button
-                  onClick={() => setScanInfoOpen(true)}
+                  onClick={() => {
+                    mixpanel.track("open scan details", { pid: pid })
+                    setScanInfoOpen(true)
+                  }}
                   type="button"
                   className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
@@ -133,7 +142,10 @@ function Scan({ data, location }) {
               static
               className="fixed inset-0 overflow-hidden"
               open={scanInfoOpen}
-              onClose={setScanInfoOpen}
+              onClose={() => {
+                mixpanel.track("close scan details", { pid: pid })
+                setScanInfoOpen(false)
+              }}
             >
               <div className="absolute inset-0 overflow-hidden">
                 <Dialog.Overlay className="absolute inset-0" />
@@ -158,7 +170,12 @@ function Scan({ data, location }) {
                             <div className="ml-3 h-7 flex items-center">
                               <button
                                 className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                onClick={() => setScanInfoOpen(false)}
+                                onClick={() => {
+                                  mixpanel.track("close scan details", {
+                                    pid: pid,
+                                  })
+                                  setScanInfoOpen(false)
+                                }}
                               >
                                 <span className="sr-only">Close panel</span>
                                 <XIcon className="h-6 w-6" aria-hidden="true" />
@@ -211,6 +228,11 @@ function Scan({ data, location }) {
                                       </div>
                                       <button
                                         type="button"
+                                        onClick={() =>
+                                          mixpanel.track("open EHR record", {
+                                            pid: pid,
+                                          })
+                                        }
                                         className="inline-flex w-40 items-center mt-2 px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                       >
                                         <ArrowCircleRightIcon className="h-4 w-4 text-white mr-2" />
