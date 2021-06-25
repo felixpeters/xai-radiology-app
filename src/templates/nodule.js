@@ -116,7 +116,10 @@ function Nodule({ data, location }) {
               <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
                 <button
                   type="button"
-                  onClick={() => setModuleInfoOpen(true)}
+                  onClick={() => {
+                    mixpanel.track("open model card")
+                    setModuleInfoOpen(true)
+                  }}
                   className="mr-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   <svg
@@ -129,7 +132,10 @@ function Nodule({ data, location }) {
                   Active AI: Nodule detection & classification
                 </button>
                 <button
-                  onClick={() => setScanInfoOpen(true)}
+                  onClick={() => {
+                    mixpanel.track("open scan details")
+                    setScanInfoOpen(true)
+                  }}
                   type="button"
                   className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
@@ -154,7 +160,10 @@ function Nodule({ data, location }) {
               static
               className="fixed inset-0 overflow-hidden"
               open={scanInfoOpen}
-              onClose={setScanInfoOpen}
+              onClose={() => {
+                mixpanel.track("close scan details")
+                setScanInfoOpen(false)
+              }}
             >
               <div className="absolute inset-0 overflow-hidden">
                 <Dialog.Overlay className="absolute inset-0" />
@@ -179,7 +188,10 @@ function Nodule({ data, location }) {
                             <div className="ml-3 h-7 flex items-center">
                               <button
                                 className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                onClick={() => setScanInfoOpen(false)}
+                                onClick={() => {
+                                  mixpanel.track("close scan details")
+                                  setScanInfoOpen(false)
+                                }}
                               >
                                 <span className="sr-only">Close panel</span>
                                 <XIcon className="h-6 w-6" aria-hidden="true" />
@@ -232,6 +244,9 @@ function Nodule({ data, location }) {
                                       </div>
                                       <button
                                         type="button"
+                                        onClick={() =>
+                                          mixpanel.track("open EHR record")
+                                        }
                                         className="inline-flex w-40 items-center mt-2 px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                       >
                                         <ArrowCircleRightIcon className="h-4 w-4 text-white mr-2" />
@@ -276,7 +291,10 @@ function Nodule({ data, location }) {
               static
               className="fixed z-10 inset-0 overflow-y-auto"
               open={moduleInfoOpen}
-              onClose={setModuleInfoOpen}
+              onClose={() => {
+                mixpanel.track("close model card")
+                setModuleInfoOpen(false)
+              }}
             >
               <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <Transition.Child
@@ -314,7 +332,10 @@ function Nodule({ data, location }) {
                           RadiologyAI Module: Nodule Detection & Classification
                         </h2>
                         <button
-                          onClick={() => setModuleInfoOpen(false)}
+                          onClick={() => {
+                            mixpanel.track("close model card")
+                            setModuleInfoOpen(false)
+                          }}
                           className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                           <XIcon
@@ -345,7 +366,12 @@ function Nodule({ data, location }) {
                               {tabs.map(tab => (
                                 <div
                                   key={tab.name}
-                                  onClick={() => setCurrentTab(tab.name)}
+                                  onClick={() => {
+                                    mixpanel.track(
+                                      "open model card tab " + tab.name
+                                    )
+                                    setCurrentTab(tab.name)
+                                  }}
                                   className={classNames(
                                     tab.name === currentTab
                                       ? "border-indigo-500 text-indigo-600"

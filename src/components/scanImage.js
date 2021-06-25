@@ -52,7 +52,7 @@ function ScanImage({ images }) {
                 borderColor: "#5a67d8",
               }}
               onChange={value => {
-                mixpanel.track("use scan image slider")
+                mixpanel.track("view scan image slice " + String(value))
                 setCurrentSlice(value)
               }}
               className="w-4"

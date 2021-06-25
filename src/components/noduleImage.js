@@ -4,6 +4,7 @@ import classnames from "classnames"
 import PropTypes from "prop-types"
 import Slider from "rc-slider"
 import { Switch } from "@headlessui/react"
+import { useMixpanel } from "gatsby-plugin-mixpanel"
 
 function NoduleImage({ images }) {
   const [currentSlice, setCurrentSlice] = useState(
@@ -11,6 +12,7 @@ function NoduleImage({ images }) {
   )
   const [showHeatmap, setShowHeatmap] = useState(true)
   const zeroPad = (num, places) => String(num).padStart(places, "0")
+  const mixpanel = useMixpanel()
   return (
     <>
       <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
@@ -46,7 +48,10 @@ function NoduleImage({ images }) {
               dotStyle={{
                 borderColor: "#5a67d8",
               }}
-              onChange={setCurrentSlice}
+              onChange={value => {
+                mixpanel.track("view nodule image slice " + String(value))
+                setCurrentSlice(value)
+              }}
               className="w-4"
             />
             <span className="min-w-max ml-3 text-sm font-medium text-gray-900">
@@ -58,7 +63,10 @@ function NoduleImage({ images }) {
           <Switch.Group as="div" className="flex items-center justify-end">
             <Switch
               checked={showHeatmap}
-              onChange={setShowHeatmap}
+              onChange={value => {
+                mixpanel.track("toggle nodule heatmap")
+                setShowHeatmap(value)
+              }}
               className={classnames(
                 showHeatmap ? "bg-indigo-600" : "bg-gray-200",
                 "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
