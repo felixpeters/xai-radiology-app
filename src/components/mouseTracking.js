@@ -30,7 +30,7 @@ class MouseTracking extends Component {
                     
                     //Public Settings
                     var userId = "3";
-                    var backEndURL = "http://localhost:22709/api/records";
+                    var backEndURL = "https://mouse-tracking-api.brickstream.eu/api/records";
                     var pauseAfter = 200;
                     var trackingPathName = "/scans/1234";
                     var transparent = true;
@@ -242,17 +242,19 @@ class MouseTracking extends Component {
                                 distanceSincePause += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
                             }
                             //MouseHover
-                            if ((document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A") &&
-                                !(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A")
-                            ) {
-                                sHoverTime = (new Date()).getTime();
-                                mouseHoverCount = mouseHoverCount + 1;
-                                mouseHover = true;
-                            } else if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A") &&
-                                !(document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A")) {
-                                endHoverTime = (new Date()).getTime() - sHoverTime;
-                                allHoverTime = allHoverTime + endHoverTime;
-                                mouseHover = false;
+                            if(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y) != null){
+                                if ((document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A") &&
+                                    !(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A")
+                                ) {
+                                    sHoverTime = (new Date()).getTime();
+                                    mouseHoverCount = mouseHoverCount + 1;
+                                    mouseHover = true;
+                                } else if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A") &&
+                                    !(document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A")) {
+                                    endHoverTime = (new Date()).getTime() - sHoverTime;
+                                    allHoverTime = allHoverTime + endHoverTime;
+                                    mouseHover = false;
+                                }
                             }
                             isPause(event.clientX, event.clientY);
                             lastSeenAt.x = event.clientX;
