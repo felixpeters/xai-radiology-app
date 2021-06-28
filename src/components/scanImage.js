@@ -4,6 +4,7 @@ import classnames from "classnames"
 import PropTypes from "prop-types"
 import Slider from "rc-slider"
 import { Switch } from "@headlessui/react"
+import { useMixpanel } from "gatsby-plugin-mixpanel"
 
 function ScanImage({ images }) {
   const [currentSlice, setCurrentSlice] = useState(
@@ -11,6 +12,7 @@ function ScanImage({ images }) {
   )
   const [showOverlay, setShowOverlay] = useState(true)
   const zeroPad = (num, places) => String(num).padStart(places, "0")
+  const mixpanel = useMixpanel()
   return (
     <>
       <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900 mouse">
@@ -49,7 +51,10 @@ function ScanImage({ images }) {
               dotStyle={{
                 borderColor: "#5a67d8",
               }}
-              onChange={setCurrentSlice}
+              onChange={value => {
+                mixpanel.track("view scan image slice " + String(value))
+                setCurrentSlice(value)
+              }}
               className="w-4"
             />
             <span className="min-w-max ml-3 text-sm font-medium text-gray-900">
@@ -61,7 +66,10 @@ function ScanImage({ images }) {
           <Switch.Group as="div" className="flex items-center justify-end">
             <Switch
               checked={showOverlay}
-              onChange={setShowOverlay}
+              onChange={value => {
+                mixpanel.track("toggle scan image overlay")
+                setShowOverlay(value)
+              }}
               className={classnames(
                 showOverlay ? "bg-indigo-600" : "bg-gray-200",
                 "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
