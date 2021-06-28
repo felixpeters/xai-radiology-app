@@ -33,13 +33,12 @@ class MouseTracking extends Component {
                     var backEndURL = "https://mouse-tracking-api.brickstream.eu/api/records";
                     var pauseAfter = 200;
                     var trackingPathName = "/scans/1234";
+                    var trackingPathName2 = "/scans/1234/";
                     var transparent = true;
                     //logic variable
                     var doOnce = true;
                     var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
                     var pause = true;
-
-
                     //time
                     var startTime = (new Date()).getTime();
                     var timeSpent = 0;
@@ -134,7 +133,7 @@ class MouseTracking extends Component {
                                 averageMouseHoverThatTurnedIntoClicks = allMouseHoverThatTurnedIntoClicks / countMouseHoverThatTurnedIntoClicks;
                             }
                             //Check if leaving page and posting Data
-                            var isOnScansPage = window.location.pathname === trackingPathName;
+                            var isOnScansPage = (window.location.pathname === trackingPathName) || (window.location.pathname === trackingPathName2);
                             if (!isOnScansPage) {
                                 timeSpent = (new Date()).getTime() - startTime;
                                 endRecord(); // mus.js stops recording
@@ -214,7 +213,6 @@ class MouseTracking extends Component {
                                 xmlhttp.setRequestHeader("Content-type", "application/json");
                                 var data = JSON.stringify(record);
                                 xmlhttp.send(data);
-                                console.log(record);
                                 wasOnPage = true;
                             }
                         }
@@ -317,7 +315,6 @@ class MouseTracking extends Component {
                     }
                 }
             }
-
 
 
 
