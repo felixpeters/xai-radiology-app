@@ -62,6 +62,7 @@ class MouseTracking extends Component {
                     var allMouseHoverThatTurnedIntoClicks = 0;
                     var averageMouseHoverThatTurnedIntoClicks = 0
                     var endHoverTime = 0;
+                    var lastMouseStyle = "auto";
                     //MouseClick
                     var mouseClickCounter = 0;
                     var mouseClickCounterOutsideOfDirectMovements = 0;
@@ -122,10 +123,22 @@ class MouseTracking extends Component {
                             }
                             //MouseHover
                             if (mouseHover) {
-                                if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Scan details")||(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Active AI: Nodule detection & classification")) {
+                                if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Scan details")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Active AI: Nodule detection & classification")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Select a tabOverviewClinical validationDatasetsPerformanceOverviewClinical validationDatasetsPerformanceDatasetsData formatLow-dose chest CTs in DICOM formatRecording period01.01.2016-31.12.2016Recording devicesGE LightspeedSiemens SensationToshiba AquilionPhilips BrillianceSiemens EmotionSiemens DefinitionPatient cohort10,100 patients (male: 4950, female: 5150, age: 55 +/- 10.50)Nodule distributionstotal: 26,512 nodules from 10,100 scans (benign: 20,711, malignant: 5,901, avg. diameter: 10.2 +/- 6.7 mm)training dataset: 21,612 nodules from 8,200 scans (benign: 16,801, malignant: 4,811, avg. diameter: 10.1 +/- 6.8 mm)test dataset: 5,000 nodules from 1,900 scans (benign: 3,910, malignant: 1,090, avg. diameter: 10.3 +/- 6.6 mm)Labeling procedureLabels determined by 3/4 radiologist consensus (see Clinical Validation for more information)Data preprocessingRescaling to consistent voxel sizeIntensity rescaling to 0-1 rangeCenter spatial cropping to uniform volume size")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Datasets")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Select a tabOverviewClinical validationDatasetsPerformanceOverviewClinical validationDatasetsPerformanceModule overviewModule nameLung nodule detection & classificationPublication date13.06.2020, Version 1.0.3-0085DeveloperRadiology AI Inc., 1 Main Street, San Francisco, CA 94107, USAIntended useThe module provides AI-based support to help the user detect, classify and report lung nodules in CT scans. It is intended to be used by trained healthcare professionals to assist in the diagnosis of lung cancer.LimitationsThe nodule detection and classification module is optimized for Low Dose-CT. However, the models will process any chest CT in DICOM format, including regular dose CT, CAP and PA series.Included modelsModel 1: Segmentation of lung nodules in chest CT scansModel 2: Classification of lung nodules from their 3D image volume into benign or malignant nodules")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Clinical validation")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "RadiologyAI Module: Nodule Detection & Classification")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Overview")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Performance")
+                                || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Scan #1234")
+                                ) {
                                     endHoverTime = (new Date()).getTime() - sHoverTime;
                                     allHoverTime = allHoverTime + endHoverTime;
                                 }
+                                lastMouseStyle = "auto";
                                 mouseHoverThatTurnedIntoClicks = (new Date()).getTime() - sHoverTime;
                                 countMouseHoverThatTurnedIntoClicks = countMouseHoverThatTurnedIntoClicks + 1;
                                 mouseHover = false;
@@ -175,37 +188,37 @@ class MouseTracking extends Component {
                                 allNormalizedAdditionalDistance = (totalDistance - allMinDistanceSincePause) / allMinDistanceSincePause;
                                 //DataTable of record
                                 var record = {
-                                    "UserId": userId, //Test bestanden  
-                                    "PageTime": timeSpent,  //Test bestanden  
-                                    "Distance": totalDistance,  //Test bestanden  
-                                    "NAD": normalizedAdditionalDistance,  //Test bestanden
-                                    "AllMouseHoverThatTurnedIntoClicks": allMouseHoverThatTurnedIntoClicks,
-                                    "AverageTimeOfMouseHoverThatTurnedIntoClicks": averageMouseHoverThatTurnedIntoClicks, //Test bestanden 
-                                    "StraightLinesCount": straightLinesCounter,  //Test bestanden 
-                                    "MouseClickCount": mouseClickCounter, //Test bestanden 
-                                    "MouseHoverThatTurnedIntoClicksCount": countMouseHoverThatTurnedIntoClicks, //Test bestanden  |  svg x wird nicht gezählt + Man muss neu hovern, um counter zu erhöhen
-                                    "MouseMovementCount": mouseMovementCounter, //Test bestanden 
-                                    "NonDirectMovementsCount": nonDirectMovementsCounter, //Test bestanden 
-                                    "MouseClickCounterOutsideOfDirectMovements": mouseClickCounterOutsideOfDirectMovements,  //Test bestanden
-                                    "MouseHoverCount": mouseHoverCount, //Test bestanden  | Nur <button> oder <a>
-                                    "AllPauseDuration": allPauseDuration,                                    
-                                    "AveragePauseDuration": averagePauseDuration,
-                                    "AveragePauseDurationDIVIDEDBYTaskDuration": averagePauseDurationDIVIDEDBYTaskDuration,  //Test bestanden
-                                    "AllPauseDurationBeforeClick": allPauseDurationBeforeClick,
-                                    "PauseDurationBeforeClickCounter": pauseDurationBeforeClickCounter,
-                                    "AveragePauseDurationBeforeClicksDIVIDEDBYTaskDuration": averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration,  //Test bestanden
-                                    "LongDirectMovementCount": longStraightLinesCounter, //Test bestanden 
-                                    "SlowMovementCount": slowMovementCounter, //Test bestanden 
-                                    "TimeMouseMovementsDIVIDEDBYTaskDuration": timeMouseMovementsDIVIDEDBYTaskDuration,  //Test bestanden 
-                                    "AllHoverTime": allHoverTime,
-                                    "AverageHoverTime": averageHoverTime, //Test bestanden 
-                                    "MouseMovementTime": allMouseMovementTime,  //Test bestanden 
-                                    "PauseCount": pauseCounter,  //Test bestanden 
-                                    "AllMinDistanceSincePause": allMinDistanceSincePause,
-                                    "AllNormalizedAdditionalDistance": allNormalizedAdditionalDistance,  //Test bestanden
-                                    "UTurnCount": uTurnCounter, //Test bestanden 
-                                    "Json": json,
-                                    "Transparent": transparent
+                                    "UserId": userId, //Test bestanden  2
+                                    "PageTime": timeSpent,  //Test bestanden  2
+                                    "Distance": totalDistance,  //Test bestanden  2
+                                    "NAD": normalizedAdditionalDistance,  //Test bestanden 2
+                                    "AllMouseHoverThatTurnedIntoClicks": allMouseHoverThatTurnedIntoClicks, //Test bestanden 2
+                                    "AverageTimeOfMouseHoverThatTurnedIntoClicks": averageMouseHoverThatTurnedIntoClicks, //Test bestanden 2
+                                    "StraightLinesCount": straightLinesCounter,  //Test bestanden 2
+                                    "MouseClickCount": mouseClickCounter, //Test bestanden 2
+                                    "MouseHoverThatTurnedIntoClicksCount": countMouseHoverThatTurnedIntoClicks, //Test bestanden  2
+                                    "MouseMovementCount": mouseMovementCounter, //Test bestanden 2
+                                    "NonDirectMovementsCount": nonDirectMovementsCounter, //Test bestanden 2
+                                    "MouseClickCounterOutsideOfDirectMovements": mouseClickCounterOutsideOfDirectMovements,  //Test bestanden  2
+                                    "MouseHoverCount": mouseHoverCount, //Test bestanden 2
+                                    "AllPauseDuration": allPauseDuration,     //Test bestanden 2                               
+                                    "AveragePauseDuration": averagePauseDuration,     //Test bestanden 2      
+                                    "AveragePauseDurationDIVIDEDBYTaskDuration": averagePauseDurationDIVIDEDBYTaskDuration,  //Test bestanden  2
+                                    "AllPauseDurationBeforeClick": allPauseDurationBeforeClick,  //Test bestanden  2
+                                    "PauseDurationBeforeClickCounter": pauseDurationBeforeClickCounter, //Test bestanden 2 (==mouseClickCounterOutsideOfDirectMovements)
+                                    "AveragePauseDurationBeforeClicksDIVIDEDBYTaskDuration": averagePauseDurationBeforeClicksDIVIDEDBYTaskDuration,  //Test bestanden  2
+                                    "LongDirectMovementCount": longStraightLinesCounter, //Test bestanden 2
+                                    "SlowMovementCount": slowMovementCounter, //Test bestanden 2
+                                    "TimeMouseMovementsDIVIDEDBYTaskDuration": timeMouseMovementsDIVIDEDBYTaskDuration,  //Test bestanden 2
+                                    "AllHoverTime": allHoverTime, // Test bestanden 2
+                                    "AverageHoverTime": averageHoverTime, //Test bestanden 2
+                                    "MouseMovementTime": allMouseMovementTime,  //Test bestanden 2
+                                    "PauseCount": pauseCounter,  //Test bestanden 2
+                                    "AllMinDistanceSincePause": allMinDistanceSincePause,   //Test bestanden 2
+                                    "AllNormalizedAdditionalDistance": allNormalizedAdditionalDistance,  //Test bestanden  2
+                                    "UTurnCount": uTurnCounter, //Test bestanden 2
+                                    "Json": json,   //Test bestanden 2
+                                    "Transparent": transparent  //Test bestanden 2
                                 }
                                 // Sending data in JSON format using POST method
                                 var xmlhttp = new XMLHttpRequest();
@@ -240,25 +253,23 @@ class MouseTracking extends Component {
                                 distanceSincePause += Math.sqrt(Math.pow(lastSeenAt.y - event.clientY, 2) + Math.pow(lastSeenAt.x - event.clientX, 2));
                             }
                             //MouseHover
-                            if(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y) != null){
-                                if ((document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A") &&
-                                    !(document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A")
-                                ) {
+                            if((window.getComputedStyle(event.target)["cursor"]) != null){
+                                if((window.getComputedStyle(event.target)["cursor"] != "auto") && (lastMouseStyle == "auto") && !mouseHover)
+                                 {
+                                    lastMouseStyle = (window.getComputedStyle(event.target)["cursor"]);
                                     sHoverTime = (new Date()).getTime();
                                     mouseHoverCount = mouseHoverCount + 1;
                                     mouseHover = true;
-                                } else if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "BUTTON" || document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).tagName == "A") &&
-                                    !(document.elementFromPoint(event.clientX, event.clientY).tagName == "BUTTON" || document.elementFromPoint(event.clientX, event.clientY).tagName == "A")) {
+                                } else if ((window.getComputedStyle(event.target)["cursor"] == "auto") && (lastMouseStyle != "auto") && mouseHover) {
                                     endHoverTime = (new Date()).getTime() - sHoverTime;
                                     allHoverTime = allHoverTime + endHoverTime;
                                     mouseHover = false;
+                                    lastMouseStyle = "auto";
                                 }
                             }
                             isPause(event.clientX, event.clientY);
                             lastSeenAt.x = event.clientX;
                             lastSeenAt.y = event.clientY;
-
-
                         }
                     }
 
@@ -298,19 +309,37 @@ class MouseTracking extends Component {
                      * Counts the different MovementTime after a Pause and onPageLeave
                      */
                     function countMovementTypes() {
-                        if (mouseMovementTime > 2000) {
-                            slowMovementCounter = slowMovementCounter + 1;
-                        }
-                        if ((distanceSincePause / minDistanceSincePause) - 1 < 0.05) {
-                            straightLinesCounter = straightLinesCounter + 1;
-                            if (distanceSincePause > 120) {
-                                longStraightLinesCounter = longStraightLinesCounter + 1;
+                    //Dectect Browsers
+                    // Firefox 1.0+
+                    var isFirefox = typeof InstallTrigger !== 'undefined';
+                        //Browser Unterscheidung Firefox 
+                        if(distanceSincePause < 120 && !isFirefox){
+                            if (mouseMovementTime > 2000) {
+                                slowMovementCounter = slowMovementCounter + 1;
                             }
-                        } else {
-                            nonDirectMovementsCounter = nonDirectMovementsCounter + 1;
-                        }
-                        if ((distanceSincePause / minDistanceSincePause) > 1.3) {
-                            uTurnCounter += 1;
+                            if ((distanceSincePause / minDistanceSincePause) - 1 < 0.29) {
+                                straightLinesCounter = straightLinesCounter + 1;
+                            } else {
+                                nonDirectMovementsCounter = nonDirectMovementsCounter + 1;
+                            }
+                            if ((distanceSincePause / minDistanceSincePause) > 1.85) {
+                                uTurnCounter += 1;
+                            }
+                        }else{
+                            if (mouseMovementTime > 2000) {
+                                slowMovementCounter = slowMovementCounter + 1;
+                            }
+                            if ((distanceSincePause / minDistanceSincePause) - 1 < 0.05) {
+                                straightLinesCounter = straightLinesCounter + 1;
+                                if (distanceSincePause > 120) {
+                                    longStraightLinesCounter = longStraightLinesCounter + 1;
+                                }
+                            } else {
+                                nonDirectMovementsCounter = nonDirectMovementsCounter + 1;
+                            }
+                            if ((distanceSincePause / minDistanceSincePause) > 1.4) {
+                                uTurnCounter += 1;
+                            }
                         }
                     }
                 }
