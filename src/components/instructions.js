@@ -46,6 +46,7 @@ export default function Instructions() {
                   <ul className="list-decimal list-inside mt-2">
                     <li>Open the first item on your worklist.</li>
                     <li>Classify all nodules.</li>
+                    <li>Go back to the survey.</li>
                   </ul>
                 </div>
               </div>
