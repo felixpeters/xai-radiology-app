@@ -18,8 +18,10 @@ import ModelOverview from "../components/modelOverview"
 import ModelValidation from "../components/modelValidation"
 import ModelDatasets from "../components/modelDataset"
 import ModelPerformance from "../components/modelPerformance"
-import UserStateContext from "../components/userContext"
+
+import GlobalStateContext from "../components/globalStateContext"
 import { useMixpanel } from "gatsby-plugin-mixpanel"
+import initialState from "../components/state"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -28,7 +30,7 @@ function classNames(...classes) {
 function Scan({ data, location }) {
   const mixpanel = useMixpanel()
   const scan = data.scansJson
-  const pid = (location.state ? location.state.pid : null) || "unknown"
+  const state = location.state || initialState
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
   const [moduleInfoOpen, setModuleInfoOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("Overview")
@@ -38,9 +40,8 @@ function Scan({ data, location }) {
     { name: "Datasets", href: "#", current: false },
     { name: "Performance", href: "#", current: false },
   ]
-  mixpanel.identify(pid)
   return (
-    <UserStateContext.Provider value={pid}>
+    <GlobalStateContext.Provider value={state}>
       <Layout>
         <SEO title={"Scan #" + scan.id} />
         <div className="max-w-7xl py-8 mx-auto sm:px-6 lg:px-8">
@@ -49,7 +50,7 @@ function Scan({ data, location }) {
               <nav className="sm:hidden" aria-label="Back">
                 <Link
                   to="/"
-                  state={{ pid: pid }}
+                  state={state}
                   className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
                 >
                   <ChevronLeftIcon
@@ -65,7 +66,7 @@ function Scan({ data, location }) {
                     <div>
                       <Link
                         to="/"
-                        state={{ pid: pid }}
+                        state={state}
                         className="text-sm font-medium text-gray-500 hover:text-gray-700"
                       >
                         Worklist
@@ -79,7 +80,7 @@ function Scan({ data, location }) {
                         aria-hidden="true"
                       />
                       <Link
-                        state={{ pid: pid }}
+                        state={state}
                         to="#"
                         className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                       >
@@ -99,7 +100,7 @@ function Scan({ data, location }) {
               <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
                 <button
                   onClick={() => {
-                    mixpanel.track("open model card", { pid: pid })
+                    mixpanel.track("open model card")
                     setModuleInfoOpen(true)
                   }}
                   type="button"
@@ -116,7 +117,7 @@ function Scan({ data, location }) {
                 </button>
                 <button
                   onClick={() => {
-                    mixpanel.track("open scan details", { pid: pid })
+                    mixpanel.track("open scan details")
                     setScanInfoOpen(true)
                   }}
                   type="button"
@@ -143,7 +144,7 @@ function Scan({ data, location }) {
               className="fixed inset-0 overflow-hidden"
               open={scanInfoOpen}
               onClose={() => {
-                mixpanel.track("close scan details", { pid: pid })
+                mixpanel.track("close scan details")
                 setScanInfoOpen(false)
               }}
             >
@@ -171,9 +172,7 @@ function Scan({ data, location }) {
                               <button
                                 className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 onClick={() => {
-                                  mixpanel.track("close scan details", {
-                                    pid: pid,
-                                  })
+                                  mixpanel.track("close scan details")
                                   setScanInfoOpen(false)
                                 }}
                               >
@@ -229,9 +228,7 @@ function Scan({ data, location }) {
                                       <button
                                         type="button"
                                         onClick={() =>
-                                          mixpanel.track("open EHR record", {
-                                            pid: pid,
-                                          })
+                                          mixpanel.track("open EHR record")
                                         }
                                         className="inline-flex w-40 items-center mt-2 px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                       >
@@ -278,7 +275,7 @@ function Scan({ data, location }) {
               className="fixed z-10 inset-0 overflow-y-auto"
               open={moduleInfoOpen}
               onClose={() => {
-                mixpanel.track("close model card", { pid: pid })
+                mixpanel.track("close model card")
                 setModuleInfoOpen(False)
               }}
             >
@@ -319,7 +316,7 @@ function Scan({ data, location }) {
                         </h2>
                         <button
                           onClick={() => {
-                            mixpanel.track("close model card", { pid: pid })
+                            mixpanel.track("close model card")
                             setModuleInfoOpen(false)
                           }}
                           className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -354,8 +351,7 @@ function Scan({ data, location }) {
                                   key={tab.name}
                                   onClick={() => {
                                     mixpanel.track(
-                                      "open model card tab " + tab.name,
-                                      { pid: pid }
+                                      "open model card tab " + tab.name
                                     )
                                     setCurrentTab(tab.name)
                                   }}
@@ -394,7 +390,7 @@ function Scan({ data, location }) {
           </Transition.Root>
         </div>
       </Layout>
-    </UserStateContext.Provider>
+    </GlobalStateContext.Provider>
   )
 }
 export const query = graphql`

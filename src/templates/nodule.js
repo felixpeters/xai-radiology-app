@@ -19,7 +19,8 @@ import ModelValidation from "../components/modelValidation"
 import ModelDatasets from "../components/modelDataset"
 import ModelPerformance from "../components/modelPerformance"
 import HeatmapExplanation from "../components/heatmapExplanation"
-import UserStateContext from "../components/userContext"
+import initialState from "../components/state"
+import GlobalStateContext from "../components/globalStateContext"
 import { useMixpanel } from "gatsby-plugin-mixpanel"
 
 function classNames(...classes) {
@@ -29,7 +30,7 @@ function classNames(...classes) {
 function Nodule({ data, location }) {
   const nodule = data.nodulesJson
   const scan = data.nodulesJson.scan
-  const pid = (location.state ? location.state.pid : null) || "unknown"
+  const state = location.state || initialState
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
   const [moduleInfoOpen, setModuleInfoOpen] = useState(false)
   const [currentTab, setCurrentTab] = useState("Overview")
@@ -40,9 +41,8 @@ function Nodule({ data, location }) {
     { name: "Performance", href: "#", current: false },
   ]
   const mixpanel = useMixpanel()
-  mixpanel.identify(pid)
   return (
-    <UserStateContext.Provider value={pid}>
+    <GlobalStateContext.Provider value={state}>
       <Layout>
         <SEO title={"Nodule #" + nodule.id + " | Scan #" + scan.id} />
         <div className="max-w-7xl py-8 mx-auto sm:px-6 lg:px-8">
@@ -51,7 +51,7 @@ function Nodule({ data, location }) {
               <nav className="sm:hidden" aria-label="Back">
                 <Link
                   to="/"
-                  state={{ pid: pid }}
+                  state={state}
                   className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
                 >
                   <ChevronLeftIcon
@@ -66,7 +66,7 @@ function Nodule({ data, location }) {
                   <li>
                     <div>
                       <Link
-                        state={{ pid: pid }}
+                        state={state}
                         to="/"
                         className="text-sm font-medium text-gray-500 hover:text-gray-700"
                       >
@@ -81,7 +81,7 @@ function Nodule({ data, location }) {
                         aria-hidden="true"
                       />
                       <Link
-                        state={{ pid: pid }}
+                        state={state}
                         to={"/scans/" + scan.id}
                         className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                       >
@@ -97,7 +97,7 @@ function Nodule({ data, location }) {
                       />
                       <Link
                         to="#"
-                        state={{ pid: pid }}
+                        state={state}
                         className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                       >
                         Nodule #{nodule.id}
@@ -407,7 +407,7 @@ function Nodule({ data, location }) {
           </Transition.Root>
         </div>
       </Layout>
-    </UserStateContext.Provider>
+    </GlobalStateContext.Provider>
   )
 }
 export const query = graphql`

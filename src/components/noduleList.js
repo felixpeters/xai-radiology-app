@@ -2,7 +2,7 @@ import React from "react"
 import classnames from "classnames"
 import { Link } from "gatsby"
 import DetectionExplanation from "./detectionExplanation"
-import UserStateContext from "./userContext"
+import GlobalStateContext from "./globalStateContext"
 
 export default function NoduleList(data) {
   const nodules = data.data.sort((a, b) => {
@@ -100,19 +100,19 @@ export default function NoduleList(data) {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <UserStateContext.Consumer>
-                        {pid => {
+                      <GlobalStateContext.Consumer>
+                        {state => {
                           return (
                             <Link
                               to={"./nodules/" + nodule.id}
-                              state={{ pid: pid }}
+                              state={state}
                               className="text-indigo-600 hover:text-indigo-900"
                             >
                               Details
                             </Link>
                           )
                         }}
-                      </UserStateContext.Consumer>
+                      </GlobalStateContext.Consumer>
                     </td>
                   </tr>
                 ))}
