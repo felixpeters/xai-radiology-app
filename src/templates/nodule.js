@@ -161,6 +161,7 @@ function Nodule({ data, location }) {
             <NoduleClassification
               data={nodule}
               state={state}
+              scanId={scan.id}
               handleClassification={handleClassification}
             />
           </div>

@@ -1,9 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Slider from "rc-slider"
-import { useMixpanel } from "gatsby-plugin-mixpanel"
+import { Link } from "gatsby"
+import { ArrowNarrowLeftIcon } from "@heroicons/react/solid"
 
-function NoduleMalignancy({ data, state, handleClassification }) {
+function NoduleMalignancy({ data, state, scanId, handleClassification }) {
   const classification = data.classifications.main
   const nodule = data
   const createSliderWithTooltip = Slider.createSliderWithTooltip
@@ -77,6 +78,16 @@ function NoduleMalignancy({ data, state, handleClassification }) {
             </select>
           </li>
         </ul>
+      </div>
+      <div className="flex flex-row justify-end mt-4">
+        <Link
+          state={state}
+          to={"/scans/" + scanId}
+          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          <ArrowNarrowLeftIcon className="h-5 w-5 text-white mr-2" />
+          Back to scan
+        </Link>
       </div>
     </>
   )

@@ -7,6 +7,7 @@ import ClassificationExplanation from "./classificationExplanation"
 export default function NoduleClassification({
   data,
   state,
+  scanId,
   handleClassification,
 }) {
   const nodule = data
@@ -21,6 +22,7 @@ export default function NoduleClassification({
       <NoduleMalignancy
         data={nodule}
         state={state}
+        scanId={scanId}
         handleClassification={handleClassification}
       />
     </>
