@@ -4,7 +4,11 @@ import NoduleCharacteristics from "./noduleCharacteristics"
 import NoduleMalignancy from "./noduleMalignancy"
 import ClassificationExplanation from "./classificationExplanation"
 
-export default function NoduleClassification({ data }) {
+export default function NoduleClassification({
+  data,
+  state,
+  handleClassification,
+}) {
   const nodule = data
   return (
     <>
@@ -14,7 +18,11 @@ export default function NoduleClassification({ data }) {
       <ClassificationExplanation />
       <NoduleMeasurements data={nodule.measurements} />
       <NoduleCharacteristics data={nodule.classifications.additional} />
-      <NoduleMalignancy data={nodule.classifications.main} />
+      <NoduleMalignancy
+        data={nodule}
+        state={state}
+        handleClassification={handleClassification}
+      />
     </>
   )
 }

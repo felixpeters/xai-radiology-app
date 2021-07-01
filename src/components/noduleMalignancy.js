@@ -3,8 +3,9 @@ import PropTypes from "prop-types"
 import Slider from "rc-slider"
 import { useMixpanel } from "gatsby-plugin-mixpanel"
 
-function NoduleMalignancy({ data }) {
-  const classification = data
+function NoduleMalignancy({ data, state, handleClassification }) {
+  const classification = data.classifications.main
+  const nodule = data
   const createSliderWithTooltip = Slider.createSliderWithTooltip
   const MalignancySlider = createSliderWithTooltip(Slider)
   const getColor = value => {
@@ -12,7 +13,6 @@ function NoduleMalignancy({ data }) {
     if (value >= 0.34 && value < 0.67) return "#f59e0b"
     if (value >= 0.67) return "#ef4444"
   }
-  const mixpanel = useMixpanel()
   return (
     <>
       <h3 className="mt-4 text-lg leading-6 font-medium text-gray-900">
@@ -62,9 +62,12 @@ function NoduleMalignancy({ data }) {
               id="classification"
               name="classification"
               className="mt-1 block flex-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-              defaultValue={classification.physician}
-              onChange={() => {
-                mixpanel.track("classify nodule")
+              defaultValue={state["nodule" + nodule.id + "_classification"]}
+              onChange={event => {
+                handleClassification({
+                  name: "nodule" + nodule.id + "_classification",
+                  value: event.target.value,
+                })
               }}
             >
               <option>Open</option>
