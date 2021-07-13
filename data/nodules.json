@@ -61,8 +61,9 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_5.png",
-      "num_slices": 60,
-      "slices": "scan01/nodules/nodule_1"
+      "num_slices": 30,
+      "slices": "scan01/nodules/nodule_1",
+      "heatmaps": "scan01/nodules/heatmap_1"
     }
   },
   {
@@ -87,7 +88,7 @@
     ],
     "classifications": {
       "main": {
-        "ai": 0.35,
+        "ai": 0.11,
         "physician": "Open"
       },
       "additional": [
@@ -127,8 +128,9 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_3.png",
-      "num_slices": 60,
-      "slices": "scan01/nodules/nodule_2"
+      "num_slices": 30,
+      "slices": "scan01/nodules/nodule_2",
+      "heatmaps": "scan01/nodules/heatmap_2"
     }
   },
   {
@@ -153,7 +155,7 @@
     ],
     "classifications": {
       "main": {
-        "ai": 0.41,
+        "ai": 0.26,
         "physician": "Open"
       },
       "additional": [
@@ -193,8 +195,9 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_4.png",
-      "num_slices": 59,
-      "slices": "scan01/nodules/nodule_3"
+      "num_slices": 30,
+      "slices": "scan01/nodules/nodule_3",
+      "heatmaps": "scan01/nodules/heatmap_3"
     }
   },
   {
@@ -219,8 +222,8 @@
     ],
     "classifications": {
       "main": {
-        "ai": 0.52,
-        "physician": "Benign"
+        "ai": 0.39,
+        "physician": "Open"
       },
       "additional": [
         {
@@ -259,8 +262,9 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_1.png",
-      "num_slices": 52,
-      "slices": "scan01/nodules/nodule_4"
+      "num_slices": 18,
+      "slices": "scan01/nodules/nodule_4",
+      "heatmaps": "scan01/nodules/heatmap_4"
     }
   },
   {
@@ -285,7 +289,7 @@
     ],
     "classifications": {
       "main": {
-        "ai": 0.87,
+        "ai": 0.85,
         "physician": "Open"
       },
       "additional": [
@@ -325,8 +329,9 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_2.png",
-      "num_slices": 47,
-      "slices": "scan01/nodules/nodule_5"
+      "num_slices": 16,
+      "slices": "scan01/nodules/nodule_5",
+      "heatmaps": "scan01/nodules/heatmap_5"
     }
   }
 ]

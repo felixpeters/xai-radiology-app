@@ -467,6 +467,7 @@ export const query = graphql`
         thumbnail
         num_slices
         slices
+        heatmaps
       }
     }
   }
@@ -496,6 +497,7 @@ Nodule.propTypes = {
         thumbnail: PropTypes.string,
         num_slices: PropTypes.number,
         slices: PropTypes.string,
+        heatmaps: PropTypes.string,
       }),
       measurements: PropTypes.arrayOf({
         name: PropTypes.string,

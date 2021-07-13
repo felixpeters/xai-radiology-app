@@ -13,24 +13,12 @@ export default function HeatmapExplanation() {
         </div>
         <div className="ml-3 flex-1 text-sm text-blue-700">
           <p>
-            The <span className="font-bold">heatmap</span> visualizes which
-            parts of the nodule volume the nodule classification AI focused on
-            when predicting the malignancy score:
+            The <span className="font-bold">heatmap</span> visualizes which{" "}
+            <b>regions of the nodule the nodule classification AI focused on</b>{" "}
+            when predicting the malignancy score.{" "}
+            <b>The brighter a particular region</b> is displayed in the heatmap,
+            the more strongly this region <b>increased the malignancy score</b>.
           </p>
-          <ul className="mt-2 list-disc pl-5 space-y-1">
-            <li>
-              <b>Red areas</b> represent parts of the image that{" "}
-              <b>strongly increased the malignancy score</b>
-            </li>
-            <li>
-              <b>Yellow areas</b> represent parts of the image that{" "}
-              <b>slightly increased the malignancy score</b>
-            </li>
-            <li>
-              <b>Blue areas</b> represent parts of the image that only had a{" "}
-              <b>negligent effect on the malignancy score</b>
-            </li>
-          </ul>
         </div>
       </div>
     </div>

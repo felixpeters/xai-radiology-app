@@ -10,7 +10,7 @@ function NoduleImage({ images }) {
   const [currentSlice, setCurrentSlice] = useState(
     Math.round(images.num_slices / 2)
   )
-  const [showHeatmap, setShowHeatmap] = useState(true)
+  const [showHeatmap, setShowHeatmap] = useState(false)
   const zeroPad = (num, places) => String(num).padStart(places, "0")
   const mixpanel = useMixpanel()
   return (
@@ -30,7 +30,7 @@ function NoduleImage({ images }) {
           hidden: showHeatmap == false,
           block: showHeatmap == true,
         })}
-        src={`/${images.slices}/slice_${zeroPad(currentSlice - 1, 2)}.png`}
+        src={`/${images.heatmaps}/slice_${zeroPad(currentSlice - 1, 2)}.png`}
       />
       <div className="flex justify-between items-center mt-4">
         <div className="flex-1">
@@ -98,6 +98,7 @@ NoduleImage.propTypes = {
     thumbnail: PropTypes.string,
     num_slices: PropTypes.number,
     slices: PropTypes.string,
+    heatmaps: PropTypes.string,
   }),
 }
 
