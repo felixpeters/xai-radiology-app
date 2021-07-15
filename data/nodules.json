@@ -2,6 +2,13 @@
   {
     "id": "1",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod1_neighbor0",
+      "nod1_neighbor1",
+      "nod1_neighbor2",
+      "nod1_neighbor3",
+      "nod1_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -69,6 +76,13 @@
   {
     "id": "2",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod2_neighbor0",
+      "nod2_neighbor1",
+      "nod2_neighbor2",
+      "nod2_neighbor3",
+      "nod2_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -136,6 +150,13 @@
   {
     "id": "3",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod3_neighbor0",
+      "nod3_neighbor1",
+      "nod3_neighbor2",
+      "nod3_neighbor3",
+      "nod3_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -203,6 +224,13 @@
   {
     "id": "4",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod4_neighbor0",
+      "nod4_neighbor1",
+      "nod4_neighbor2",
+      "nod4_neighbor3",
+      "nod4_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -270,6 +298,13 @@
   {
     "id": "5",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod5_neighbor0",
+      "nod5_neighbor1",
+      "nod5_neighbor2",
+      "nod5_neighbor3",
+      "nod5_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
