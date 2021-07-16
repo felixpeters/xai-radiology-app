@@ -5,6 +5,7 @@ import {
   ClipboardListIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/solid"
 import PropTypes from "prop-types"
 import Layout from "../components/layout"
@@ -87,16 +88,10 @@ function Scan({ data, location }) {
                     setModelCardOpen(true)
                   }}
                   type="button"
-                  className="mr-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  <svg
-                    className="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400"
-                    fill="currentColor"
-                    viewBox="0 0 8 8"
-                  >
-                    <circle cx={4} cy={4} r={3} />
-                  </svg>
-                  Active AI: Nodule detection & classification
+                  <InformationCircleIcon className="h-5 w-5 text-white mr-2" />
+                  Model card
                 </button>
                 <button
                   onClick={() => {

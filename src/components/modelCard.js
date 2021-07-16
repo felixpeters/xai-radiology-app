@@ -64,7 +64,7 @@ export default function ModelCard({ show, toggle }) {
               <div>
                 <div className="flex flex-row justify-between items-center">
                   <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
-                    RadiologyAI Module: Nodule Detection & Classification
+                    Model Card: Nodule Detection & Classification
                   </h2>
                   <button
                     onClick={() => {
