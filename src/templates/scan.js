@@ -198,23 +198,27 @@ Scan.propTypes = {
         raw_slices: PropTypes.string,
         overlay_slices: PropTypes.string,
       }),
-      nodules: PropTypes.arrayOf({
-        id: PropTypes.string.isRequired,
-        images: PropTypes.shape({
-          thumbnail: PropTypes.string,
-        }),
-        measurements: PropTypes.arrayOf({
-          name: PropTypes.string,
-          stat: PropTypes.number,
-          unit: PropTypes.string,
-        }),
-        classifications: PropTypes.shape({
-          main: PropTypes.shape({
-            ai: PropTypes.number,
-            physician: PropTypes.string,
+      nodules: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          images: PropTypes.shape({
+            thumbnail: PropTypes.string,
           }),
-        }),
-      }),
+          measurements: PropTypes.arrayOf(
+            PropTypes.shape({
+              name: PropTypes.string,
+              stat: PropTypes.number,
+              unit: PropTypes.string,
+            })
+          ),
+          classifications: PropTypes.shape({
+            main: PropTypes.shape({
+              ai: PropTypes.number,
+              physician: PropTypes.string,
+            }),
+          }),
+        })
+      ),
     }),
   }),
 }

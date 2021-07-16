@@ -54,8 +54,11 @@ export default function NoduleList(data) {
                           />
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {nodule.measurements.map(measurement => (
-                            <div className="text-sm font-medium text-gray-900">
+                          {nodule.measurements.map((measurement, index) => (
+                            <div
+                              key={`${index}-${measurement.name}`}
+                              className="text-sm font-medium text-gray-900"
+                            >
                               {measurement.name}: {measurement.stat}{" "}
                               {measurement.unit}
                             </div>
