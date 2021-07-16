@@ -108,35 +108,39 @@ function Nodule({ data, location }) {
                 </h1>
               </div>
               <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
-                <button
-                  onClick={() => {
-                    mixpanel.track("open model card")
-                    setModelCardOpen(true)
-                  }}
-                  type="button"
-                  className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <InformationCircleIcon className="h-5 w-5 text-white mr-2" />
-                  Model card
-                </button>
-                <button
-                  onClick={() => {
-                    mixpanel.track("open similar nodules panel")
-                    setSimilarNodulesOpen(true)
-                  }}
-                  type="button"
-                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <SearchIcon className="h-5 w-5 text-white mr-2" />
-                  Similar nodules
-                </button>
+                {state.showExplanations && (
+                  <>
+                    <button
+                      onClick={() => {
+                        mixpanel.track("open model card")
+                        setModelCardOpen(true)
+                      }}
+                      type="button"
+                      className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      <InformationCircleIcon className="h-5 w-5 text-white mr-2" />
+                      Model card
+                    </button>
+                    <button
+                      onClick={() => {
+                        mixpanel.track("open similar nodules panel")
+                        setSimilarNodulesOpen(true)
+                      }}
+                      type="button"
+                      className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      <SearchIcon className="h-5 w-5 text-white mr-2" />
+                      Similar nodules
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>
           <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-8">
             <div className="flex-1">
               <NoduleImage images={nodule.images} />
-              <HeatmapExplanation />
+              {state.showExplanations && <HeatmapExplanation />}
             </div>
             <div className="flex-1">
               <NoduleClassification
