@@ -175,6 +175,8 @@ export const query = graphql`
         volume
         malignancy
         thumbnail
+        diagnosis
+        diagnosisMethod
       }
       scan {
         id
@@ -233,6 +235,8 @@ Nodule.propTypes = {
           volume: PropTypes.number,
           malignancy: PropTypes.number,
           thumbnail: PropTypes.string,
+          diagnosis: PropTypes.string,
+          diagnosisMethod: PropTypes.string,
         }),
         priority: PropTypes.shape({
           code: PropTypes.string,

@@ -2,11 +2,9 @@ import React from "react"
 import { useMixpanel } from "gatsby-plugin-mixpanel"
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { XIcon, ArrowCircleRightIcon } from "@heroicons/react/outline"
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
-}
+import { XIcon } from "@heroicons/react/outline"
+import SimilarNodulesExplanation from "../components/similarNodulesExplanation"
+import SimilarNodulesList from "../components/similarNodulesList"
 
 export default function SimilarNodulesPanel({ nodules, show, toggle }) {
   const mixpanel = useMixpanel()
@@ -35,12 +33,12 @@ export default function SimilarNodulesPanel({ nodules, show, toggle }) {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <div className="w-screen max-w-md">
+              <div className="w-screen max-w-xl">
                 <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
                   <div className="px-4 sm:px-6">
                     <div className="flex items-start justify-between">
                       <Dialog.Title className="text-lg font-medium text-gray-900">
-                        Scan details
+                        Similar nodules
                       </Dialog.Title>
                       <div className="ml-3 h-7 flex items-center">
                         <button
@@ -60,7 +58,8 @@ export default function SimilarNodulesPanel({ nodules, show, toggle }) {
                     {/* Replace with your content */}
                     <div className="absolute inset-0 px-4 sm:px-6">
                       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
-                        Hello
+                        <SimilarNodulesExplanation />
+                        <SimilarNodulesList nodules={nodules} />
                       </div>
                     </div>
                     {/* /End replace */}
