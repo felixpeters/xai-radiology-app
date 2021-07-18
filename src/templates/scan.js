@@ -1,47 +1,32 @@
 import React from "react"
-import classnames from "classnames"
-import { Fragment, useState } from "react"
-import { Dialog, Transition } from "@headlessui/react"
-import { XIcon, ArrowCircleRightIcon } from "@heroicons/react/outline"
+import { useState } from "react"
 import { Link, graphql } from "gatsby"
 import {
   ClipboardListIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/solid"
 import PropTypes from "prop-types"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ScanImage from "../components/scanImage"
 import NoduleList from "../components/noduleList.js"
-import MouseTracking from "../components/mouseTracking.js"
-import ModelOverview from "../components/modelOverview"
-import ModelValidation from "../components/modelValidation"
-import ModelDatasets from "../components/modelDataset"
-import ModelPerformance from "../components/modelPerformance"
-import UserStateContext from "../components/userContext"
+import ModelCard from "../components/modelCard"
+import ScanDetailsPanel from "../components/scanDetailsPanel"
+import GlobalStateContext from "../components/globalStateContext"
 import { useMixpanel } from "gatsby-plugin-mixpanel"
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
-}
+import initialState from "../components/state"
+import MouseTracking from "../components/mouseTracking.js"
 
 function Scan({ data, location }) {
   const mixpanel = useMixpanel()
   const scan = data.scansJson
-  const pid = (location.state ? location.state.pid : null) || "unknown"
+  const state = location.state || initialState
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
-  const [moduleInfoOpen, setModuleInfoOpen] = useState(false)
-  const [currentTab, setCurrentTab] = useState("Overview")
-  const tabs = [
-    { name: "Overview", href: "#", current: true },
-    { name: "Clinical validation", href: "#", current: false },
-    { name: "Datasets", href: "#", current: false },
-    { name: "Performance", href: "#", current: false },
-  ]
-  mixpanel.identify(pid)
+  const [modelCardOpen, setModelCardOpen] = useState(false)
   return (
-    <UserStateContext.Provider value={pid}>
+    <GlobalStateContext.Provider value={state}>
       <Layout>
       <MouseTracking></MouseTracking>
         <SEO title={"Scan #" + scan.id} />
@@ -51,7 +36,7 @@ function Scan({ data, location }) {
               <nav className="sm:hidden" aria-label="Back">
                 <Link
                   to="/"
-                  state={{ pid: pid }}
+                  state={state}
                   className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700"
                 >
                   <ChevronLeftIcon
@@ -67,7 +52,7 @@ function Scan({ data, location }) {
                     <div>
                       <Link
                         to="/"
-                        state={{ pid: pid }}
+                        state={state}
                         className="text-sm font-medium text-gray-500 hover:text-gray-700"
                       >
                         Worklist
@@ -81,7 +66,7 @@ function Scan({ data, location }) {
                         aria-hidden="true"
                       />
                       <Link
-                        state={{ pid: pid }}
+                        state={state}
                         to="#"
                         className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
                       >
@@ -99,26 +84,22 @@ function Scan({ data, location }) {
                 </h1>
               </div>
               <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
-                <button
-                  onClick={() => {
-                    mixpanel.track("open model card", { pid: pid })
-                    setModuleInfoOpen(true)
-                  }}
-                  type="button"
-                  className="mr-4 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <svg
-                    className="-ml-0.5 mr-1.5 h-2 w-2 text-indigo-400"
-                    fill="currentColor"
-                    viewBox="0 0 8 8"
+                {state.showExplanations && (
+                  <button
+                    onClick={() => {
+                      mixpanel.track("open model card")
+                      setModelCardOpen(true)
+                    }}
+                    type="button"
+                    className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    <circle cx={4} cy={4} r={3} />
-                  </svg>
-                  Active AI: Nodule detection & classification
-                </button>
+                    <InformationCircleIcon className="h-5 w-5 text-white mr-2" />
+                    Model card
+                  </button>
+                )}
                 <button
                   onClick={() => {
-                    mixpanel.track("open scan details", { pid: pid })
+                    mixpanel.track("open scan details")
                     setScanInfoOpen(true)
                   }}
                   type="button"
@@ -138,265 +119,15 @@ function Scan({ data, location }) {
               <NoduleList data={scan.nodules} />
             </div>
           </div>
-          <Transition.Root show={scanInfoOpen} as={Fragment}>
-            <Dialog
-              as="div"
-              static
-              className="fixed inset-0 overflow-hidden"
-              open={scanInfoOpen}
-              onClose={() => {
-                mixpanel.track("close scan details", { pid: pid })
-                setScanInfoOpen(false)
-              }}
-            >
-              <div className="absolute inset-0 overflow-hidden">
-                <Dialog.Overlay className="absolute inset-0" />
-
-                <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="transform transition ease-in-out duration-500 sm:duration-700"
-                    enterFrom="translate-x-full"
-                    enterTo="translate-x-0"
-                    leave="transform transition ease-in-out duration-500 sm:duration-700"
-                    leaveFrom="translate-x-0"
-                    leaveTo="translate-x-full"
-                  >
-                    <div className="w-screen max-w-md">
-                      <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
-                        <div className="px-4 sm:px-6">
-                          <div className="flex items-start justify-between">
-                            <Dialog.Title className="text-lg font-medium text-gray-900">
-                              Scan details
-                            </Dialog.Title>
-                            <div className="ml-3 h-7 flex items-center">
-                              <button
-                                className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                onClick={() => {
-                                  mixpanel.track("close scan details", {
-                                    pid: pid,
-                                  })
-                                  setScanInfoOpen(false)
-                                }}
-                              >
-                                <span className="sr-only">Close panel</span>
-                                <XIcon className="h-6 w-6" aria-hidden="true" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="mt-4 relative flex-1 px-4 sm:px-6">
-                          {/* Replace with your content */}
-                          <div className="absolute inset-0 px-4 sm:px-6">
-                            <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
-                              <dl className="sm:divide-y sm:divide-gray-200">
-                                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4 ">
-                                  <dt className="text-sm font-medium text-gray-500">
-                                    Priority
-                                  </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-3">
-                                    <span
-                                      className={classnames(
-                                        "px-2 inline-flex text-xs leading-5 font-semibold rounded-full",
-                                        {
-                                          "bg-red-100 text-red-800":
-                                            scan.priority.code == "High",
-                                          "bg-yellow-100 text-yellow-800":
-                                            scan.priority.code == "Medium",
-                                          "bg-green-100 text-green-800":
-                                            scan.priority.code == "Low",
-                                        }
-                                      )}
-                                    >
-                                      {scan.priority.code}:{" "}
-                                      {scan.priority.explanation}
-                                    </span>
-                                  </dd>
-                                </div>
-                                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4 ">
-                                  <dt className="text-sm font-medium text-gray-500">
-                                    Patient
-                                  </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-3">
-                                    <div className="flex flex-col">
-                                      <div className="text-sm text-gray-900">
-                                        {scan.patient.name}
-                                      </div>
-                                      <div className="text-sm text-gray-900">
-                                        {scan.patient.sex}
-                                      </div>
-                                      <div className="text-sm text-gray-900">
-                                        {scan.patient.age} years
-                                      </div>
-                                      <button
-                                        type="button"
-                                        onClick={() =>
-                                          mixpanel.track("open EHR record", {
-                                            pid: pid,
-                                          })
-                                        }
-                                        className="inline-flex w-40 items-center mt-2 px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                      >
-                                        <ArrowCircleRightIcon className="h-4 w-4 text-white mr-2" />
-                                        Open full EHR
-                                      </button>
-                                    </div>
-                                  </dd>
-                                </div>
-                                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4 ">
-                                  <dt className="text-sm font-medium text-gray-500">
-                                    Procedure
-                                  </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-3">
-                                    <div className="flex flex-col">
-                                      <div className="text-sm text-gray-900">
-                                        {scan.procedure.name}
-                                      </div>
-                                      <div className="text-sm text-gray-900">
-                                        {scan.procedure.datetime}
-                                      </div>
-                                      <div className="text-sm text-gray-900">
-                                        {scan.procedure.reason}
-                                      </div>
-                                    </div>
-                                  </dd>
-                                </div>
-                              </dl>
-                            </div>
-                          </div>
-                          {/* /End replace */}
-                        </div>
-                      </div>
-                    </div>
-                  </Transition.Child>
-                </div>
-              </div>
-            </Dialog>
-          </Transition.Root>
-          <Transition.Root show={moduleInfoOpen} as={Fragment}>
-            <Dialog
-              as="div"
-              static
-              className="fixed z-10 inset-0 overflow-y-auto"
-              open={moduleInfoOpen}
-              onClose={() => {
-                mixpanel.track("close model card", { pid: pid })
-                setModuleInfoOpen(False)
-              }}
-            >
-              <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                </Transition.Child>
-
-                {/* This element is to trick the browser into centering the modal contents. */}
-                <span
-                  className="hidden sm:inline-block sm:align-middle sm:h-screen"
-                  aria-hidden="true"
-                >
-                  &#8203;
-                </span>
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  enterTo="opacity-100 translate-y-0 sm:scale-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
-                  <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full sm:p-6">
-                    <div>
-                      <div className="flex flex-row justify-between items-center">
-                        <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
-                          RadiologyAI Module: Nodule Detection & Classification
-                        </h2>
-                        <button
-                          onClick={() => {
-                            mixpanel.track("close model card", { pid: pid })
-                            setModuleInfoOpen(false)
-                          }}
-                          className="flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                          <XIcon
-                            className="h-6 w-6 text-gray-600"
-                            aria-hidden="true"
-                          />
-                        </button>
-                      </div>
-                      <div>
-                        <div className="sm:hidden">
-                          <label htmlFor="tabs" className="sr-only">
-                            Select a tab
-                          </label>
-                          <select
-                            id="tabs"
-                            name="tabs"
-                            className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                            defaultValue={tabs.find(tab => tab.current).name}
-                          >
-                            {tabs.map(tab => (
-                              <option key={tab.name}>{tab.name}</option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="hidden sm:block">
-                          <div className="border-b border-gray-200">
-                            <nav className="-mb-px flex" aria-label="Tabs">
-                              {tabs.map(tab => (
-                                <div
-                                  key={tab.name}
-                                  onClick={() => {
-                                    mixpanel.track(
-                                      "open model card tab " + tab.name,
-                                      { pid: pid }
-                                    )
-                                    setCurrentTab(tab.name)
-                                  }}
-                                  className={classNames(
-                                    tab.name === currentTab
-                                      ? "border-indigo-500 text-indigo-600"
-                                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-                                    "w-1/4 cursor-pointer py-4 px-1 text-center border-b-2 font-medium text-sm"
-                                  )}
-                                  aria-current={
-                                    tab.current ? "page" : undefined
-                                  }
-                                >
-                                  {tab.name}
-                                </div>
-                              ))}
-                            </nav>
-                          </div>
-                        </div>
-                        <div>
-                          {
-                            {
-                              Overview: <ModelOverview />,
-                              "Clinical validation": <ModelValidation />,
-                              Datasets: <ModelDatasets />,
-                              Performance: <ModelPerformance />,
-                            }[currentTab]
-                          }
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Transition.Child>
-              </div>
-            </Dialog>
-          </Transition.Root>
+          <ModelCard show={modelCardOpen} toggle={setModelCardOpen} />
+          <ScanDetailsPanel
+            scan={scan}
+            show={scanInfoOpen}
+            toggle={setScanInfoOpen}
+          />
         </div>
       </Layout>
-    </UserStateContext.Provider>
+    </GlobalStateContext.Provider>
   )
 }
 export const query = graphql`
@@ -469,23 +200,27 @@ Scan.propTypes = {
         raw_slices: PropTypes.string,
         overlay_slices: PropTypes.string,
       }),
-      nodules: PropTypes.arrayOf({
-        id: PropTypes.string.isRequired,
-        images: PropTypes.shape({
-          thumbnail: PropTypes.string,
-        }),
-        measurements: PropTypes.arrayOf({
-          name: PropTypes.string,
-          stat: PropTypes.number,
-          unit: PropTypes.string,
-        }),
-        classifications: PropTypes.shape({
-          main: PropTypes.shape({
-            ai: PropTypes.number,
-            physician: PropTypes.string,
+      nodules: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          images: PropTypes.shape({
+            thumbnail: PropTypes.string,
           }),
-        }),
-      }),
+          measurements: PropTypes.arrayOf(
+            PropTypes.shape({
+              name: PropTypes.string,
+              stat: PropTypes.number,
+              unit: PropTypes.string,
+            })
+          ),
+          classifications: PropTypes.shape({
+            main: PropTypes.shape({
+              ai: PropTypes.number,
+              physician: PropTypes.string,
+            }),
+          }),
+        })
+      ),
     }),
   }),
 }

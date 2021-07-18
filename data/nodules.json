@@ -2,6 +2,13 @@
   {
     "id": "1",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod1_neighbor0",
+      "nod1_neighbor1",
+      "nod1_neighbor2",
+      "nod1_neighbor3",
+      "nod1_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -61,13 +68,21 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_5.png",
-      "num_slices": 60,
-      "slices": "scan01/nodules/nodule_1"
+      "num_slices": 30,
+      "slices": "scan01/nodules/nodule_1",
+      "heatmaps": "scan01/nodules/heatmap_1"
     }
   },
   {
     "id": "2",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod2_neighbor0",
+      "nod2_neighbor1",
+      "nod2_neighbor2",
+      "nod2_neighbor3",
+      "nod2_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -87,7 +102,7 @@
     ],
     "classifications": {
       "main": {
-        "ai": 0.35,
+        "ai": 0.11,
         "physician": "Open"
       },
       "additional": [
@@ -127,13 +142,21 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_3.png",
-      "num_slices": 60,
-      "slices": "scan01/nodules/nodule_2"
+      "num_slices": 30,
+      "slices": "scan01/nodules/nodule_2",
+      "heatmaps": "scan01/nodules/heatmap_2"
     }
   },
   {
     "id": "3",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod3_neighbor0",
+      "nod3_neighbor1",
+      "nod3_neighbor2",
+      "nod3_neighbor3",
+      "nod3_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -153,7 +176,7 @@
     ],
     "classifications": {
       "main": {
-        "ai": 0.41,
+        "ai": 0.26,
         "physician": "Open"
       },
       "additional": [
@@ -193,13 +216,21 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_4.png",
-      "num_slices": 59,
-      "slices": "scan01/nodules/nodule_3"
+      "num_slices": 30,
+      "slices": "scan01/nodules/nodule_3",
+      "heatmaps": "scan01/nodules/heatmap_3"
     }
   },
   {
     "id": "4",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod4_neighbor0",
+      "nod4_neighbor1",
+      "nod4_neighbor2",
+      "nod4_neighbor3",
+      "nod4_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -219,8 +250,8 @@
     ],
     "classifications": {
       "main": {
-        "ai": 0.52,
-        "physician": "Benign"
+        "ai": 0.39,
+        "physician": "Open"
       },
       "additional": [
         {
@@ -259,13 +290,21 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_1.png",
-      "num_slices": 52,
-      "slices": "scan01/nodules/nodule_4"
+      "num_slices": 18,
+      "slices": "scan01/nodules/nodule_4",
+      "heatmaps": "scan01/nodules/heatmap_4"
     }
   },
   {
     "id": "5",
     "scan___NODE": "1234",
+    "similar___NODE": [
+      "nod5_neighbor0",
+      "nod5_neighbor1",
+      "nod5_neighbor2",
+      "nod5_neighbor3",
+      "nod5_neighbor4"
+    ],
     "measurements": [
       {
         "name": "Diameter",
@@ -285,7 +324,7 @@
     ],
     "classifications": {
       "main": {
-        "ai": 0.87,
+        "ai": 0.85,
         "physician": "Open"
       },
       "additional": [
@@ -325,8 +364,9 @@
     },
     "images": {
       "thumbnail": "scan01/nodule_2.png",
-      "num_slices": 47,
-      "slices": "scan01/nodules/nodule_5"
+      "num_slices": 16,
+      "slices": "scan01/nodules/nodule_5",
+      "heatmaps": "scan01/nodules/heatmap_5"
     }
   }
 ]

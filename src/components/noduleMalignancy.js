@@ -1,10 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Slider from "rc-slider"
-import { useMixpanel } from "gatsby-plugin-mixpanel"
+import { Link } from "gatsby"
+import { ArrowNarrowLeftIcon } from "@heroicons/react/solid"
 
-function NoduleMalignancy({ data }) {
-  const classification = data
+function NoduleMalignancy({ data, state, scanId, handleClassification }) {
+  const classification = data.classifications.main
+  const nodule = data
   const createSliderWithTooltip = Slider.createSliderWithTooltip
   const MalignancySlider = createSliderWithTooltip(Slider)
   const getColor = value => {
@@ -12,7 +14,6 @@ function NoduleMalignancy({ data }) {
     if (value >= 0.34 && value < 0.67) return "#f59e0b"
     if (value >= 0.67) return "#ef4444"
   }
-  const mixpanel = useMixpanel()
   return (
     <>
       <h3 className="mt-4 text-lg leading-6 font-medium text-gray-900">
@@ -62,9 +63,12 @@ function NoduleMalignancy({ data }) {
               id="classification"
               name="classification"
               className="mt-1 block flex-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-              defaultValue={classification.physician}
-              onChange={() => {
-                mixpanel.track("classify nodule")
+              defaultValue={state["nodule" + nodule.id + "_classification"]}
+              onChange={event => {
+                handleClassification({
+                  name: "nodule" + nodule.id + "_classification",
+                  value: event.target.value,
+                })
               }}
             >
               <option>Open</option>
@@ -74,6 +78,16 @@ function NoduleMalignancy({ data }) {
             </select>
           </li>
         </ul>
+      </div>
+      <div className="flex flex-row justify-end mt-4">
+        <Link
+          state={state}
+          to={"/scans/" + scanId}
+          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          <ArrowNarrowLeftIcon className="h-5 w-5 text-white mr-2" />
+          Back to scan
+        </Link>
       </div>
     </>
   )

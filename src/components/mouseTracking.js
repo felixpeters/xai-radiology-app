@@ -122,9 +122,11 @@ class MouseTracking extends Component {
                                 pauseDurationBeforeClickCounter = pauseDurationBeforeClickCounter + 1;
                             }
                             //MouseHover
+                            console.log((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Model card")
+                            console.log((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent))
                             if (mouseHover) {
                                 if ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent == "Scan details")
-                                    || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Active AI: Nodule detection & classification")
+                                    || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Model card")
                                     || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "")
                                     || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Select a tabOverviewClinical validationDatasetsPerformanceOverviewClinical validationDatasetsPerformanceDatasetsData formatLow-dose chest CTs in DICOM formatRecording period01.01.2016-31.12.2016Recording devicesGE LightspeedSiemens SensationToshiba AquilionPhilips BrillianceSiemens EmotionSiemens DefinitionPatient cohort10,100 patients (male: 4950, female: 5150, age: 55 +/- 10.50)Nodule distributionstotal: 26,512 nodules from 10,100 scans (benign: 20,711, malignant: 5,901, avg. diameter: 10.2 +/- 6.7 mm)training dataset: 21,612 nodules from 8,200 scans (benign: 16,801, malignant: 4,811, avg. diameter: 10.1 +/- 6.8 mm)test dataset: 5,000 nodules from 1,900 scans (benign: 3,910, malignant: 1,090, avg. diameter: 10.3 +/- 6.6 mm)Labeling procedureLabels determined by 3/4 radiologist consensus (see Clinical Validation for more information)Data preprocessingRescaling to consistent voxel sizeIntensity rescaling to 0-1 rangeCenter spatial cropping to uniform volume size")
                                     || ((document.elementFromPoint(lastSeenAt.x, lastSeenAt.y).textContent) == "Datasets")
@@ -236,6 +238,7 @@ class MouseTracking extends Component {
                      * Calculates the distance, mouseHover and checks for a pause.
                      */
                     onmousemove = function (event) {
+                        console.log(endHoverTime)
                         elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
                         if (elementExists.length == 1) {
                             //Set startPosition

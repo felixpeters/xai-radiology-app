@@ -1,7 +1,7 @@
 import React from "react"
 import classnames from "classnames"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import UserStateContext from "./userContext"
+import GlobalStateContext from "./globalStateContext"
 
 export default function WorkList() {
   const data = useStaticQuery(
@@ -123,19 +123,19 @@ export default function WorkList() {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <UserStateContext.Consumer>
-                            {pid => {
+                          <GlobalStateContext.Consumer>
+                            {state => {
                               return (
                                 <Link
                                   to={"/scans/" + scan.id}
-                                  state={{ pid: pid }}
+                                  state={state}
                                   className="text-indigo-600 hover:text-indigo-900"
                                 >
                                   Open
                                 </Link>
                               )
                             }}
-                          </UserStateContext.Consumer>
+                          </GlobalStateContext.Consumer>
                         </td>
                       </tr>
                     ))}
