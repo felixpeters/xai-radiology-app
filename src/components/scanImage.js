@@ -6,8 +6,7 @@ import Slider from "rc-slider"
 import { Switch } from "@headlessui/react"
 import { useMixpanel } from "gatsby-plugin-mixpanel"
 
-function ScanImage({ images }) {
-  const [currentSlice, setCurrentSlice] = useState(120)
+function ScanImage({ images, currentSlice, setCurrentSlice }) {
   const [showOverlay, setShowOverlay] = useState(true)
   const zeroPad = (num, places) => String(num).padStart(places, "0")
   const mixpanel = useMixpanel()

@@ -23,8 +23,13 @@ function Scan({ data, location }) {
   const mixpanel = useMixpanel()
   const scan = data.scansJson
   const state = location.state || initialState
+  const [currentSlice, setCurrentSlice] = useState(120)
   const [scanInfoOpen, setScanInfoOpen] = useState(false)
   const [modelCardOpen, setModelCardOpen] = useState(false)
+
+  const handleSliceChange = value => {
+    setCurrentSlice(value)
+  }
   return (
     <GlobalStateContext.Provider value={state}>
       <Layout>
@@ -113,10 +118,17 @@ function Scan({ data, location }) {
           </div>
           <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-8">
             <div className="flex-1">
-              <ScanImage images={scan.images} />
+              <ScanImage
+                images={scan.images}
+                currentSlice={currentSlice}
+                setCurrentSlice={handleSliceChange}
+              />
             </div>
             <div className="flex-1">
-              <NoduleList data={scan.nodules} />
+              <NoduleList
+                data={scan.nodules}
+                setCurrentSlice={handleSliceChange}
+              />
             </div>
           </div>
           <ModelCard show={modelCardOpen} toggle={setModelCardOpen} />

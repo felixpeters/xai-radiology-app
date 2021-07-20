@@ -4,8 +4,8 @@ import { Link } from "gatsby"
 import DetectionExplanation from "./detectionExplanation"
 import GlobalStateContext from "./globalStateContext"
 
-export default function NoduleList(data) {
-  const nodules = data.data.sort((a, b) => {
+export default function NoduleList({ data, setCurrentSlice }) {
+  const nodules = data.sort((a, b) => {
     return b.measurements[2].stat - a.measurements[2].stat
   })
   return (
@@ -52,9 +52,14 @@ export default function NoduleList(data) {
                             src={"/" + nodule.images.thumbnail}
                             alt=""
                           />
-                          <div className="pt-1 text-xs font-normal text-gray-900">
+                          <button
+                            className="pt-1 text-xs font-normal text-gray-900 hover:text-indigo-900 focus:outline-none"
+                            onClick={event => {
+                              setCurrentSlice(nodule.main_slice)
+                            }}
+                          >
                             Slice {nodule.main_slice}
-                          </div>
+                          </button>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {nodule.measurements.map((measurement, index) => (

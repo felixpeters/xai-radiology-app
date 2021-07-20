@@ -27,7 +27,6 @@ function Nodule({ data, location }) {
   const [modelCardOpen, setModelCardOpen] = useState(false)
   const mixpanel = useMixpanel()
   const handleClassification = event => {
-    console.log(event)
     const { name, value } = event
     mixpanel.track("classify nodule", { noduleId: name, classification: value })
     setState(prevState => ({
