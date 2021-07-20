@@ -15,7 +15,7 @@ function ScanImage({ images }) {
   const mixpanel = useMixpanel()
   return (
     <>
-      <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
+      <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900 mouse">
         Chest CT
       </h2>
       <img
