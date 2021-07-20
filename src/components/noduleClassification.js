@@ -19,7 +19,7 @@ export default function NoduleClassification({
           <h2 className="text-2xl py-4 font-bold leading-tight text-gray-900">
             Classification
           </h2>
-          {state.showExplanations && <ClassificationExplanation />}
+          {state.showExplanations === "on" && <ClassificationExplanation />}
           <NoduleMeasurements data={nodule.measurements} />
           <NoduleCharacteristics data={nodule.classifications.additional} />
           <NoduleMalignancy

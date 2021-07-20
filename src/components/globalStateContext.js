@@ -1,7 +1,6 @@
 import React, { createContext } from "react"
+import initialState from "./state"
 
-const GlobalStateContext = createContext({
-  pid: "anonymous_user",
-})
+const GlobalStateContext = createContext(initialState)
 
 export default GlobalStateContext

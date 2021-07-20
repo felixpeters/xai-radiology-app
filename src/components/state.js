@@ -1,8 +1,9 @@
 import React from "react"
 
 const initialState = {
-  showExplanations: true,
+  showExplanations: "on",
   pid: "anonymous-user",
+  tic: "no-tic",
   nodule1_classification: "Open",
   nodule2_classification: "Open",
   nodule3_classification: "Open",

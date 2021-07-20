@@ -82,7 +82,7 @@ function Scan({ data, location }) {
                 </h1>
               </div>
               <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
-                {state.showExplanations && (
+                {state.showExplanations === "on" && (
                   <button
                     onClick={() => {
                       mixpanel.track("open model card")

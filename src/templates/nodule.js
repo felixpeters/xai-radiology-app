@@ -108,7 +108,7 @@ function Nodule({ data, location }) {
                 </h1>
               </div>
               <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
-                {state.showExplanations && (
+                {state.showExplanations === "on" && (
                   <>
                     <button
                       onClick={() => {
@@ -140,7 +140,7 @@ function Nodule({ data, location }) {
           <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-8">
             <div className="flex-1">
               <NoduleImage images={nodule.images} />
-              {state.showExplanations && <HeatmapExplanation />}
+              {state.showExplanations === "on" && <HeatmapExplanation />}
             </div>
             <div className="flex-1">
               <NoduleClassification

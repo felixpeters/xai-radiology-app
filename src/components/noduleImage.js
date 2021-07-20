@@ -66,7 +66,7 @@ function NoduleImage({ images }) {
               </div>
             </div>
             <div className="flex-1">
-              {state.showExplanations && (
+              {state.showExplanations === "on" && (
                 <Switch.Group
                   as="div"
                   className="flex items-center justify-end"
