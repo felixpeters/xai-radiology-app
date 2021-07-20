@@ -2,6 +2,7 @@
   {
     "id": "1",
     "scan___NODE": "1234",
+    "main_slice": 76,
     "similar___NODE": [
       "nod1_neighbor0",
       "nod1_neighbor1",
@@ -76,6 +77,7 @@
   {
     "id": "2",
     "scan___NODE": "1234",
+    "main_slice": 79,
     "similar___NODE": [
       "nod2_neighbor0",
       "nod2_neighbor1",
@@ -150,6 +152,7 @@
   {
     "id": "3",
     "scan___NODE": "1234",
+    "main_slice": 109,
     "similar___NODE": [
       "nod3_neighbor0",
       "nod3_neighbor1",
@@ -224,6 +227,7 @@
   {
     "id": "4",
     "scan___NODE": "1234",
+    "main_slice": 117,
     "similar___NODE": [
       "nod4_neighbor0",
       "nod4_neighbor1",
@@ -298,6 +302,7 @@
   {
     "id": "5",
     "scan___NODE": "1234",
+    "main_slice": 120,
     "similar___NODE": [
       "nod5_neighbor0",
       "nod5_neighbor1",

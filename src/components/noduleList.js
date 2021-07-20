@@ -48,10 +48,13 @@ export default function NoduleList(data) {
                       <tr key={nodule.id}>
                         <td className="px-2 py-2 whitespace-nowrap">
                           <img
-                            className="h-16 w-16"
+                            className="h-auto w-auto"
                             src={"/" + nodule.images.thumbnail}
                             alt=""
                           />
+                          <div className="pt-1 text-xs font-normal text-gray-900">
+                            Slice {nodule.main_slice}
+                          </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {nodule.measurements.map((measurement, index) => (

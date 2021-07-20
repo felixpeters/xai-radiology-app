@@ -28,7 +28,7 @@ function Scan({ data, location }) {
   return (
     <GlobalStateContext.Provider value={state}>
       <Layout>
-      <MouseTracking></MouseTracking>
+        <MouseTracking></MouseTracking>
         <SEO title={"Scan #" + scan.id} />
         <div className="max-w-7xl py-8 mx-auto sm:px-6 lg:px-8">
           <div>
@@ -157,6 +157,7 @@ export const query = graphql`
       }
       nodules {
         id
+        main_slice
         measurements {
           name
           stat
@@ -203,6 +204,7 @@ Scan.propTypes = {
       nodules: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string.isRequired,
+          main_slice: PropTypes.string,
           images: PropTypes.shape({
             thumbnail: PropTypes.string,
           }),

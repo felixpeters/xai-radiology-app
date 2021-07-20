@@ -166,6 +166,7 @@ export const query = graphql`
   query NoduleById($noduleId: String!) {
     nodulesJson(id: { eq: $noduleId }) {
       id
+      main_slice
       similar {
         id
         dist
@@ -226,6 +227,7 @@ Nodule.propTypes = {
     nodulesJson: PropTypes.shape({
       scan: PropTypes.shape({
         id: PropTypes.string.isRequired,
+        main_slice: PropTypes.string,
         similar: PropTypes.shape({
           id: PropTypes.string,
           dist: PropTypes.number,
