@@ -52,7 +52,7 @@ export default function Header() {
                       />
                       <img
                         className="hidden lg:block h-8 w-auto"
-                        src={"/logo_name.svg"}
+                        src={"/logo_name.png"}
                         alt={site.siteMetadata.title}
                       />
                     </div>
