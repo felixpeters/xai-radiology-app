@@ -21,7 +21,9 @@ export default function NoduleClassification({
           </h2>
           {state.showExplanations === "on" && <ClassificationExplanation />}
           <NoduleMeasurements data={nodule.measurements} />
-          <NoduleCharacteristics data={nodule.classifications.additional} />
+          {state.showExplanations === "on" && (
+            <NoduleCharacteristics data={nodule.classifications.additional} />
+          )}
           <NoduleMalignancy
             data={nodule}
             state={state}
