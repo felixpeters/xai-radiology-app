@@ -7,9 +7,7 @@ import { Switch } from "@headlessui/react"
 import { useMixpanel } from "gatsby-plugin-mixpanel"
 
 function ScanImage({ images }) {
-  const [currentSlice, setCurrentSlice] = useState(
-    Math.round(images.num_slices / 2)
-  )
+  const [currentSlice, setCurrentSlice] = useState(120)
   const [showOverlay, setShowOverlay] = useState(true)
   const zeroPad = (num, places) => String(num).padStart(places, "0")
   const mixpanel = useMixpanel()
