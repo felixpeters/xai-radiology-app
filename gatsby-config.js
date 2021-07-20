@@ -22,6 +22,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
+        src: '/mus.js',
+      },
+    },
+    {
       resolve: "gatsby-plugin-mixpanel",
       options: {
         apiToken: "f72f27e4b75db721be6fd9207e86a027",

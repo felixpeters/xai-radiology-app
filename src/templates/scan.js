@@ -17,6 +17,7 @@ import ScanDetailsPanel from "../components/scanDetailsPanel"
 import GlobalStateContext from "../components/globalStateContext"
 import { useMixpanel } from "gatsby-plugin-mixpanel"
 import initialState from "../components/state"
+import MouseTracking from "../components/mouseTracking.js"
 
 function Scan({ data, location }) {
   const mixpanel = useMixpanel()
@@ -27,6 +28,7 @@ function Scan({ data, location }) {
   return (
     <GlobalStateContext.Provider value={state}>
       <Layout>
+      <MouseTracking></MouseTracking>
         <SEO title={"Scan #" + scan.id} />
         <div className="max-w-7xl py-8 mx-auto sm:px-6 lg:px-8">
           <div>
@@ -198,23 +200,27 @@ Scan.propTypes = {
         raw_slices: PropTypes.string,
         overlay_slices: PropTypes.string,
       }),
-      nodules: PropTypes.arrayOf({
-        id: PropTypes.string.isRequired,
-        images: PropTypes.shape({
-          thumbnail: PropTypes.string,
-        }),
-        measurements: PropTypes.arrayOf({
-          name: PropTypes.string,
-          stat: PropTypes.number,
-          unit: PropTypes.string,
-        }),
-        classifications: PropTypes.shape({
-          main: PropTypes.shape({
-            ai: PropTypes.number,
-            physician: PropTypes.string,
+      nodules: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          images: PropTypes.shape({
+            thumbnail: PropTypes.string,
           }),
-        }),
-      }),
+          measurements: PropTypes.arrayOf(
+            PropTypes.shape({
+              name: PropTypes.string,
+              stat: PropTypes.number,
+              unit: PropTypes.string,
+            })
+          ),
+          classifications: PropTypes.shape({
+            main: PropTypes.shape({
+              ai: PropTypes.number,
+              physician: PropTypes.string,
+            }),
+          }),
+        })
+      ),
     }),
   }),
 }
