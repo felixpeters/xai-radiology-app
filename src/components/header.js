@@ -83,11 +83,14 @@ export default function Header() {
                   </a>
                 </div> */}
                   </div>
-                  {state.pid !== "anonymous-user" && (
+                  {state.tic !== "anonymous-user" && (
                     <div className="flex items-center gap-x-2">
                       <Instructions />
                       <a
-                        href="#"
+                        href={
+                          "https://ww3.unipark.de/uc/KI_Radiologie/ospe.php?return_tic=" +
+                          state.tic
+                        }
                         className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       >
                         Back to survey
