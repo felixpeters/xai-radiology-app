@@ -132,7 +132,7 @@ export default function NoduleList({ data, setCurrentSlice }) {
                                 }
                               )}
                             >
-                              Physician:{" "}
+                              Physician classification:{" "}
                               {state["nodule" + nodule.id + "_classification"]}
                             </span>
                           </div>
