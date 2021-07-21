@@ -31,12 +31,12 @@ export default function WorkList() {
   )
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 py-8 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold leading-tight text-gray-900">
           Worklist
         </h1>
       </div>
-      <div className="max-w-7xl mx-auto mb-10 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto mb-10 px-2 sm:px-6 lg:px-8">
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

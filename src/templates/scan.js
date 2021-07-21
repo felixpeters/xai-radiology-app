@@ -35,7 +35,7 @@ function Scan({ data, location }) {
       <Layout>
         <MouseTracking></MouseTracking>
         <SEO title={"Scan #" + scan.id} />
-        <div className="max-w-7xl py-8 mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-7xl py-8 px-2 mx-auto sm:px-6 lg:px-8">
           <div>
             <div>
               <nav className="sm:hidden" aria-label="Back">
