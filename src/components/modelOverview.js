@@ -64,7 +64,7 @@ export default function ModelOverview() {
           </div>
         </dl>
         <img
-          className="block h-48 w-auto mx-auto"
+          className="block h-auto sm:h-48 w-auto mx-auto"
           src={"/model_overview.png"}
         />
       </div>

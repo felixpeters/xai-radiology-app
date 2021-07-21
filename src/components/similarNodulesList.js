@@ -27,7 +27,7 @@ export default function SimilarNodulesList({ nodules }) {
                 <tr key={nodule.id}>
                   <td className="px-2 py-2 whitespace-nowrap">
                     <img
-                      className="h-40 w-40"
+                      className="h-auto sm:h-40 w-auto"
                       src={"/" + nodule.thumbnail}
                       alt=""
                     />
