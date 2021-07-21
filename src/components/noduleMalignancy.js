@@ -71,9 +71,20 @@ function NoduleMalignancy({ data, state, scanId, handleClassification }) {
                   </div>
                 )}
                 {state.showExplanations !== "on" && (
-                  <div className="ml-4 md:ml-40 lg:ml-28 text-sm">
+                  <span
+                    className={classnames(
+                      "ml-4 md:ml-40 lg:ml-28 text-sm px-2 inline-flex text-sm leading-5 font-medium rounded-full",
+                      {
+                        "bg-green-100 text-green-800":
+                          classification.ai >= 0.0 && classification.ai < 0.34,
+                        "bg-yellow-100 text-yellow-800":
+                          classification.ai >= 0.34 && classification.ai < 0.67,
+                        "bg-red-100 text-red-800": classification.ai >= 0.67,
+                      }
+                    )}
+                  >
                     {convertScoreValueToClass(classification.ai)}
-                  </div>
+                  </span>
                 )}
               </li>
               <li
