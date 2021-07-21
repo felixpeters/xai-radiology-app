@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 import { render } from "react-dom";
+import GlobalStateContext from "./globalStateContext"
 
 class MouseTracking extends Component {
+    static contextType = GlobalStateContext;
     componentDidMount() {
-
+        const pid = this.context.pid;
         //Initialize Page
         const isBrowser = typeof window !== "undefined"
         var wasOnPage = true;
@@ -29,7 +31,7 @@ class MouseTracking extends Component {
                     }
 
                     //Public Settings
-                    var userId = "3";
+                    var userId = pid;
                     var backEndURL = "https://mouse-tracking-api.brickstream.eu/api/records";
                     var pauseAfter = 200;
                     var trackingPathName = "/scans/1234";
