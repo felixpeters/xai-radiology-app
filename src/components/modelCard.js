@@ -89,6 +89,12 @@ export default function ModelCard({ show, toggle }) {
                       name="tabs"
                       className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                       defaultValue={tabs.find(tab => tab.current).name}
+                      onChange={event => {
+                        mixpanel.track(
+                          "open model card tab " + event.target.value
+                        )
+                        setCurrentTab(event.target.value)
+                      }}
                     >
                       {tabs.map(tab => (
                         <option key={tab.name}>{tab.name}</option>
