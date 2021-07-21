@@ -353,7 +353,6 @@ class MouseTracking extends Component {
     }
 
     render() {
-        const {state} = this.context;
         return (
             <div style={{ visibility: "hidden" }}>MouseTracking</div>
             
