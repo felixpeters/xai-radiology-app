@@ -43,7 +43,7 @@ export default function ModelPerformance() {
             <dt className="text-sm font-medium text-gray-500">ROC curve</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <img
-                className="block h-auto sm:h-64 w-auto"
+                className="block h-auto sm:h-40 md:h-80 w-auto"
                 src={"/roc_curve.jpg"}
               />
             </dd>
