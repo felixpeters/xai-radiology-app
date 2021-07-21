@@ -30,7 +30,7 @@ class MouseTracking extends Component {
                     }
 
                     //Public Settings
-                    var userId = useContext(GlobalStateContext).pid;
+                    var userId = "useContext(GlobalStateContext).pid;"
                     var backEndURL = "https://mouse-tracking-api.brickstream.eu/api/records";
                     var pauseAfter = 200;
                     var trackingPathName = "/scans/1234";
