@@ -1,5 +1,6 @@
-import React, { Component } from "react"
+import React, { Component, useContext } from "react"
 import { render } from "react-dom";
+import GlobalStateContext from "./globalStateContext"
 
 class MouseTracking extends Component {
     componentDidMount() {
@@ -29,12 +30,12 @@ class MouseTracking extends Component {
                     }
 
                     //Public Settings
-                    var userId = "3";
+                    var userId = useContext(GlobalStateContext).pid;
                     var backEndURL = "https://mouse-tracking-api.brickstream.eu/api/records";
                     var pauseAfter = 200;
                     var trackingPathName = "/scans/1234";
                     var trackingPathName2 = "/scans/1234/";
-                    var transparent = true;
+                    var transparent = false;
                     //logic variable
                     var doOnce = true;
                     var elementExists = document.getElementsByClassName("text-2xl py-4 font-bold leading-tight text-gray-900 mouse");
