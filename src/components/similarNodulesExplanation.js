@@ -13,7 +13,7 @@ export default function SimilarNodulesExplanation() {
         </div>
         <div className="ml-3 flex-1 text-sm text-blue-700">
           <p>
-            Similar nodules are collected from all <b>cases in your CAS</b>. The
+            Similar nodules are collected from all <b>cases in your CAS</b>. The{" "}
             <b>k-nearest neighbors algorithm</b> is used to determine the most
             similar nodules, as measured by the{" "}
             <b>Euclidian distance based on the following features</b>:

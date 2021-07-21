@@ -22,7 +22,7 @@ export default function ModelPerformance() {
               Model type & output
             </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              Classification model, outputs probability of nodule being
+              Convolutional neural network, outputs probability of nodule being
               malignant
             </dd>
           </div>

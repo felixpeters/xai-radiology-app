@@ -17,7 +17,7 @@ export default function ClassificationExplanation() {
             <b>3D nodule volume as an input</b> and generates the{" "}
             <b>following outputs:</b>{" "}
           </p>
-          <ul className="mt-2 list-disc pl-5 space-y-1">
+          <ul className="my-2 list-disc pl-5 space-y-1">
             <li>
               <b>Nodule measurements</b>, i.e., diameter, area and volume
             </li>
@@ -30,6 +30,10 @@ export default function ClassificationExplanation() {
               is malignant
             </li>
           </ul>
+          <p>
+            More information can be found in the{" "}
+            <b>model card for this module</b>.
+          </p>
         </div>
       </div>
     </div>

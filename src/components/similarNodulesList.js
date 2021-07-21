@@ -46,7 +46,7 @@ export default function SimilarNodulesList({ nodules }) {
                       Volume: {nodule.volume.toFixed(1)} mm³
                     </div>
                     <div className="mt-2 text-sm font-medium text-gray-900">
-                      Malignancy score: {nodule.malignancy * 100}%
+                      AI Malignancy Score: {nodule.malignancy * 100}%
                     </div>
                     <div className="text-sm font-medium text-gray-900">
                       Diagnosis: {nodule.diagnosis}

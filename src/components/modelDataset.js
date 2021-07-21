@@ -75,7 +75,7 @@ export default function ModelDatasets() {
             </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               Labels determined by 3/4 radiologist consensus (see Clinical
-              Validation for more information)
+              Validation paper for more information)
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">

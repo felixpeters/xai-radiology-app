@@ -28,7 +28,7 @@ export default function ModelOverview() {
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt className="text-sm font-medium text-gray-500">Developer</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              Radiology AI Inc., 1 Main Street, San Francisco, CA 94107, USA
+              Radiology AI, Torstraße 216, 10115 Berlin, Germany
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -57,7 +57,7 @@ export default function ModelOverview() {
                 <li>Model 1: Segmentation of lung nodules in chest CT scans</li>
                 <li>
                   Model 2: Classification of lung nodules from their 3D image
-                  volume into benign or malignant nodules
+                  into benign or malignant nodules
                 </li>
               </ul>
             </dd>
