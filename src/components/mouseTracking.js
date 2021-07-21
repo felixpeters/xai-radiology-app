@@ -1,6 +1,6 @@
-import React, { Component, useContext } from "react"
+import React, { Component } from "react"
 import { render } from "react-dom";
-import GlobalStateContext from "./globalStateContext"
+
 class MouseTracking extends Component {
     componentDidMount() {
 
@@ -29,7 +29,7 @@ class MouseTracking extends Component {
                     }
 
                     //Public Settings
-                    var userId = useContext(GlobalStateContext).pid;
+                    var userId = "3";
                     var backEndURL = "https://mouse-tracking-api.brickstream.eu/api/records";
                     var pauseAfter = 200;
                     var trackingPathName = "/scans/1234";
