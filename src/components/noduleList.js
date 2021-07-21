@@ -4,6 +4,16 @@ import { Link } from "gatsby"
 import DetectionExplanation from "./detectionExplanation"
 import GlobalStateContext from "./globalStateContext"
 
+function convertScoreValueToClass(value) {
+  if (value >= 0.0 && value < 0.34) {
+    return "Benign"
+  } else if (value >= 0.34 && value < 0.67) {
+    return "Indeterminate"
+  } else {
+    return "Malignant"
+  }
+}
+
 export default function NoduleList({ data, setCurrentSlice }) {
   const nodules = data.sort((a, b) => {
     return b.measurements[2].stat - a.measurements[2].stat
@@ -90,7 +100,12 @@ export default function NoduleList({ data, setCurrentSlice }) {
                               )}
                             >
                               AI Malignancy Score:{" "}
-                              {nodule.classifications.main.ai * 100}%
+                              {state.showExplanations == "on"
+                                ? String(nodule.classifications.main.ai * 100) +
+                                  "%"
+                                : convertScoreValueToClass(
+                                    nodule.classifications.main.ai
+                                  )}
                             </span>
                           </div>
                           <div className="mt-4 text-sm font-medium text-gray-900">
