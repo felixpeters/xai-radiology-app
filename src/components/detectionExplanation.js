@@ -15,9 +15,10 @@ export default function DetectionExplanation() {
           <p>
             The <b>nodule detection AI</b> receives the{" "}
             <b>3D chest CT volume as an input</b> and{" "}
-            <b>segments lung nodules</b> larger than 3mm. The following table
-            lists all detected nodules, ordered by their estimated volume. All
-            detected nodules are also marked in the overlay of the chest CT.
+            <b>segments lung nodules</b> larger than 3mm. All detected nodules
+            are then <b>classified using the AI Malignancy Score</b>. The score
+            states the AI's confidence that a given nodule is malignant. More
+            information can be found in the <b>model card for this module</b>.
           </p>
         </div>
       </div>
