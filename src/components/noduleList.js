@@ -143,7 +143,7 @@ export default function NoduleList({ data, setCurrentSlice }) {
                             state={state}
                             className="text-indigo-600 hover:text-indigo-900"
                           >
-                            Details
+                            Classify
                           </Link>
                         </td>
                       </tr>

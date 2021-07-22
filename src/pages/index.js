@@ -10,7 +10,7 @@ export default function Home({ location }) {
   const state = location.state || initialState
   const params = new URLSearchParams(location.search)
   const pid = params.get("pid") || state.pid || "anonymous-user"
-  const tic = params.get("tic") || state.pid || "anonymous-user"
+  const tic = params.get("tic") || state.tic || "anonymous-user"
   const mixpanel = useMixpanel()
   mixpanel.identify(pid)
   state["pid"] = pid
