@@ -96,7 +96,7 @@ function Scan({ data, location }) {
                       setModelCardOpen(true)
                     }}
                     type="button"
-                    className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-800 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700"
                   >
                     <InformationCircleIcon className="h-5 w-5 text-white mr-2" />
                     Model card
@@ -108,9 +108,9 @@ function Scan({ data, location }) {
                     setScanInfoOpen(true)
                   }}
                   type="button"
-                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  <ClipboardListIcon className="h-5 w-5 text-white mr-2" />
+                  <ClipboardListIcon className="h-5 w-5 text-gray-700 mr-2" />
                   Scan details
                 </button>
               </div>

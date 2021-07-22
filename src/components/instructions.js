@@ -46,8 +46,13 @@ export default function Instructions() {
                   <ul className="list-decimal list-inside mt-2">
                     <li>Open the first item on your worklist.</li>
                     <li>
-                      Familiarize yourself with the features provided in this
-                      application.
+                      Familiarize yourself with all features on the overview
+                      page.
+                    </li>
+                    <li>Open the details page for one nodule.</li>
+                    <li>
+                      Familiarize yourself with all features on the details
+                      page.
                     </li>
                     <li>Classify all nodules.</li>
                     <li>Go back to the survey.</li>
