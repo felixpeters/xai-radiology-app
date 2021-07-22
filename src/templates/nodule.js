@@ -115,7 +115,7 @@ function Nodule({ data, location }) {
                         setModelCardOpen(true)
                       }}
                       type="button"
-                      className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600"
+                      className="mr-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-800 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700"
                     >
                       <InformationCircleIcon className="h-5 w-5 text-white mr-2" />
                       Model card
@@ -126,7 +126,7 @@ function Nodule({ data, location }) {
                         setSimilarNodulesOpen(true)
                       }}
                       type="button"
-                      className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600"
+                      className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-800 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700"
                     >
                       <SearchIcon className="h-5 w-5 text-white mr-2" />
                       Similar nodules
