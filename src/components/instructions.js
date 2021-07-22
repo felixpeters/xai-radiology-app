@@ -44,6 +44,9 @@ export default function Instructions() {
                     <b>Please complete the following steps:</b>
                   </p>
                   <ul className="list-decimal list-inside mt-2">
+                    <li>
+                      <b>Please turn off any ad-blockers for this page.</b>
+                    </li>
                     <li>Open the first item on your worklist.</li>
                     <li>
                       Familiarize yourself with all features on the overview

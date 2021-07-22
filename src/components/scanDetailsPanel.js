@@ -96,16 +96,6 @@ export default function ScanDetailsPanel({ scan, show, toggle }) {
                                 <div className="text-sm text-gray-900">
                                   {scan.patient.age} years
                                 </div>
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    mixpanel.track("open EHR record")
-                                  }
-                                  className="inline-flex w-40 items-center mt-2 px-4 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >
-                                  <ArrowCircleRightIcon className="h-4 w-4 text-white mr-2" />
-                                  Open full EHR
-                                </button>
                               </div>
                             </dd>
                           </div>
